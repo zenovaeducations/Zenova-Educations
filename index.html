@@ -171,6 +171,7 @@
     measurementId: "G-7JL1SFKDHE"
   };
 
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   const auth = firebase.auth();
@@ -178,58 +179,85 @@
 
   let currentUser = null;
 
-
   // Google Login
-  document.getElementById('googleLogin').addEventListener('click', async () => {
+  document.getElementById('googleLogin')
+  .addEventListener('click', async () => {
 
-    const provider = new firebase.auth.GoogleAuthProvider();
+    const provider =
+    new firebase.auth.GoogleAuthProvider();
 
     try {
 
-      const result = await auth.signInWithPopup(provider);
+      await auth.signInWithPopup(provider);
 
-      currentUser = result.user;
-
-      checkApplication();
-
-    } catch(error) {
+    } catch(error){
 
       console.error(error);
-      alert('Google Login Failed');
+      alert(error.message);
 
     }
 
   });
 
 
-  // Check Existing Application
-  async function checkApplication() {
+  // Detect Login State
+  auth.onAuthStateChanged(async (user) => {
 
-    const doc = await db.collection('applications')
-    .doc(currentUser.uid)
-    .get();
+    if(user){
 
-    document.getElementById('userBox').classList.remove('hidden');
+      currentUser = user;
 
-    document.getElementById('userName').innerText =
-    currentUser.displayName;
+      // Hide Login Button
+      document.getElementById('googleLogin')
+      .style.display = 'none';
 
-    // If already applied
-    if(doc.exists){
-
-      window.location.href = "dashboard.html";
-
-    } else {
-
-      document.getElementById('applicationForm')
+      // Show User Info
+      document.getElementById('userBox')
       .classList.remove('hidden');
+
+      document.getElementById('userName')
+      .innerText = user.displayName;
+
+
+      try {
+
+        // Check Firestore
+        const doc = await db
+        .collection('applications')
+        .doc(user.uid)
+        .get();
+
+
+        // If application exists
+        if(doc.exists){
+
+          window.location.href = "dashboard.html";
+
+        } else {
+
+          // Show Application Form
+          document.getElementById('applicationForm')
+          .classList.remove('hidden');
+
+        }
+
+      } catch(error){
+
+        console.error(error);
+
+        alert(
+          "Enable Firestore Database in Firebase Console"
+        );
+
+      }
 
     }
 
-  }
+  });
 
 
-  // Form Submit
+
+  // Submit Form
   document.getElementById('applicationForm')
   .addEventListener('submit', async (e)=>{
 
@@ -242,6 +270,7 @@
       .set({
 
         uid: currentUser.uid,
+
         email: currentUser.email,
 
         studentName:
@@ -276,6 +305,7 @@
 
       });
 
+
       alert("Application Submitted Successfully");
 
       window.location.href = "dashboard.html";
@@ -284,13 +314,12 @@
 
       console.error(error);
 
-      alert("Error submitting application");
+      alert(error.message);
 
     }
 
   });
 
 </script>
-
 </body>
 </html>
