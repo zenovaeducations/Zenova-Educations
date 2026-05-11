@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Zenova Educations</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Firebase -->
@@ -18,7 +20,7 @@
     body{
       background:#050505;
       color:white;
-      font-family:Arial, sans-serif;
+      font-family:Arial,sans-serif;
     }
 
     .glass{
@@ -52,163 +54,169 @@
 
 <body>
 
-<div class="min-h-screen p-6 lg:p-10">
+<div class="min-h-screen flex items-center justify-center p-6">
 
-  <!-- Top -->
-  <div class="flex flex-col lg:flex-row justify-between items-center mb-10 gap-5">
+  <div class="glass rounded-3xl p-8 w-full max-w-5xl">
 
-    <div>
-      <h1 class="text-4xl font-bold gold">
-        ZENOVA EDUCATIONS
-      </h1>
+    <!-- Header -->
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-5 mb-10">
 
-      <p class="text-gray-400 mt-2">
-        Integrated with Best PU College
-      </p>
+      <div>
+
+        <h1 class="text-4xl font-bold gold">
+          ZENOVA EDUCATIONS
+        </h1>
+
+        <p class="text-gray-400 mt-2">
+          Integrated with Best PU College
+        </p>
+
+      </div>
+
+      <button
+        id="googleBtn"
+        class="bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-3 rounded-xl font-bold"
+      >
+        Continue with Google
+      </button>
+
     </div>
 
-    <button
-      id="googleLogin"
-      class="bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-3 rounded-xl font-bold"
+
+    <!-- User -->
+    <div
+      id="userSection"
+      class="hidden bg-yellow-400/10 border border-yellow-400/20 rounded-2xl p-5 mb-8"
     >
-      Continue with Google
-    </button>
 
-  </div>
+      <p class="text-lg">
+        Logged in as
+        <span id="userName" class="gold font-bold"></span>
+      </p>
 
-
-  <!-- User Box -->
-  <div
-    id="userBox"
-    class="hidden glass rounded-2xl p-5 mb-8"
-  >
-
-    <p class="text-lg">
-      Logged in as
-      <span id="userName" class="gold font-bold"></span>
-    </p>
-
-  </div>
+    </div>
 
 
-  <!-- Form -->
-  <div
-    id="formContainer"
-    class="hidden glass rounded-3xl p-8"
-  >
+    <!-- Application Form -->
+    <div
+      id="applicationSection"
+      class="hidden"
+    >
 
-    <h2 class="text-3xl font-bold gold mb-8">
-      Scholarship Application Form
-    </h2>
+      <h2 class="text-3xl font-bold gold mb-8">
+        Scholarship Application Form
+      </h2>
 
-    <form id="applicationForm">
+      <form id="applicationForm">
 
-      <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid md:grid-cols-2 gap-6">
 
-        <div>
-          <label class="text-sm text-gray-300">
-            Full Name
-          </label>
+          <div>
+            <label class="text-sm text-gray-300">
+              Full Name
+            </label>
 
-          <input
-            type="text"
-            id="studentName"
-            class="input-box mt-2"
-            placeholder="Enter full name"
-            required
-          >
+            <input
+              type="text"
+              id="studentName"
+              class="input-box mt-2"
+              required
+            >
+          </div>
+
+          <div>
+            <label class="text-sm text-gray-300">
+              Phone Number
+            </label>
+
+            <input
+              type="tel"
+              id="phone"
+              class="input-box mt-2"
+              required
+            >
+          </div>
+
+          <div>
+            <label class="text-sm text-gray-300">
+              Parent Phone Number
+            </label>
+
+            <input
+              type="tel"
+              id="parentPhone"
+              class="input-box mt-2"
+              required
+            >
+          </div>
+
+          <div>
+            <label class="text-sm text-gray-300">
+              SSLC Percentage
+            </label>
+
+            <input
+              type="number"
+              id="sslcPercentage"
+              class="input-box mt-2"
+              required
+            >
+          </div>
+
+          <div>
+
+            <label class="text-sm text-gray-300">
+              Stream
+            </label>
+
+            <select
+              id="stream"
+              class="input-box mt-2"
+              required
+            >
+              <option value="">Select Stream</option>
+              <option>Science</option>
+              <option>Commerce</option>
+            </select>
+
+          </div>
+
+          <div>
+
+            <label class="text-sm text-gray-300">
+              Course Interested
+            </label>
+
+            <select
+              id="course"
+              class="input-box mt-2"
+              required
+            >
+              <option value="">Select Course</option>
+              <option>PCMB</option>
+              <option>PCMC</option>
+              <option>NEET Integrated</option>
+              <option>Commerce + CA</option>
+            </select>
+
+          </div>
+
         </div>
 
-        <div>
-          <label class="text-sm text-gray-300">
-            Phone Number
-          </label>
+        <div class="mt-10 text-right">
 
-          <input
-            type="tel"
-            id="phone"
-            class="input-box mt-2"
-            placeholder="Enter phone number"
-            required
+          <button
+            type="submit"
+            class="bg-yellow-400 hover:bg-yellow-300 text-black px-10 py-4 rounded-xl font-bold text-lg"
           >
+            Submit Application
+          </button>
+
         </div>
 
-        <div>
-          <label class="text-sm text-gray-300">
-            Parent Phone Number
-          </label>
+      </form>
 
-          <input
-            type="tel"
-            id="parentPhone"
-            class="input-box mt-2"
-            placeholder="Enter parent phone"
-            required
-          >
-        </div>
-
-        <div>
-          <label class="text-sm text-gray-300">
-            SSLC Percentage
-          </label>
-
-          <input
-            type="number"
-            id="sslcPercentage"
-            class="input-box mt-2"
-            placeholder="Enter percentage"
-            required
-          >
-        </div>
-
-        <div>
-          <label class="text-sm text-gray-300">
-            Stream
-          </label>
-
-          <select
-            id="stream"
-            class="input-box mt-2"
-            required
-          >
-            <option value="">Select Stream</option>
-            <option>Science</option>
-            <option>Commerce</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="text-sm text-gray-300">
-            Course Interested
-          </label>
-
-          <select
-            id="course"
-            class="input-box mt-2"
-            required
-          >
-            <option value="">Select Course</option>
-            <option>PCMB</option>
-            <option>PCMC</option>
-            <option>NEET Integrated</option>
-            <option>Commerce + CA</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="mt-10 text-right">
-
-        <button
-          type="submit"
-          class="bg-yellow-400 hover:bg-yellow-300 text-black px-10 py-4 rounded-xl font-bold text-lg"
-        >
-          Submit Application
-        </button>
-
-      </div>
-
-    </form>
+    </div>
 
   </div>
 
@@ -237,18 +245,20 @@
   let currentUser = null;
 
 
-  // Google Login
-  document.getElementById('googleLogin')
-  .addEventListener('click', async () => {
+  // GOOGLE LOGIN
+  document
+  .getElementById('googleBtn')
+  .addEventListener('click', async ()=>{
 
-    const provider =
-    new firebase.auth.GoogleAuthProvider();
+    try{
 
-    try {
+      const provider =
+      new firebase.auth.GoogleAuthProvider();
 
       await auth.signInWithPopup(provider);
 
-    } catch(error){
+    }
+    catch(error){
 
       console.error(error);
       alert(error.message);
@@ -258,26 +268,30 @@
   });
 
 
-  // Auth State
+
+  // AUTH STATE
   auth.onAuthStateChanged(async (user)=>{
 
     if(user){
 
       currentUser = user;
 
-      // Hide Login Button
-      document.getElementById('googleLogin')
-      .style.display = 'none';
-
-      // Show User Box
-      document.getElementById('userBox')
+      // Show User
+      document
+      .getElementById('userSection')
       .classList.remove('hidden');
 
-      document.getElementById('userName')
+      document
+      .getElementById('userName')
       .innerText = user.displayName;
 
+      // Hide Login Button
+      document
+      .getElementById('googleBtn')
+      .style.display = 'none';
 
-      try {
+
+      try{
 
         // Check Existing Application
         const doc = await db
@@ -286,26 +300,32 @@
         .get();
 
 
-        // If already submitted
+        // Already Applied
         if(doc.exists){
 
-          window.location.href = "dashboard.html";
+          window.location.href =
+          "dashboard.html";
 
-        } else {
+        }
 
-          // SHOW APPLICATION FORM
-          document.getElementById('formContainer')
+        // New User
+        else{
+
+          document
+          .getElementById('applicationSection')
           .classList.remove('hidden');
 
         }
 
-      } catch(error){
+      }
+      catch(error){
 
         console.error(error);
 
-        alert(
-          "Enable Firestore Database in Firebase Console"
-        );
+        // SHOW FORM ANYWAY
+        document
+        .getElementById('applicationSection')
+        .classList.remove('hidden');
 
       }
 
@@ -315,15 +335,17 @@
 
 
 
-  // Submit Form
-  document.getElementById('applicationForm')
+  // FORM SUBMIT
+  document
+  .getElementById('applicationForm')
   .addEventListener('submit', async (e)=>{
 
     e.preventDefault();
 
-    try {
+    try{
 
-      await db.collection('applications')
+      await db
+      .collection('applications')
       .doc(currentUser.uid)
       .set({
 
@@ -363,11 +385,14 @@
 
       });
 
+
       alert("Application Submitted Successfully");
 
-      window.location.href = "dashboard.html";
+      window.location.href =
+      "dashboard.html";
 
-    } catch(error){
+    }
+    catch(error){
 
       console.error(error);
 
