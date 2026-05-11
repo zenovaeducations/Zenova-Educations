@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zenova Educations - Application</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <style>
+
+    body{
+      background:#050505;
+      color:white;
+      font-family:Arial, sans-serif;
+    }
+
+    .glass{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(10px);
+    }
+
+    .input-box{
+      width:100%;
+      padding:14px;
+      border-radius:12px;
+      background:#0f0f0f;
+      border:1px solid #2a2a2a;
+      color:white;
+      outline:none;
+    }
+
+    .input-box:focus{
+      border-color:#facc15;
+      box-shadow:0 0 0 3px rgba(250,204,21,0.1);
+    }
+
+    .gold{
+      color:#facc15;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="min-h-screen flex items-center justify-center p-6">
+
+  <div class="glass rounded-3xl p-8 w-full max-w-5xl">
+
+    <!-- Header -->
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-5 mb-10">
+
+      <div>
+        <h1 class="text-4xl font-bold gold">
+          ZENOVA EDUCATIONS
+        </h1>
+
+        <p class="text-gray-400 mt-2">
+          Integrated with Best PU College
+        </p>
+      </div>
+
+      <button
+        id="googleLogin"
+        class="bg-yellow-400 hover:bg-yellow-300 text-black px-6 py-3 rounded-xl font-bold"
+      >
+        Continue with Google
+      </button>
+
+    </div>
+
+    <!-- User Info -->
+    <div
+      id="userBox"
+      class="hidden bg-yellow-400/10 border border-yellow-400/20 rounded-2xl p-5 mb-8"
+    >
+      <p class="text-lg">
+        Logged in as:
+        <span id="userName" class="gold font-bold"></span>
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form id="applicationForm" class="hidden">
+
+      <h2 class="text-2xl font-bold gold mb-8">
+        Scholarship Application Form
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div>
+          <label class="text-sm text-gray-300">Full Name</label>
+          <input type="text" id="studentName" class="input-box mt-2" required>
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-300">Phone Number</label>
+          <input type="tel" id="phone" class="input-box mt-2" required>
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-300">Parent Phone</label>
+          <input type="tel" id="parentPhone" class="input-box mt-2" required>
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-300">SSLC Percentage</label>
+          <input type="number" id="sslcPercentage" class="input-box mt-2" required>
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-300">Stream</label>
+
+          <select id="stream" class="input-box mt-2" required>
+            <option value="">Select Stream</option>
+            <option>Science</option>
+            <option>Commerce</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-300">Course Interested</label>
+
+          <select id="course" class="input-box mt-2" required>
+            <option value="">Select Course</option>
+            <option>PCMB</option>
+            <option>PCMC</option>
+            <option>NEET Integrated</option>
+            <option>Commerce + CA</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="mt-10 flex justify-end">
+
+        <button
+          type="submit"
+          class="bg-yellow-400 hover:bg-yellow-300 text-black px-10 py-4 rounded-xl font-bold text-lg"
+        >
+          Submit Application
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAcqxS2SIpMyaY-jYOz0Y-t67Taa04Fy1o",
+    authDomain: "zenova-educations.firebaseapp.com",
+    projectId: "zenova-educations",
+    storageBucket: "zenova-educations.firebasestorage.app",
+    messagingSenderId: "66782392979",
+    appId: "1:66782392979:web:2e0c7e70b688401b4f5366",
+    measurementId: "G-7JL1SFKDHE"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  let currentUser = null;
+
+
+  // Google Login
+  document.getElementById('googleLogin').addEventListener('click', async () => {
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    try {
+
+      const result = await auth.signInWithPopup(provider);
+
+      currentUser = result.user;
+
+      checkApplication();
+
+    } catch(error) {
+
+      console.error(error);
+      alert('Google Login Failed');
+
+    }
+
+  });
+
+
+  // Check Existing Application
+  async function checkApplication() {
+
+    const doc = await db.collection('applications')
+    .doc(currentUser.uid)
+    .get();
+
+    document.getElementById('userBox').classList.remove('hidden');
+
+    document.getElementById('userName').innerText =
+    currentUser.displayName;
+
+    // If already applied
+    if(doc.exists){
+
+      window.location.href = "dashboard.html";
+
+    } else {
+
+      document.getElementById('applicationForm')
+      .classList.remove('hidden');
+
+    }
+
+  }
+
+
+  // Form Submit
+  document.getElementById('applicationForm')
+  .addEventListener('submit', async (e)=>{
+
+    e.preventDefault();
+
+    try {
+
+      await db.collection('applications')
+      .doc(currentUser.uid)
+      .set({
+
+        uid: currentUser.uid,
+        email: currentUser.email,
+
+        studentName:
+        document.getElementById('studentName').value,
+
+        phone:
+        document.getElementById('phone').value,
+
+        parentPhone:
+        document.getElementById('parentPhone').value,
+
+        sslcPercentage:
+        document.getElementById('sslcPercentage').value,
+
+        stream:
+        document.getElementById('stream').value,
+
+        course:
+        document.getElementById('course').value,
+
+        status: "Waiting for Approval",
+
+        scholarshipAmount: 0,
+
+        finalFees: 0,
+
+        remarks: "",
+
+        paymentStatus: "Pending",
+
+        createdAt: new Date()
+
+      });
+
+      alert("Application Submitted Successfully");
+
+      window.location.href = "dashboard.html";
+
+    } catch(error){
+
+      console.error(error);
+
+      alert("Error submitting application");
+
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
