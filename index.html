@@ -108,103 +108,241 @@
       </h2>
 
       <form id="applicationForm">
+<div class="grid md:grid-cols-2 gap-6">
 
-        <div class="grid md:grid-cols-2 gap-6">
+  <!-- Student Name -->
+  <div>
+    <label class="text-sm text-gray-300">
+      Full Name of Student
+    </label>
 
-          <div>
-            <label class="text-sm text-gray-300">
-              Full Name
-            </label>
+    <input
+      type="text"
+      id="studentName"
+      class="input-box mt-2"
+      placeholder="Enter student name"
+      required
+    >
+  </div>
 
-            <input
-              type="text"
-              id="studentName"
-              class="input-box mt-2"
-              required
-            >
-          </div>
 
-          <div>
-            <label class="text-sm text-gray-300">
-              Phone Number
-            </label>
+  <!-- DOB -->
+  <div>
+    <label class="text-sm text-gray-300">
+      Date of Birth
+    </label>
 
-            <input
-              type="tel"
-              id="phone"
-              class="input-box mt-2"
-              required
-            >
-          </div>
+    <input
+      type="date"
+      id="dob"
+      class="input-box mt-2"
+      required
+    >
+  </div>
 
-          <div>
-            <label class="text-sm text-gray-300">
-              Parent Phone Number
-            </label>
 
-            <input
-              type="tel"
-              id="parentPhone"
-              class="input-box mt-2"
-              required
-            >
-          </div>
+  <!-- Gender -->
+  <div>
 
-          <div>
-            <label class="text-sm text-gray-300">
-              SSLC Percentage
-            </label>
+    <label class="text-sm text-gray-300">
+      Gender
+    </label>
 
-            <input
-              type="number"
-              id="sslcPercentage"
-              class="input-box mt-2"
-              required
-            >
-          </div>
+    <select
+      id="gender"
+      class="input-box mt-2"
+      required
+    >
+      <option value="">
+        Select Gender
+      </option>
 
-          <div>
+      <option>
+        Male
+      </option>
+
+      <option>
+        Female
+      </option>
+
+      <option>
+        Other
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- Phone -->
+  <div>
+    <label class="text-sm text-gray-300">
+      Phone Number
+    </label>
+
+    <input
+      type="tel"
+      id="phone"
+      class="input-box mt-2"
+      placeholder="Enter phone number"
+      required
+    >
+  </div>
+
+
+  <!-- Father Name -->
+  <div>
+    <label class="text-sm text-gray-300">
+      Father Name
+    </label>
+
+    <input
+      type="text"
+      id="fatherName"
+      class="input-box mt-2"
+      placeholder="Enter father name"
+      required
+    >
+  </div>
+
+
+  <!-- Mother Name -->
+  <div>
+    <label class="text-sm text-gray-300">
+      Mother Name
+    </label>
+
+    <input
+      type="text"
+      id="motherName"
+      class="input-box mt-2"
+      placeholder="Enter mother name"
+      required
+    >
+  </div>
+
+
+  <!-- Parent Phone -->
+  <div>
+    <label class="text-sm text-gray-300">
+      Parent Phone Number
+    </label>
+
+    <input
+      type="tel"
+      id="parentPhone"
+      class="input-box mt-2"
+      placeholder="Enter parent phone"
+      required
+    >
+  </div>
+
+
+  <!-- SSLC -->
+  <div>
+    <label class="text-sm text-gray-300">
+      SSLC Percentage
+    </label>
+
+    <input
+      type="number"
+      id="sslcPercentage"
+      class="input-box mt-2"
+      placeholder="Enter percentage"
+      required
+    >
+  </div>
+
+
+  <!-- Stream -->
+  <div>
+
+    <label class="text-sm text-gray-300">
+      Stream
+    </label>
+
+    <select
+      id="stream"
+      class="input-box mt-2"
+      required
+    >
+      <option value="">
+        Select Stream
+      </option>
+
+      <option>
+        Science
+      </option>
+
+      <option>
+        Commerce
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- Course -->
+  <div>
+
+    <label class="text-sm text-gray-300">
+      Course Interested
+    </label>
+
+    <select
+      id="course"
+      class="input-box mt-2"
+      required
+    >
+
+      <option value="">
+        Select Course
+      </option>
+
+      <option>
+        Boards - PCMB
+      </option>
+
+      <option>
+        Boards - PCMC
+      </option>
+
+      <option>
+        Boards + KCET Integrated - PCMB
+      </option>
+
+      <option>
+        Boards + KCET Integrated - PCMC
+      </option>
+
+      <option>
+        Boards + KCET + NEET Integrated - PCMB
+      </option>
+
+    </select>
+
+  </div>
+
+</div>
+
+
+<!-- Address -->
+<div class="mt-6">
 
   <label class="text-sm text-gray-300">
-    Course Interested
+    Address
   </label>
 
-  <select
-    id="course"
+  <textarea
+    id="address"
+    rows="4"
     class="input-box mt-2"
+    placeholder="Enter full address"
     required
-  >
+  ></textarea>
 
-    <option value="">
-      Select Course
-    </option>
-
-    <!-- Regular Boards -->
-    <option>
-      Boards - PCMB
-    </option>
-
-    <option>
-      Boards - PCMC
-    </option>
-
-    <!-- KCET Integrated -->
-    <option>
-      Boards + KCET Integrated - PCMB
-    </option>
-
-    <option>
-      Boards + KCET Integrated - PCMC
-    </option>
-
-    <!-- KCET + NEET -->
-    <option>
-      Boards + KCET + NEET Integrated - PCMB
-    </option>
-
-  </select>
-
-          </div>
+</div>>
 
       
 
