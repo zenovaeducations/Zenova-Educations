@@ -103,11 +103,9 @@
     /* FEATURE CARDS */
 
     .feature-scroll{
-      overflow-x:auto;
-      display:flex;
-      gap:20px;
-      scrollbar-width:none;
-      padding-bottom:10px;
+  overflow-x:scroll;
+  width:100%;
+  padding-left:20px;
     }
 
     .feature-scroll::-webkit-scrollbar{
@@ -187,12 +185,17 @@
   }
 
 }
+    html, body{
+  overflow-x:hidden;
+  width:100%;
+  max-width:100%;
+    }
   </style>
 
 </head>
 
 <body>
-
+<body class="overflow-x-hidden">
   <!-- ================= TOP BAR ================= -->
 
   <div class="bg-yellow-400 py-3 text-center text-black font-bold text-sm">
@@ -484,7 +487,7 @@
 
   <div class="relative">
 
-    <div class="flex gap-6 animate-scroll w-max">
+    <div class="flex gap-6 animate-scroll">
 
       <!-- CARD -->
 
