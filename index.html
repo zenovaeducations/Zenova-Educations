@@ -694,6 +694,85 @@
   }
 
 }
+    /* =========================
+   WEBSITE LOADER
+========================= */
+
+#loader{
+  position:fixed;
+  inset:0;
+  background:#020202;
+  z-index:99999;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  flex-direction:column;
+
+  animation:loaderFade 1s ease forwards;
+  animation-delay:2.8s;
+}
+
+.loader-logo{
+  text-align:center;
+}
+
+.loader-circle{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  margin:auto;
+  margin-bottom:30px;
+
+  border:4px solid rgba(255,255,255,0.08);
+  border-top:4px solid #39ff14;
+
+  animation:spin 1s linear infinite;
+}
+
+.loader-logo h1{
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.loader-logo h1 span{
+  color:#39ff14;
+}
+
+.loader-logo p{
+  margin-top:12px;
+  color:rgba(255,255,255,0.65);
+  font-size:16px;
+}
+
+/* LOADER ANIMATION */
+
+@keyframes spin{
+
+  100%{
+    transform:rotate(360deg);
+  }
+
+}
+
+@keyframes loaderFade{
+
+  to{
+    opacity:0;
+    visibility:hidden;
+  }
+
+}
+
+/* =========================
+   SMOOTH SCROLL
+========================= */
+
+html{
+  scroll-behavior:smooth;
+}
   </style>
   /* =========================
    JOIN MOVEMENT SECTION
@@ -1995,5 +2074,22 @@
   </div>
 
 </footer>
+  <!-- =========================
+     WEBSITE LOADER
+========================= -->
+
+<div id="loader">
+
+  <div class="loader-logo">
+    <div class="loader-circle"></div>
+
+    <h1>
+      REBUILD <span>INDIA</span>
+    </h1>
+
+    <p>Stop Corruption. Build India.</p>
+  </div>
+
+</div>
 </body>
 </html>
