@@ -1408,7 +1408,201 @@ button:hover ~ .cursor{
   width:35px;
   height:35px;
 }
-    
+    /* =========================
+   REALITY SECTION
+========================= */
+
+.reality-section{
+  width:100%;
+  padding:130px 8%;
+  background:#040404;
+  position:relative;
+}
+
+.reality-top{
+  text-align:center;
+  margin-bottom:80px;
+}
+
+.reality-mini-title{
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.reality-title{
+  font-size:64px;
+  font-weight:900;
+  line-height:1.1;
+  margin-bottom:25px;
+}
+
+.reality-title span{
+  color:#39ff14;
+}
+
+.reality-description{
+  width:70%;
+  margin:auto;
+  color:rgba(255,255,255,0.72);
+  font-size:18px;
+  line-height:1.8;
+}
+
+.reality-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+.reality-card{
+  min-height:550px;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:50px;
+}
+
+.reality-dark{
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.75),
+  rgba(0,0,0,0.88)
+  ),
+  url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+}
+
+.reality-light{
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.55),
+  rgba(0,0,0,0.75)
+  ),
+  url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+}
+
+.reality-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+  to top,
+  rgba(0,0,0,0.9),
+  transparent
+  );
+}
+
+.reality-content{
+  position:relative;
+  z-index:2;
+}
+
+.reality-tag{
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:50px;
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.red-tag{
+  background:#ff3030;
+  color:white;
+}
+
+.green-tag{
+  background:#39ff14;
+  color:black;
+}
+
+.reality-content h3{
+  font-size:42px;
+  margin-bottom:28px;
+  font-weight:900;
+}
+
+.reality-content ul{
+  list-style:none;
+}
+
+.reality-content ul li{
+  margin-bottom:18px;
+  font-size:18px;
+  color:rgba(255,255,255,0.82);
+  position:relative;
+  padding-left:28px;
+}
+
+.reality-content ul li::before{
+  content:'•';
+  position:absolute;
+  left:0;
+  top:0;
+  color:#39ff14;
+  font-size:22px;
+}
+
+.reality-bottom-text{
+  text-align:center;
+  margin-top:70px;
+}
+
+.reality-bottom-text h2{
+  font-size:54px;
+  font-weight:900;
+  color:#39ff14;
+  line-height:1.2;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .reality-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .reality-section{
+    padding:90px 7%;
+  }
+
+  .reality-title{
+    font-size:40px;
+  }
+
+  .reality-description{
+    width:100%;
+    font-size:16px;
+  }
+
+  .reality-card{
+    min-height:420px;
+    padding:35px;
+  }
+
+  .reality-content h3{
+    font-size:30px;
+  }
+
+  .reality-bottom-text h2{
+    font-size:34px;
+  }
+
+    }
   </style>
 </head>
 
@@ -1487,6 +1681,98 @@ button:hover ~ .cursor{
     <div class="glow"></div>
 
   </section>
+  <!-- =========================
+     REAL COST SECTION
+========================= -->
+
+<section class="reality-section">
+
+  <div class="reality-container">
+
+    <div class="reality-top">
+
+      <p class="reality-mini-title">
+        THE REALITY
+      </p>
+
+      <h2 class="reality-title">
+        THE REAL COST OF <span>CORRUPTION</span>
+      </h2>
+
+      <p class="reality-description">
+        Corruption doesn’t just steal money.
+        It steals hospitals, schools, jobs, roads and the future of millions.
+      </p>
+
+    </div>
+
+    <div class="reality-grid">
+
+      <!-- LEFT -->
+
+      <div class="reality-card reality-dark">
+
+        <div class="reality-overlay"></div>
+
+        <div class="reality-content">
+
+          <span class="reality-tag red-tag">
+            CORRUPTION
+          </span>
+
+          <h3>₹500 For A Vote.</h3>
+
+          <ul>
+            <li>Bribery Systems</li>
+            <li>Political Corruption</li>
+            <li>Money Power</li>
+            <li>Broken Governance</li>
+            <li>Public Money Leakage</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="reality-card reality-light">
+
+        <div class="reality-overlay"></div>
+
+        <div class="reality-content">
+
+          <span class="reality-tag green-tag">
+            CONSEQUENCES
+          </span>
+
+          <h3>5 Years Of Loss.</h3>
+
+          <ul>
+            <li>Poor Roads</li>
+            <li>Weak Hospitals</li>
+            <li>Unemployment</li>
+            <li>Education Problems</li>
+            <li>Slow Development</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="reality-bottom-text">
+
+      <h2>
+        “THIS IS WHERE YOUR FUTURE WENT.”
+      </h2>
+
+    </div>
+
+  </div>
+
+</section>
 <!-- =========================
      STATS SECTION
 ========================= -->
