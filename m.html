@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>People's Manifesto | Rebuild India</title>
+
+  <!-- GOOGLE FONT -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#030303;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================== */
+
+    .manifesto-hero{
+
+      width:100%;
+      min-height:100vh;
+
+      position:relative;
+
+      overflow:hidden;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+
+      padding:120px 8%;
+
+      background:
+      linear-gradient(
+      rgba(0,0,0,0.82),
+      rgba(0,0,0,0.92)
+      ),
+      url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1920&auto=format&fit=crop');
+
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+
+    }
+
+    .hero-overlay{
+
+      position:absolute;
+
+      width:900px;
+      height:900px;
+
+      border-radius:50%;
+
+      background:
+      radial-gradient(
+      circle,
+      rgba(57,255,20,0.12),
+      transparent 70%
+      );
+
+      z-index:1;
+
+      animation:pulseGlow 5s ease-in-out infinite alternate;
+
+    }
+
+    @keyframes pulseGlow{
+
+      from{
+        transform:scale(1);
+        opacity:0.5;
+      }
+
+      to{
+        transform:scale(1.15);
+        opacity:1;
+      }
+
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:1200px;
+    }
+
+    .mini-title{
+
+      color:#39ff14;
+      font-size:16px;
+      font-weight:700;
+      letter-spacing:3px;
+
+      margin-bottom:25px;
+
+      text-transform:uppercase;
+
+    }
+
+    .hero-title{
+
+      font-size:110px;
+      line-height:0.92;
+      font-weight:900;
+
+      text-transform:uppercase;
+
+      margin-bottom:35px;
+
+    }
+
+    .hero-title span{
+      color:#39ff14;
+    }
+
+    .hero-subtitle{
+
+      width:75%;
+      margin:auto;
+
+      font-size:22px;
+      line-height:1.8;
+
+      color:rgba(255,255,255,0.72);
+
+      margin-bottom:50px;
+
+    }
+
+    .hero-buttons{
+
+      display:flex;
+      justify-content:center;
+      gap:20px;
+
+    }
+
+    .primary-btn{
+
+      padding:20px 38px;
+
+      background:#39ff14;
+      color:black;
+
+      border-radius:14px;
+
+      font-weight:800;
+      font-size:16px;
+
+      transition:0.3s;
+
+    }
+
+    .primary-btn:hover{
+
+      transform:translateY(-4px);
+
+      box-shadow:0 0 30px rgba(57,255,20,0.35);
+
+    }
+
+    .secondary-btn{
+
+      padding:20px 38px;
+
+      border-radius:14px;
+
+      border:1px solid rgba(255,255,255,0.12);
+
+      background:rgba(255,255,255,0.05);
+
+      backdrop-filter:blur(10px);
+
+      font-weight:700;
+
+      transition:0.3s;
+
+    }
+
+    .secondary-btn:hover{
+
+      background:rgba(255,255,255,0.12);
+
+    }
+
+    /* =========================
+       SCROLL INDICATOR
+    ========================== */
+
+    .scroll-indicator{
+
+      position:absolute;
+
+      bottom:40px;
+      left:50%;
+
+      transform:translateX(-50%);
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+
+      gap:12px;
+
+      z-index:2;
+
+    }
+
+    .scroll-indicator span{
+
+      font-size:13px;
+      letter-spacing:2px;
+
+      color:rgba(255,255,255,0.6);
+
+    }
+
+    .scroll-line{
+
+      width:2px;
+      height:70px;
+
+      background:linear-gradient(
+      to bottom,
+      #39ff14,
+      transparent
+      );
+
+      animation:scrollMove 1.5s infinite;
+
+    }
+
+    @keyframes scrollMove{
+
+      0%{
+        transform:translateY(0);
+        opacity:1;
+      }
+
+      100%{
+        transform:translateY(18px);
+        opacity:0;
+      }
+
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media(max-width:1100px){
+
+      .hero-title{
+        font-size:82px;
+      }
+
+      .hero-subtitle{
+        width:100%;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .manifesto-hero{
+        padding:120px 7%;
+      }
+
+      .hero-title{
+        font-size:48px;
+      }
+
+      .hero-subtitle{
+        font-size:16px;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+      }
+
+      .primary-btn,
+      .secondary-btn{
+        width:100%;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+
+  <section class="manifesto-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <p class="mini-title">
+        REBUILD INDIA • PEOPLE'S MANIFESTO
+      </p>
+
+      <h1 class="hero-title">
+        INDIA DOES <br>
+        NOT LACK <span>MONEY.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+
+        Every year, lakhs of crores are lost through corruption,
+        political greed, bribery and misuse of public money.
+
+        That money belongs to the people of India.
+
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#" class="primary-btn">
+          Read Manifesto
+        </a>
+
+        <a href="#" class="secondary-btn">
+          Join The Movement
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="scroll-indicator">
+
+      <span>SCROLL</span>
+
+      <div class="scroll-line"></div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
