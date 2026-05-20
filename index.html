@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rebuild India</title>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================== */
+
+    .hero{
+      width:100%;
+      min-height:100vh;
+      position:relative;
+      overflow:hidden;
+      background:
+      linear-gradient(
+      90deg,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.85) 40%,
+      rgba(0,0,0,0.45) 100%
+      ),
+      url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1920&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    .navbar{
+      width:100%;
+      padding:22px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,0.25);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo-circle{
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#00ff88,#0f172a);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:800;
+      color:white;
+      font-size:14px;
+      border:2px solid rgba(255,255,255,0.15);
+    }
+
+    .logo-text h2{
+      font-size:24px;
+      font-weight:800;
+      line-height:1;
+    }
+
+    .logo-text span{
+      color:#39ff14;
+    }
+
+    .logo-text p{
+      font-size:11px;
+      opacity:0.7;
+      margin-top:3px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:35px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      font-size:15px;
+      font-weight:500;
+      transition:0.3s;
+      opacity:0.8;
+    }
+
+    .nav-links a:hover{
+      color:#39ff14;
+      opacity:1;
+    }
+
+    .join-btn{
+      padding:14px 24px;
+      background:#39ff14;
+      color:black !important;
+      border-radius:10px;
+      font-weight:700 !important;
+      transition:0.3s;
+    }
+
+    .join-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 20px rgba(57,255,20,0.4);
+    }
+
+    /* =========================
+       HERO CONTENT
+    ========================== */
+
+    .hero-content{
+      width:100%;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:140px 8% 80px;
+    }
+
+    .hero-left{
+      width:60%;
+      z-index:2;
+    }
+
+    .top-line{
+      color:#39ff14;
+      font-size:15px;
+      font-weight:600;
+      margin-bottom:25px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .hero-title{
+      font-size:92px;
+      line-height:0.95;
+      font-weight:900;
+      text-transform:uppercase;
+      margin-bottom:25px;
+    }
+
+    .hero-title span{
+      color:#39ff14;
+    }
+
+    .hero-desc{
+      width:80%;
+      font-size:20px;
+      line-height:1.7;
+      color:rgba(255,255,255,0.75);
+      margin-bottom:40px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+    }
+
+    .primary-btn{
+      padding:18px 34px;
+      background:#39ff14;
+      color:black;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:800;
+      transition:0.3s;
+    }
+
+    .primary-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 25px rgba(57,255,20,0.4);
+    }
+
+    .secondary-btn{
+      padding:18px 34px;
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:12px;
+      font-size:16px;
+      font-weight:700;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);
+      transition:0.3s;
+    }
+
+    .secondary-btn:hover{
+      background:rgba(255,255,255,0.12);
+    }
+
+    /* =========================
+       GLOW EFFECT
+    ========================== */
+
+    .glow{
+      position:absolute;
+      width:700px;
+      height:700px;
+      background:radial-gradient(circle, rgba(57,255,20,0.18), transparent 70%);
+      right:-200px;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:1;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media(max-width:1100px){
+
+      .hero-title{
+        font-size:62px;
+      }
+
+      .hero-left{
+        width:100%;
+      }
+
+      .hero-desc{
+        width:100%;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .hero-content{
+        padding:130px 7% 70px;
+      }
+
+      .hero-title{
+        font-size:46px;
+      }
+
+      .hero-desc{
+        font-size:16px;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+      }
+
+      .primary-btn,
+      .secondary-btn{
+        width:100%;
+        text-align:center;
+      }
+
+      .logo-text h2{
+        font-size:20px;
+      }
+
+    }
+/* =========================
+   STATS SECTION
+========================= */
+
+.stats-section{
+  width:100%;
+  padding:120px 8%;
+  background:#070707;
+  position:relative;
+}
+
+.stats-container{
+  width:100%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:58px;
+  font-weight:900;
+  margin-bottom:18px;
+  text-transform:uppercase;
+  line-height:1.1;
+}
+
+.section-title span{
+  color:#39ff14;
+}
+
+.section-subtitle{
+  text-align:center;
+  color:rgba(255,255,255,0.7);
+  font-size:18px;
+  margin-bottom:70px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:28px;
+}
+
+.stat-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:22px;
+  padding:45px 30px;
+  transition:0.4s;
+  backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
+}
+
+.stat-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+  90deg,
+  transparent,
+  rgba(57,255,20,0.08),
+  transparent
+  );
+  transition:0.7s;
+}
+
+.stat-card:hover::before{
+  left:100%;
+}
+
+.stat-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(57,255,20,0.25);
+  box-shadow:0 0 30px rgba(57,255,20,0.08);
+}
+
+.stat-icon{
+  font-size:42px;
+  margin-bottom:22px;
+}
+
+.stat-card h3{
+  font-size:46px;
+  font-weight:900;
+  color:#39ff14;
+  margin-bottom:12px;
+}
+
+.stat-card h4{
+  font-size:24px;
+  margin-bottom:14px;
+  font-weight:700;
+}
+
+.stat-card p{
+  color:rgba(255,255,255,0.7);
+  line-height:1.7;
+  font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .stats-section{
+    padding:90px 7%;
+  }
+
+  .section-title{
+    font-size:38px;
+  }
+
+  .section-subtitle{
+    font-size:16px;
+  }
+
+  }
+    /* =========================
+   BEFORE AFTER SECTION
+========================= */
+
+.comparison-section{
+  width:100%;
+  padding:120px 8%;
+  background:#050505;
+  position:relative;
+}
+
+.comparison-title{
+  text-align:center;
+  font-size:60px;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+.comparison-title span{
+  color:#39ff14;
+}
+
+.comparison-subtitle{
+  text-align:center;
+  color:rgba(255,255,255,0.7);
+  font-size:18px;
+  margin-bottom:70px;
+}
+
+.comparison-box{
+  width:100%;
+  min-height:650px;
+  border-radius:28px;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.comparison-side{
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:60px;
+  overflow:hidden;
+}
+
+.before-side{
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.75),
+  rgba(0,0,0,0.85)
+  ),
+  url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1200&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+}
+
+.after-side{
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.45),
+  rgba(0,0,0,0.65)
+  ),
+  url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1200&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+  to top,
+  rgba(0,0,0,0.85),
+  transparent
+  );
+}
+
+.comparison-content{
+  position:relative;
+  z-index:2;
+}
+
+.tag{
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:50px;
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:22px;
+  letter-spacing:1px;
+}
+
+.before-tag{
+  background:#ff2c2c;
+  color:white;
+}
+
+.after-tag{
+  background:#39ff14;
+  color:black;
+}
+
+.comparison-content h3{
+  font-size:42px;
+  font-weight:800;
+  margin-bottom:28px;
+}
+
+.comparison-content ul{
+  list-style:none;
+}
+
+.comparison-content ul li{
+  margin-bottom:18px;
+  font-size:18px;
+  color:rgba(255,255,255,0.85);
+  position:relative;
+  padding-left:30px;
+}
+
+.comparison-content ul li::before{
+  content:'•';
+  position:absolute;
+  left:0;
+  top:0;
+  color:#39ff14;
+  font-size:24px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .comparison-box{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .comparison-section{
+    padding:90px 7%;
+  }
+
+  .comparison-title{
+    font-size:38px;
+    line-height:1.2;
+  }
+
+  .comparison-side{
+    padding:40px 30px;
+    min-height:450px;
+  }
+
+  .comparison-content h3{
+    font-size:30px;
+  }
+
+  .comparison-content ul li{
+    font-size:16px;
+  }
+
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+      <div class="logo">
+
+        <div class="logo-circle">
+          RI
+        </div>
+
+        <div class="logo-text">
+          <h2>REBUILD <span>INDIA</span></h2>
+          <p>Stop Corruption. Build India.</p>
+        </div>
+
+      </div>
+
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Mission</a>
+        <a href="#">Vision</a>
+        <a href="#">Manifesto</a>
+        <a href="#">Projects</a>
+        <a href="#">About</a>
+        <a href="#" class="join-btn">Join Movement</a>
+      </div>
+
+    </nav>
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-content">
+
+      <div class="hero-left">
+
+        <p class="top-line">
+          We do NOT join hands with existing political parties.
+        </p>
+
+        <h1 class="hero-title">
+          INDIA HAS <br>
+          ENOUGH MONEY. <br>
+          <span>CORRUPTION IS <br> STEALING THE FUTURE.</span>
+        </h1>
+
+        <p class="hero-desc">
+          Every year, lakhs of crores disappear because of corruption.
+          That money could build hospitals, schools, roads, jobs and a stronger future for millions of Indians.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#" class="primary-btn">
+            Join The Movement
+          </a>
+
+          <a href="#" class="secondary-btn">
+            See The Reality
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="glow"></div>
+
+  </section>
+<!-- =========================
+     STATS SECTION
+========================= -->
+
+<section class="stats-section">
+
+  <div class="stats-container">
+
+    <h2 class="section-title">
+      WHAT ₹40,000+ CRORE <span>CAN BUILD</span>
+    </h2>
+
+    <p class="section-subtitle">
+      Corruption steals opportunities from millions of Indians every year.
+    </p>
+
+    <div class="stats-grid">
+
+      <!-- CARD 1 -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">🏥</div>
+
+        <h3>200+</h3>
+
+        <h4>Modern Hospitals</h4>
+
+        <p>
+          Quality healthcare infrastructure for millions of citizens.
+        </p>
+
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">🎓</div>
+
+        <h3>20,000+</h3>
+
+        <h4>Smart Classrooms</h4>
+
+        <p>
+          Digital education and future-ready learning systems.
+        </p>
+
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">🛣️</div>
+
+        <h3>5,000+ KM</h3>
+
+        <h4>Road Infrastructure</h4>
+
+        <p>
+          Better connectivity, transport and economic growth.
+        </p>
+
+      </div>
+
+      <!-- CARD 4 -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">💼</div>
+
+        <h3>10 LAKH+</h3>
+
+        <h4>Employment Opportunities</h4>
+
+        <p>
+          Jobs, startup support and youth empowerment programs.
+        </p>
+
+      </div>
+
+      <!-- CARD 5 -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">💧</div>
+
+        <h3>1 CRORE+</h3>
+
+        <h4>Water Access</h4>
+
+        <p>
+          Clean water and sanitation systems for rural India.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- =========================
+     BEFORE AFTER SECTION
+========================= -->
+
+<section class="comparison-section">
+
+  <div class="comparison-container">
+
+    <h2 class="comparison-title">
+      YOUR VOTE DECIDES THE NEXT <span>5 YEARS</span>
+    </h2>
+
+    <p class="comparison-subtitle">
+      One decision can either build the nation or destroy opportunities.
+    </p>
+
+    <div class="comparison-box">
+
+      <!-- BEFORE -->
+
+      <div class="comparison-side before-side">
+
+        <div class="overlay"></div>
+
+        <div class="comparison-content">
+
+          <span class="tag before-tag">
+            BEFORE
+          </span>
+
+          <h3>Corruption Driven India</h3>
+
+          <ul>
+            <li>Broken Roads</li>
+            <li>Poor Healthcare</li>
+            <li>Weak Education</li>
+            <li>Unemployment</li>
+            <li>Paper-Based Systems</li>
+            <li>Slow Development</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- AFTER -->
+
+      <div class="comparison-side after-side">
+
+        <div class="overlay"></div>
+
+        <div class="comparison-content">
+
+          <span class="tag after-tag">
+            AFTER
+          </span>
+
+          <h3>Rebuilt Future India</h3>
+
+          <ul>
+            <li>Transparent Governance</li>
+            <li>Modern Infrastructure</li>
+            <li>Digital Systems</li>
+            <li>Better Jobs</li>
+            <li>World-Class Education</li>
+            <li>Fast Development</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+</body>
+</html>
