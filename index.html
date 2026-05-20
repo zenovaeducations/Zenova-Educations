@@ -2427,6 +2427,99 @@ button:hover ~ .cursor{
   }
 
 }
+    /* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal{
+
+  opacity:0;
+  transform:translateY(80px);
+
+  transition:
+  opacity 1s ease,
+  transform 1s ease;
+
+}
+
+.reveal.active{
+
+  opacity:1;
+  transform:translateY(0);
+
+}
+    /* =========================
+   HERO TEXT ANIMATION
+========================= */
+
+.hero-title,
+.hero-desc,
+.hero-buttons,
+.top-line{
+
+  opacity:0;
+  transform:translateY(60px);
+
+  animation:fadeUp 1s ease forwards;
+
+}
+
+.top-line{
+  animation-delay:0.3s;
+}
+
+.hero-title{
+  animation-delay:0.6s;
+}
+
+.hero-desc{
+  animation-delay:1s;
+}
+
+.hero-buttons{
+  animation-delay:1.3s;
+}
+
+@keyframes fadeUp{
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================
+   PARALLAX EFFECT
+========================= */
+
+.hero{
+  background-attachment:fixed;
+}
+
+/* =========================
+   GLOW ANIMATION
+========================= */
+
+.glow{
+
+  animation:pulseGlow 5s ease-in-out infinite alternate;
+
+}
+
+@keyframes pulseGlow{
+
+  from{
+    opacity:0.45;
+    transform:translateY(-50%) scale(1);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(-50%) scale(1.15);
+  }
+
+}
   </style>
 </head>
 
@@ -3599,6 +3692,35 @@ closeMenu.addEventListener("click",()=>{
   mobileMenu.classList.remove("active");
 
 });
+    /* =========================
+   SCROLL REVEAL
+========================= */
+
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", revealSections);
+
+function revealSections(){
+
+  reveals.forEach((section)=>{
+
+    const windowHeight = window.innerHeight;
+
+    const revealTop = section.getBoundingClientRect().top;
+
+    const revealPoint = 120;
+
+    if(revealTop < windowHeight - revealPoint){
+
+      section.classList.add("active");
+
+    }
+
+  });
+
+}
+
+revealSections();
   </script>
 </body>
 </html>
