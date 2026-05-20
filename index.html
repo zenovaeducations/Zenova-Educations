@@ -1798,6 +1798,134 @@ button:hover ~ .cursor{
   }
 
 }
+    /* =========================
+   IMPACT COUNTER SECTION
+========================= */
+
+.impact-section{
+  width:100%;
+  padding:130px 8%;
+  background:#070707;
+  position:relative;
+  overflow:hidden;
+}
+
+.impact-overlay{
+  position:absolute;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(57,255,20,0.12), transparent 70%);
+  top:-200px;
+  left:-200px;
+}
+
+.impact-container{
+  position:relative;
+  z-index:2;
+}
+
+.impact-mini-title{
+  text-align:center;
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.impact-title{
+  text-align:center;
+  font-size:64px;
+  font-weight:900;
+  line-height:1.1;
+  margin-bottom:25px;
+}
+
+.impact-title span{
+  color:#39ff14;
+}
+
+.impact-description{
+  width:70%;
+  margin:auto;
+  text-align:center;
+  color:rgba(255,255,255,0.72);
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:80px;
+}
+
+.impact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+.impact-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;
+  padding:50px 35px;
+  text-align:center;
+  transition:0.4s;
+  backdrop-filter:blur(10px);
+}
+
+.impact-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(57,255,20,0.25);
+  box-shadow:0 0 30px rgba(57,255,20,0.08);
+}
+
+.impact-card h3{
+  font-size:68px;
+  color:#39ff14;
+  font-weight:900;
+  line-height:1;
+  display:inline-block;
+}
+
+.impact-card span{
+  font-size:42px;
+  color:#39ff14;
+  font-weight:800;
+}
+
+.impact-card h4{
+  margin-top:22px;
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:16px;
+}
+
+.impact-card p{
+  color:rgba(255,255,255,0.7);
+  line-height:1.8;
+  font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .impact-section{
+    padding:90px 7%;
+  }
+
+  .impact-title{
+    font-size:40px;
+  }
+
+  .impact-description{
+    width:100%;
+    font-size:16px;
+  }
+
+  .impact-card h3{
+    font-size:52px;
+  }
+
+}
   </style>
 </head>
 
@@ -2072,91 +2200,94 @@ button:hover ~ .cursor{
 
 </section>
   <!-- =========================
-     REAL COST SECTION
+     IMPACT COUNTER SECTION
 ========================= -->
 
-<section class="reality-section">
+<section class="impact-section">
 
-  <div class="reality-container">
+  <div class="impact-overlay"></div>
 
-    <div class="reality-top">
+  <div class="impact-container">
 
-      <p class="reality-mini-title">
-        THE REALITY
-      </p>
+    <p class="impact-mini-title">
+      INDIA DESERVES BETTER
+    </p>
 
-      <h2 class="reality-title">
-        THE REAL COST OF <span>CORRUPTION</span>
-      </h2>
+    <h2 class="impact-title">
+      Corruption Is Costing <span>Millions</span>
+    </h2>
 
-      <p class="reality-description">
-        Corruption doesn’t just steal money.
-        It steals hospitals, schools, jobs, roads and the future of millions.
-      </p>
+    <p class="impact-description">
+      Every year, corruption weakens development, destroys opportunities and slows down India's growth.
+    </p>
 
-    </div>
+    <!-- COUNTERS -->
 
-    <div class="reality-grid">
+    <div class="impact-grid">
 
-      <!-- LEFT -->
+      <!-- ITEM -->
 
-      <div class="reality-card reality-dark">
+      <div class="impact-card">
 
-        <div class="reality-overlay"></div>
+        <h3 class="counter" data-target="40000">
+          0
+        </h3>
 
-        <div class="reality-content">
+        <span>+</span>
 
-          <span class="reality-tag red-tag">
-            CORRUPTION
-          </span>
+        <h4>₹ Crore Lost</h4>
 
-          <h3>₹500 For A Vote.</h3>
-
-          <ul>
-            <li>Bribery Systems</li>
-            <li>Political Corruption</li>
-            <li>Money Power</li>
-            <li>Broken Governance</li>
-            <li>Public Money Leakage</li>
-          </ul>
-
-        </div>
+        <p>Public money lost due to corruption and system leakages.</p>
 
       </div>
 
-      <!-- RIGHT -->
+      <!-- ITEM -->
 
-      <div class="reality-card reality-light">
+      <div class="impact-card">
 
-        <div class="reality-overlay"></div>
+        <h3 class="counter" data-target="200">
+          0
+        </h3>
 
-        <div class="reality-content">
+        <span>+</span>
 
-          <span class="reality-tag green-tag">
-            CONSEQUENCES
-          </span>
+        <h4>Hospitals Possible</h4>
 
-          <h3>5 Years Of Loss.</h3>
-
-          <ul>
-            <li>Poor Roads</li>
-            <li>Weak Hospitals</li>
-            <li>Unemployment</li>
-            <li>Education Problems</li>
-            <li>Slow Development</li>
-          </ul>
-
-        </div>
+        <p>Modern healthcare infrastructure that could be built.</p>
 
       </div>
 
-    </div>
+      <!-- ITEM -->
 
-    <div class="reality-bottom-text">
+      <div class="impact-card">
 
-      <h2>
-        “THIS IS WHERE YOUR FUTURE WENT.”
-      </h2>
+        <h3 class="counter" data-target="1000000">
+          0
+        </h3>
+
+        <span>+</span>
+
+        <h4>Jobs Possible</h4>
+
+        <p>Employment opportunities for youth and families.</p>
+
+      </div>
+
+      <!-- ITEM -->
+
+      <div class="impact-card">
+
+        <h3 class="counter" data-target="20000">
+          0
+        </h3>
+
+        <span>+</span>
+
+        <h4>Smart Classrooms</h4>
+
+        <p>Future-ready education infrastructure for students.</p>
+
+      </div>
 
     </div>
 
@@ -2746,7 +2877,43 @@ document.addEventListener("mousemove",(e)=>{
   blur.style.top = e.clientY + "px";
 
 });
+/* =========================
+   COUNTER ANIMATION
+========================= */
 
+const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+
+  counter.innerText = '0';
+
+  const updateCounter = () => {
+
+    const target = +counter.getAttribute('data-target');
+
+    const current = +counter.innerText;
+
+    const increment = target / 120;
+
+    if(current < target){
+
+      counter.innerText = `${Math.ceil(current + increment)}`;
+
+      setTimeout(updateCounter, 15);
+
+    }
+
+    else{
+
+      counter.innerText = target.toLocaleString();
+
+    }
+
+  };
+
+  updateCounter();
+
+});
   </script>
 </body>
 </html>
