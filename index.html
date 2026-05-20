@@ -2070,6 +2070,161 @@ button:hover ~ .cursor{
   }
 
 }
+    /* =========================
+   INDIA MAP SECTION
+========================= */
+
+.map-section{
+  width:100%;
+  padding:130px 8%;
+  background:#050505;
+  position:relative;
+  overflow:hidden;
+}
+
+.map-overlay{
+  position:absolute;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(57,255,20,0.10), transparent 70%);
+  left:-200px;
+  top:-200px;
+}
+
+.map-container{
+  position:relative;
+  z-index:2;
+}
+
+.map-mini-title{
+  text-align:center;
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.map-title{
+  text-align:center;
+  font-size:64px;
+  font-weight:900;
+  line-height:1.1;
+  margin-bottom:25px;
+}
+
+.map-title span{
+  color:#39ff14;
+}
+
+.map-description{
+  width:70%;
+  margin:auto;
+  text-align:center;
+  color:rgba(255,255,255,0.72);
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:80px;
+}
+
+/* MAP BOX */
+
+.map-box{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+.india-map{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:30px;
+  padding:50px;
+  backdrop-filter:blur(10px);
+}
+
+.india-map img{
+  width:100%;
+  filter:
+  brightness(0)
+  saturate(100%)
+  invert(77%)
+  sepia(87%)
+  saturate(749%)
+  hue-rotate(50deg)
+  brightness(106%)
+  contrast(101%);
+}
+
+.map-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.map-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;
+  padding:45px 30px;
+  text-align:center;
+  transition:0.4s;
+}
+
+.map-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(57,255,20,0.25);
+  box-shadow:0 0 30px rgba(57,255,20,0.08);
+}
+
+.map-card h3{
+  font-size:52px;
+  color:#39ff14;
+  font-weight:900;
+  margin-bottom:14px;
+}
+
+.map-card p{
+  color:rgba(255,255,255,0.72);
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+  .map-box{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .map-section{
+    padding:90px 7%;
+  }
+
+  .map-title{
+    font-size:40px;
+  }
+
+  .map-description{
+    width:100%;
+    font-size:16px;
+  }
+
+  .india-map{
+    padding:25px;
+  }
+
+  .map-stats{
+    grid-template-columns:1fr;
+  }
+
+}
   </style>
 </head>
 
@@ -2471,6 +2626,89 @@ button:hover ~ .cursor{
       <div class="play-button">
 
         ▶
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- =========================
+     INDIA MAP SECTION
+========================= -->
+
+<section class="map-section">
+
+  <div class="map-overlay"></div>
+
+  <div class="map-container">
+
+    <p class="map-mini-title">
+      NATIONWIDE MOVEMENT
+    </p>
+
+    <h2 class="map-title">
+      Rebuilding India <span>State By State</span>
+    </h2>
+
+    <p class="map-description">
+      A youth-led movement expanding across India to fight corruption and build transparent development systems.
+    </p>
+
+    <!-- MAP AREA -->
+
+    <div class="map-box">
+
+      <!-- LEFT -->
+
+      <div class="india-map">
+
+        <img
+        src="https://upload.wikimedia.org/wikipedia/commons/4/41/India-map-en.svg"
+        alt="India Map">
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="map-stats">
+
+        <!-- CARD -->
+
+        <div class="map-card">
+
+          <h3>25+</h3>
+          <p>States Reached</p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="map-card">
+
+          <h3>10,000+</h3>
+          <p>Youth Supporters</p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="map-card">
+
+          <h3>500+</h3>
+          <p>District Volunteers</p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="map-card">
+
+          <h3>100+</h3>
+          <p>Campaign Initiatives</p>
+
+        </div>
 
       </div>
 
