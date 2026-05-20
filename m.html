@@ -796,7 +796,184 @@
       }
 
     }
+/* =========================
+   FUTURE SECTION
+========================= */
 
+.future-section{
+
+  width:100%;
+  padding:140px 8%;
+
+  background:#050505;
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+.future-overlay{
+
+  position:absolute;
+
+  width:800px;
+  height:800px;
+
+  border-radius:50%;
+
+  background:radial-gradient(
+  circle,
+  rgba(255,40,40,0.08),
+  transparent 70%
+  );
+
+  right:-300px;
+  top:-300px;
+
+}
+
+.future-container{
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:60px;
+  align-items:center;
+
+  position:relative;
+  z-index:2;
+
+}
+
+.future-mini-title{
+
+  color:#39ff14;
+
+  font-size:15px;
+  font-weight:700;
+
+  letter-spacing:2px;
+
+  margin-bottom:20px;
+
+}
+
+.future-left h2{
+
+  font-size:72px;
+
+  line-height:1.05;
+
+  font-weight:900;
+
+  margin-bottom:30px;
+
+}
+
+.future-left span{
+  color:#39ff14;
+}
+
+.future-left p{
+
+  color:rgba(255,255,255,0.72);
+
+  font-size:19px;
+
+  line-height:1.9;
+
+}
+
+.future-right{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.future-card{
+
+  background:rgba(255,255,255,0.03);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:26px;
+
+  padding:40px;
+
+  transition:0.4s;
+
+}
+
+.future-card:hover{
+
+  transform:translateX(12px);
+
+  border-color:rgba(57,255,20,0.25);
+
+  box-shadow:0 0 30px rgba(57,255,20,0.08);
+
+}
+
+.future-number{
+
+  color:#39ff14;
+
+  font-size:42px;
+
+  font-weight:900;
+
+  margin-bottom:18px;
+
+}
+
+.future-card h3{
+
+  font-size:28px;
+
+  font-weight:800;
+
+  margin-bottom:14px;
+
+}
+
+.future-card p{
+
+  color:rgba(255,255,255,0.7);
+
+  line-height:1.8;
+
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+  .future-container{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .future-section{
+    padding:90px 7%;
+  }
+
+  .future-left h2{
+    font-size:42px;
+  }
+
+  .future-left p{
+    font-size:16px;
+  }
+
+  .future-number{
+    font-size:32px;
+  }
+
+}
   </style>
 
 </head>
@@ -916,7 +1093,92 @@
     </div>
 
   </section>
+<!-- =========================
+     WHERE YOUR FUTURE WENT
+========================= -->
 
+<section class="future-section">
+
+  <div class="future-overlay"></div>
+
+  <div class="future-container">
+
+    <!-- LEFT -->
+
+    <div class="future-left">
+
+      <p class="future-mini-title">
+        THE REALITY
+      </p>
+
+      <h2>
+        WHERE YOUR <span>FUTURE</span> WENT.
+      </h2>
+
+      <p>
+        Corruption doesn’t just steal money.
+        It steals opportunities, healthcare, education, infrastructure and the future of millions.
+      </p>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="future-right">
+
+      <!-- CARD -->
+
+      <div class="future-card">
+
+        <div class="future-number">
+          ₹500
+        </div>
+
+        <h3>Vote Buying</h3>
+
+        <p>
+          Democracy becomes business instead of public service.
+        </p>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="future-card">
+
+        <div class="future-number">
+          5 YEARS
+        </div>
+
+        <h3>Development Loss</h3>
+
+        <p>
+          Roads, hospitals and schools remain broken.
+        </p>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="future-card">
+
+        <div class="future-number">
+          ₹40,000+ CR
+        </div>
+
+        <h3>Public Money Lost</h3>
+
+        <p>
+          Corruption weakens the future of the nation.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
   <!-- =========================
        MANIFESTO GRID
   ========================== -->
