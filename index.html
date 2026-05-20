@@ -1,51 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Zenova Educations</title>
+  <title>BEST English Medium School</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <style>
 
-    body{
-      background:#050505;
-      color:white;
-      font-family:Arial,sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .glass{
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.08);
-      backdrop-filter:blur(12px);
+    html {
+      scroll-behavior: smooth;
     }
 
-    .input-box{
-      width:100%;
-      padding:14px;
-      border-radius:12px;
-      background:#0f0f0f;
-      border:1px solid #2a2a2a;
-      color:white;
-      outline:none;
+    body {
+      background: #07142A;
+      overflow-x: hidden;
     }
 
-    .input-box:focus{
-      border-color:#facc15;
-      box-shadow:0 0 0 3px rgba(250,204,21,0.15);
+    /* NAVBAR */
+
+    .navbar {
+      transition: 0.4s;
+      backdrop-filter: blur(10px);
+      background: rgba(7, 20, 42, 0.55);
     }
 
-    .gold{
-      color:#facc15;
+    .navbar.scrolled {
+      background: rgba(7, 20, 42, 0.96);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right,
+          rgba(7,20,42,0.95),
+          rgba(7,20,42,0.55));
+    }
+
+    /* GLASS */
+
+    .glass {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 40px rgba(212,175,55,0.12);
+    }
+
+    /* BUTTON */
+
+    .gold-btn {
+      background: #D4AF37;
+      transition: 0.4s;
+    }
+
+    .gold-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(212,175,55,0.4);
+    }
+
+    /* MARQUEE */
+
+    .marquee {
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee p {
+      display: inline-block;
+      animation: move 18s linear infinite;
+    }
+
+    @keyframes move {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* FLOATING */
+
+    .floating {
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* WHATSAPP */
+
+    .whatsapp {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    /* CARD HOVER */
+
+    .card-hover {
+      transition: 0.4s;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-12px) scale(1.02);
     }
 
   </style>
@@ -54,498 +174,688 @@
 
 <body>
 
-<div class="min-h-screen flex items-center justify-center p-6">
+  <!-- ================= TOP BAR ================= -->
 
-  <div class="glass rounded-3xl p-8 w-full max-w-5xl">
+  <div class="bg-yellow-400 py-3 text-black font-semibold marquee">
 
-    <!-- Header -->
-    <div class="flex flex-col lg:flex-row justify-between items-center gap-5 mb-10">
+    <p>
+      Admissions Open 2026 • Scholarship Test Available • Smart Classes • Digital Learning • Limited Seats Available
+    </p>
 
-      <div>
+  </div>
 
-        <h1 class="text-4xl font-bold gold">
-          ZENOVA EDUCATIONS
-        </h1>
+  <!-- ================= NAVBAR ================= -->
 
-        <p class="text-gray-400 mt-2">
-          Integrated with Best PU College
-        </p>
+  <header id="navbar"
+    class="navbar fixed top-0 left-0 w-full z-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="flex items-center justify-between h-24">
+
+        <!-- LOGO -->
+
+        <div>
+
+          <h1 class="text-3xl font-bold text-white">
+            BEST <span class="text-yellow-400">School</span>
+          </h1>
+
+          <p class="text-sm text-gray-300 mt-1">
+            Shivananda Nagar, Hagaribommanahalli
+          </p>
+
+        </div>
+
+        <!-- MENU -->
+
+        <nav class="hidden lg:flex items-center gap-8 text-white font-medium">
+
+          <a href="index.html" class="hover:text-yellow-400">Home</a>
+
+          <a href="about.html" class="hover:text-yellow-400">About</a>
+
+          <a href="academics.html" class="hover:text-yellow-400">Academics</a>
+
+          <a href="gallery.html" class="hover:text-yellow-400">Gallery</a>
+
+          <a href="results.html" class="hover:text-yellow-400">Results</a>
+
+          <a href="contact.html" class="hover:text-yellow-400">Contact</a>
+
+          <a href="admissions.html"
+            class="gold-btn text-black px-6 py-3 rounded-xl font-bold">
+
+            Apply Now
+
+          </a>
+
+        </nav>
+
+        <!-- MOBILE -->
+
+        <button id="menuBtn"
+          class="lg:hidden text-white text-4xl">
+
+          ☰
+
+        </button>
 
       </div>
 
-      <button
-        id="googleBtn"
-        class="bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-3 rounded-xl font-bold"
-      >
-        Continue with Google
-      </button>
+    </div>
+
+    <!-- MOBILE MENU -->
+
+    <div id="mobileMenu"
+      class="hidden bg-[#07142A] border-t border-gray-700 lg:hidden">
+
+      <div class="flex flex-col p-6 space-y-5 text-white font-medium">
+
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="results.html">Results</a>
+        <a href="contact.html">Contact</a>
+
+      </div>
 
     </div>
 
+  </header>
 
-    <!-- User -->
-    <div
-      id="userSection"
-      class="hidden bg-yellow-400/10 border border-yellow-400/20 rounded-2xl p-5 mb-8"
-    >
-
-      <p class="text-lg">
-        Logged in as
-        <span id="userName" class="gold font-bold"></span>
-      </p>
-
-    </div>
-
-
-    <!-- Application Form -->
-    <div
-      id="applicationSection"
-      class="hidden"
-    >
-
-      <h2 class="text-3xl font-bold gold mb-8">
-        Scholarship Application Form
-      </h2>
-
-      <form id="applicationForm">
-<div class="grid md:grid-cols-2 gap-6">
-
-  <!-- Student Name -->
-  <div>
-    <label class="text-sm text-gray-300">
-      Full Name of Student
-    </label>
-
-    <input
-      type="text"
-      id="studentName"
-      class="input-box mt-2"
-      placeholder="Enter student name"
-      required
-    >
-  </div>
-
-
-  <!-- DOB -->
-  <div>
-    <label class="text-sm text-gray-300">
-      Date of Birth
-    </label>
-
-    <input
-      type="date"
-      id="dob"
-      class="input-box mt-2"
-      required
-    >
-  </div>
-
-
-  <!-- Gender -->
-  <div>
-
-    <label class="text-sm text-gray-300">
-      Gender
-    </label>
-
-    <select
-      id="gender"
-      class="input-box mt-2"
-      required
-    >
-      <option value="">
-        Select Gender
-      </option>
-
-      <option>
-        Male
-      </option>
-
-      <option>
-        Female
-      </option>
-
-      <option>
-        Other
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <!-- Phone -->
-  <div>
-    <label class="text-sm text-gray-300">
-      Phone Number
-    </label>
-
-    <input
-      type="tel"
-      id="phone"
-      class="input-box mt-2"
-      placeholder="Enter phone number"
-      required
-    >
-  </div>
-
-
-  <!-- Father Name -->
-  <div>
-    <label class="text-sm text-gray-300">
-      Father Name
-    </label>
-
-    <input
-      type="text"
-      id="fatherName"
-      class="input-box mt-2"
-      placeholder="Enter father name"
-      required
-    >
-  </div>
-
-
-  <!-- Mother Name -->
-  <div>
-    <label class="text-sm text-gray-300">
-      Mother Name
-    </label>
-
-    <input
-      type="text"
-      id="motherName"
-      class="input-box mt-2"
-      placeholder="Enter mother name"
-      required
-    >
-  </div>
-
-
-  <!-- Parent Phone -->
-  <div>
-    <label class="text-sm text-gray-300">
-      Parent Phone Number
-    </label>
-
-    <input
-      type="tel"
-      id="parentPhone"
-      class="input-box mt-2"
-      placeholder="Enter parent phone"
-      required
-    >
-  </div>
-
-
-  <!-- SSLC -->
-  <div>
-    <label class="text-sm text-gray-300">
-      SSLC Percentage
-    </label>
-
-    <input
-      type="number"
-      id="sslcPercentage"
-      class="input-box mt-2"
-      placeholder="Enter percentage"
-      required
-    >
-  </div>
-
-
-  <!-- Stream -->
-  <div>
-
-    <label class="text-sm text-gray-300">
-      Stream
-    </label>
-
-    <select
-      id="stream"
-      class="input-box mt-2"
-      required
-    >
-      <option value="">
-        Select Stream
-      </option>
-
-      <option>
-        Science
-      </option>
-
-      <option>
-        Commerce
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <!-- Course -->
-  <div>
-
-    <label class="text-sm text-gray-300">
-      Course Interested
-    </label>
-
-    <select
-      id="course"
-      class="input-box mt-2"
-      required
-    >
-
-      <option value="">
-        Select Course
-      </option>
-
-      <option>
-        Boards - PCMB
-      </option>
-
-      <option>
-        Boards - PCMC
-      </option>
-
-      <option>
-        Boards + KCET Integrated - PCMB
-      </option>
-
-      <option>
-        Boards + KCET Integrated - PCMC
-      </option>
-
-      <option>
-        Boards + KCET + NEET Integrated - PCMB
-      </option>
-
-    </select>
-
-  </div>
-
-</div>
-
-
-<!-- Address -->
-<div class="mt-6">
-
-  <label class="text-sm text-gray-300">
-    Address
-  </label>
-
-  <textarea
-    id="address"
-    rows="4"
-    class="input-box mt-2"
-    placeholder="Enter full address"
-    required
-  ></textarea>
-
-</div>
-
-      
-
-        <div class="mt-10 text-right">
+  <!-- ================= HERO ================= -->
+
+  <section class="hero">
+
+    <!-- VIDEO -->
+
+    <video autoplay muted loop playsinline>
+
+      <source
+        src="https://cdn.coverr.co/videos/coverr-students-walking-on-campus-1564847441972?download=1080p"
+        type="video/mp4">
+
+    </video>
+
+    <!-- OVERLAY -->
+
+    <div class="overlay"></div>
+
+    <!-- CONTENT -->
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
+
+      <div class="grid lg:grid-cols-2 gap-16 items-center w-full">
+
+        <!-- LEFT -->
+
+        <div data-aos="fade-right">
+
+          <p class="text-yellow-400 uppercase tracking-[5px] mb-6">
+            Future Leaders Begin Here
+          </p>
+
+          <h1 class="text-6xl lg:text-8xl font-extrabold text-white leading-tight">
+
+            Premium
+            <span class="text-yellow-400">
+              Education
+            </span>
+
+            For The Next Generation
+
+          </h1>
+
+          <p class="mt-8 text-xl text-gray-300 leading-relaxed max-w-2xl">
+
+            BEST English Medium School combines academic excellence,
+            smart learning, discipline, leadership, and innovation
+            to shape future leaders.
+
+          </p>
+
+          <!-- BUTTONS -->
+
+          <div class="flex flex-wrap gap-6 mt-10">
+
+            <a href="admissions.html"
+              class="gold-btn text-black px-8 py-4 rounded-2xl font-bold">
+
+              Apply Admission
+
+            </a>
+
+            <a href="about.html"
+              class="border border-white text-white px-8 py-4 rounded-2xl font-bold hover:bg-white hover:text-black duration-300">
+
+              Explore Campus
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT CARD -->
+
+        <div
+          class="glass floating rounded-3xl p-10 max-w-md mx-auto"
+          data-aos="fade-left">
+
+          <h2 class="text-4xl font-bold text-yellow-400 mb-8">
+
+            Admissions Open 2026
+
+          </h2>
+
+          <div class="space-y-6 text-gray-200">
+
+            <div class="flex justify-between">
+              <span>Classes</span>
+              <span class="font-bold">LKG - 10th</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Smart Classes</span>
+              <span class="font-bold">Available</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Transportation</span>
+              <span class="font-bold">Available</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Digital Learning</span>
+              <span class="font-bold">Enabled</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Sports & Activities</span>
+              <span class="font-bold">Included</span>
+            </div>
+
+          </div>
 
           <button
-            type="submit"
-            class="bg-yellow-400 hover:bg-yellow-300 text-black px-10 py-4 rounded-xl font-bold text-lg"
-          >
-            Submit Application
+            class="gold-btn w-full py-4 rounded-2xl text-black font-bold mt-10">
+
+            Enquire Now
+
           </button>
 
         </div>
 
-      </form>
+      </div>
 
     </div>
 
-  </div>
+  </section>
 
-</div>
+  <!-- ================= STATS ================= -->
 
+  <section class="bg-white py-20">
 
-<script>
+    <div class="max-w-7xl mx-auto px-6">
 
-  // Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyAcqxS2SIpMyaY-jYOz0Y-t67Taa04Fy1o",
-    authDomain: "zenova-educations.firebaseapp.com",
-    projectId: "zenova-educations",
-    storageBucket: "zenova-educations.firebasestorage.app",
-    messagingSenderId: "66782392979",
-    appId: "1:66782392979:web:2e0c7e70b688401b4f5366",
-    measurementId: "G-7JL1SFKDHE"
-  };
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-8">
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+        <div class="text-center">
 
-  const auth = firebase.auth();
-  const db = firebase.firestore();
+          <h2 class="counter text-5xl font-bold text-[#07142A]"
+            data-target="15">
+            0
+          </h2>
 
-  let currentUser = null;
+          <p class="mt-3 text-gray-600">
+            Years Excellence
+          </p>
 
+        </div>
 
-  // GOOGLE LOGIN
-  document
-  .getElementById('googleBtn')
-  .addEventListener('click', async ()=>{
+        <div class="text-center">
 
-    try{
+          <h2 class="counter text-5xl font-bold text-[#07142A]"
+            data-target="3000">
+            0
+          </h2>
 
-      const provider =
-      new firebase.auth.GoogleAuthProvider();
+          <p class="mt-3 text-gray-600">
+            Students
+          </p>
 
-      await auth.signInWithPopup(provider);
+        </div>
 
-    }
-    catch(error){
+        <div class="text-center">
 
-      console.error(error);
-      alert(error.message);
+          <h2 class="counter text-5xl font-bold text-[#07142A]"
+            data-target="150">
+            0
+          </h2>
 
-    }
+          <p class="mt-3 text-gray-600">
+            Faculty
+          </p>
 
-  });
+        </div>
 
+        <div class="text-center">
 
+          <h2 class="counter text-5xl font-bold text-[#07142A]"
+            data-target="98">
+            0
+          </h2>
 
-  // AUTH STATE
-  auth.onAuthStateChanged(async (user)=>{
+          <p class="mt-3 text-gray-600">
+            Results %
+          </p>
 
-    if(user){
+        </div>
 
-      currentUser = user;
+        <div class="text-center">
 
-      // Show User
-      document
-      .getElementById('userSection')
-      .classList.remove('hidden');
+          <h2 class="counter text-5xl font-bold text-[#07142A]"
+            data-target="25">
+            0
+          </h2>
 
-      document
-      .getElementById('userName')
-      .innerText = user.displayName;
+          <p class="mt-3 text-gray-600">
+            Smart Classes
+          </p>
 
-      // Hide Login Button
-      document
-      .getElementById('googleBtn')
-      .style.display = 'none';
+        </div>
 
+      </div>
 
-      try{
+    </div>
 
-        // Check Existing Application
-        const doc = await db
-        .collection('applications')
-        .doc(user.uid)
-        .get();
+  </section>
 
+  <!-- ================= SCHOOL + COLLEGE ================= -->
 
-        // Already Applied
-        if(doc.exists){
+  <section class="py-28 bg-[#07142A]">
 
-          window.location.href =
-          "dashboard.html";
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-20">
+
+        <h2 class="text-6xl font-bold text-white">
+          Our Programs
+        </h2>
+
+        <p class="text-gray-400 mt-6 text-lg">
+          Excellence in School & College Education
+        </p>
+
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10">
+
+        <!-- SCHOOL -->
+
+        <div
+          class="glass card-hover rounded-3xl overflow-hidden"
+          data-aos="zoom-in">
+
+          <img
+            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1974&auto=format&fit=crop"
+            class="w-full h-80 object-cover">
+
+          <div class="p-10">
+
+            <h3 class="text-4xl font-bold text-white">
+              School Division
+            </h3>
+
+            <p class="text-gray-300 mt-5 leading-relaxed">
+              Holistic education from LKG to 10th with
+              smart learning, discipline, activities,
+              and academic excellence.
+            </p>
+
+            <button
+              class="gold-btn text-black px-8 py-4 rounded-2xl font-bold mt-8">
+
+              Explore School
+
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- COLLEGE -->
+
+        <div
+          class="glass card-hover rounded-3xl overflow-hidden"
+          data-aos="zoom-in">
+
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1974&auto=format&fit=crop"
+            class="w-full h-80 object-cover">
+
+          <div class="p-10">
+
+            <h3 class="text-4xl font-bold text-white">
+              College Division
+            </h3>
+
+            <p class="text-gray-300 mt-5 leading-relaxed">
+              Premium PU education integrated with
+              KCET, NEET, JEE, and competitive excellence.
+            </p>
+
+            <button
+              class="gold-btn text-black px-8 py-4 rounded-2xl font-bold mt-8">
+
+              Explore College
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= RESULTS ================= -->
+
+  <section class="bg-white py-28">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-20">
+
+        <h2 class="text-6xl font-bold text-[#07142A]">
+          Results & Achievements
+        </h2>
+
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div
+          class="bg-[#07142A] rounded-3xl p-10 text-center text-white card-hover">
+
+          <h3 class="text-6xl font-bold text-yellow-400">
+            98%
+          </h3>
+
+          <p class="mt-5 text-xl">
+            SSLC Results
+          </p>
+
+        </div>
+
+        <div
+          class="bg-[#07142A] rounded-3xl p-10 text-center text-white card-hover">
+
+          <h3 class="text-6xl font-bold text-yellow-400">
+            450+
+          </h3>
+
+          <p class="mt-5 text-xl">
+            Distinctions
+          </p>
+
+        </div>
+
+        <div
+          class="bg-[#07142A] rounded-3xl p-10 text-center text-white card-hover">
+
+          <h3 class="text-6xl font-bold text-yellow-400">
+            12
+          </h3>
+
+          <p class="mt-5 text-xl">
+            State Ranks
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+
+  <section class="py-28 bg-[#07142A]">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-20">
+
+        <h2 class="text-6xl font-bold text-white">
+          What Parents Say
+        </h2>
+
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="glass rounded-3xl p-10">
+
+          <p class="text-gray-300 leading-relaxed">
+            “BEST School transformed my child’s confidence,
+            academics, and discipline. Truly premium education.”
+          </p>
+
+          <h4 class="text-yellow-400 font-bold mt-8">
+            — Parent
+          </h4>
+
+        </div>
+
+        <div class="glass rounded-3xl p-10">
+
+          <p class="text-gray-300 leading-relaxed">
+            “Excellent faculty, smart classrooms,
+            and amazing results every year.”
+          </p>
+
+          <h4 class="text-yellow-400 font-bold mt-8">
+            — Parent
+          </h4>
+
+        </div>
+
+        <div class="glass rounded-3xl p-10">
+
+          <p class="text-gray-300 leading-relaxed">
+            “The campus atmosphere and digital learning
+            experience are outstanding.”
+          </p>
+
+          <h4 class="text-yellow-400 font-bold mt-8">
+            — Parent
+          </h4>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="bg-black py-20">
+
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-14">
+
+      <!-- ABOUT -->
+
+      <div>
+
+        <h2 class="text-3xl font-bold text-white">
+          BEST School
+        </h2>
+
+        <p class="text-gray-400 mt-6 leading-relaxed">
+
+          Shivananda Nagar,
+          Hagaribommanahalli,
+          Vijayanagar District
+
+        </p>
+
+      </div>
+
+      <!-- LINKS -->
+
+      <div>
+
+        <h3 class="text-xl font-bold text-white mb-6">
+          Quick Links
+        </h3>
+
+        <div class="flex flex-col gap-4 text-gray-400">
+
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+      </div>
+
+      <!-- PROGRAMS -->
+
+      <div>
+
+        <h3 class="text-xl font-bold text-white mb-6">
+          Programs
+        </h3>
+
+        <div class="flex flex-col gap-4 text-gray-400">
+
+          <p>Primary School</p>
+          <p>High School</p>
+          <p>PU College</p>
+          <p>Competitive Coaching</p>
+
+        </div>
+
+      </div>
+
+      <!-- CONTACT -->
+
+      <div>
+
+        <h3 class="text-xl font-bold text-white mb-6">
+          Contact
+        </h3>
+
+        <div class="space-y-4 text-gray-400">
+
+          <p>📞 +91 9876543210</p>
+          <p>📧 bestschool@gmail.com</p>
+          <p>🌐 www.bestschool.edu.in</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div
+      class="border-t border-gray-800 mt-16 pt-8 text-center text-gray-500">
+
+      © 2026 BEST English Medium School.
+      All Rights Reserved.
+
+    </div>
+
+  </footer>
+
+  <!-- WHATSAPP -->
+
+  <a href="https://wa.me/919876543210"
+    class="whatsapp">
+
+    💬
+
+  </a>
+
+  <!-- AOS -->
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // MOBILE MENU
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // NAVBAR SCROLL
+
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+
+    });
+
+    // COUNTER
+
+    const counters = document.querySelectorAll(".counter");
+
+    counters.forEach(counter => {
+
+      counter.innerText = "0";
+
+      const updateCounter = () => {
+
+        const target = +counter.getAttribute("data-target");
+        const c = +counter.innerText;
+
+        const increment = target / 100;
+
+        if (c < target) {
+
+          counter.innerText = `${Math.ceil(c + increment)}`;
+
+          setTimeout(updateCounter, 20);
+
+        } else {
+
+          counter.innerText = target;
 
         }
 
-        // New User
-        else{
+      };
 
-          document
-          .getElementById('applicationSection')
-          .classList.remove('hidden');
+      updateCounter();
 
-        }
+    });
 
-      }
-      catch(error){
-
-        console.error(error);
-
-        // SHOW FORM ANYWAY
-        document
-        .getElementById('applicationSection')
-        .classList.remove('hidden');
-
-      }
-
-    }
-
-  });
-
-
-
-  // FORM SUBMIT
-  document
-  .getElementById('applicationForm')
-  .addEventListener('submit', async (e)=>{
-
-    e.preventDefault();
-
-    try{
-
-      await db
-      .collection('applications')
-      .doc(currentUser.uid)
-      .set({
-
-        uid: currentUser.uid,
-
-        email: currentUser.email,
-
-        studentName:
-        document.getElementById('studentName').value,
-
-        phone:
-        document.getElementById('phone').value,
-
-        parentPhone:
-        document.getElementById('parentPhone').value,
-
-        sslcPercentage:
-        document.getElementById('sslcPercentage').value,
-
-        stream:
-        document.getElementById('stream').value,
-
-        course:
-        document.getElementById('course').value,
-
-        status: "Waiting for Approval",
-
-        scholarshipAmount: 0,
-
-        finalFees: 0,
-
-        remarks: "",
-
-        paymentStatus: "Pending",
-
-        createdAt: new Date()
-
-      });
-
-
-      alert("Application Submitted Successfully");
-
-      window.location.href =
-      "dashboard.html";
-
-    }
-    catch(error){
-
-      console.error(error);
-
-      alert(error.message);
-
-    }
-
-  });
-
-</script>
+  </script>
 
 </body>
+
 </html>
