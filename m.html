@@ -292,7 +292,120 @@
       font-weight:700;
 
     }
+/*PREMIUM NAVBAR
+========================= */
 
+.navbar{
+  width:92%;
+  height:85px;
+
+  position:fixed;
+  top:25px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  padding:0 35px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  z-index:99999;
+
+  border-radius:22px;
+
+  background:rgba(10,10,10,0.45);
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  transition:0.4s;
+}
+
+/* LOGO */
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-circle{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+
+  background:linear-gradient(
+  135deg,
+  #39ff14,
+  #0f172a
+  );
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-weight:900;
+  color:white;
+
+  box-shadow:0 0 20px rgba(57,255,20,0.3);
+}
+
+.logo-text h2{
+  font-size:24px;
+  font-weight:900;
+}
+
+.logo-text span{
+  color:#39ff14;
+}
+
+.logo-text p{
+  font-size:11px;
+  color:rgba(255,255,255,0.65);
+}
+
+/* LINKS */
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:35px;
+}
+
+.nav-links a{
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:#39ff14;
+}
+
+.join-btn{
+  padding:14px 24px;
+  background:#39ff14;
+  color:black !important;
+  border-radius:12px;
+  font-weight:800 !important;
+}
+
+.join-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* MOBILE MENU BUTTON */
+
+.menu-toggle{
+  display:none;
+  font-size:34px;
+  cursor:pointer;
+  color:white;
+}
     /* =========================
        SECTION
     ========================== */
@@ -979,7 +1092,53 @@
 </head>
 
 <body>
+<!-- =========================
+     PREMIUM NAVBAR
+========================= -->
 
+<nav class="navbar">
+
+  <!-- LOGO -->
+
+  <div class="logo">
+
+    <div class="logo-circle">
+      RI
+    </div>
+
+    <div class="logo-text">
+      <h2>REBUILD <span>INDIA</span></h2>
+      <p>Stop Corruption. Build India.</p>
+    </div>
+
+  </div>
+
+  <!-- DESKTOP MENU -->
+
+  <div class="nav-links">
+
+    <a href="#">Home</a>
+    <a href="#">Mission</a>
+    <a href="#">Vision</a>
+    <a href="#">Movement</a>
+    <a href="#">Projects</a>
+    <a href="#">Manifesto</a>
+
+    <a href="#" class="join-btn">
+      Join Movement
+    </a>
+
+  </div>
+
+  <!-- MOBILE MENU BUTTON -->
+
+  <div class="menu-toggle" id="menuToggle">
+
+    ☰
+
+  </div>
+
+</nav>
 
   <!-- =========================
        HERO
