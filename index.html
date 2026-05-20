@@ -1926,6 +1926,150 @@ button:hover ~ .cursor{
   }
 
 }
+    /* =========================
+   VIDEO SECTION
+========================= */
+
+.video-section{
+  width:100%;
+  padding:130px 8%;
+  background:#040404;
+  position:relative;
+  overflow:hidden;
+}
+
+.video-overlay{
+  position:absolute;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(57,255,20,0.10), transparent 70%);
+  right:-200px;
+  top:-200px;
+}
+
+.video-container{
+  position:relative;
+  z-index:2;
+}
+
+.video-mini-title{
+  text-align:center;
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.video-title{
+  text-align:center;
+  font-size:64px;
+  font-weight:900;
+  line-height:1.1;
+  margin-bottom:25px;
+}
+
+.video-title span{
+  color:#39ff14;
+}
+
+.video-description{
+  width:70%;
+  margin:auto;
+  text-align:center;
+  color:rgba(255,255,255,0.72);
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:70px;
+}
+
+/* VIDEO BOX */
+
+.video-box{
+  width:100%;
+  max-width:1200px;
+  height:650px;
+  margin:auto;
+  position:relative;
+  border-radius:30px;
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.video-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.6s;
+}
+
+.video-box:hover img{
+  transform:scale(1.05);
+}
+
+.video-box::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+  rgba(0,0,0,0.15),
+  rgba(0,0,0,0.55)
+  );
+}
+
+.play-button{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:#39ff14;
+  color:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:42px;
+  font-weight:900;
+  z-index:5;
+  transition:0.4s;
+  box-shadow:0 0 40px rgba(57,255,20,0.35);
+}
+
+.video-box:hover .play-button{
+  transform:translate(-50%, -50%) scale(1.1);
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .video-section{
+    padding:90px 7%;
+  }
+
+  .video-title{
+    font-size:40px;
+  }
+
+  .video-description{
+    width:100%;
+    font-size:16px;
+  }
+
+  .video-box{
+    height:320px;
+  }
+
+  .play-button{
+    width:85px;
+    height:85px;
+    font-size:28px;
+  }
+
+}
   </style>
 </head>
 
@@ -2286,6 +2430,47 @@ button:hover ~ .cursor{
         <h4>Smart Classrooms</h4>
 
         <p>Future-ready education infrastructure for students.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- =========================
+     CINEMATIC VIDEO SECTION
+========================= -->
+
+<section class="video-section">
+
+  <div class="video-overlay"></div>
+
+  <div class="video-container">
+
+    <p class="video-mini-title">
+      WATCH THE REALITY
+    </p>
+
+    <h2 class="video-title">
+      INDIA DOESN'T NEED MORE <span>PROMISES.</span>
+    </h2>
+
+    <p class="video-description">
+      It needs transparent systems, honest leadership and people ready to rebuild the future.
+    </p>
+
+    <!-- VIDEO BOX -->
+
+    <div class="video-box">
+
+      <img
+      src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1600&auto=format&fit=crop"
+      alt="Rebuild India">
+
+      <div class="play-button">
+
+        ▶
 
       </div>
 
