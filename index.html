@@ -1348,6 +1348,67 @@ html{
   }
 
 }
+  /* =========================
+   CUSTOM CURSOR
+========================= */
+
+body{
+  cursor:none;
+}
+
+.cursor{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#39ff14;
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  transform:translate(-50%, -50%);
+
+  pointer-events:none;
+  z-index:999999;
+
+  transition:
+  transform 0.08s linear,
+  width 0.2s ease,
+  height 0.2s ease;
+
+  box-shadow:0 0 20px rgba(57,255,20,0.7);
+}
+
+.cursor-blur{
+  width:400px;
+  height:400px;
+  border-radius:50%;
+
+  background:radial-gradient(
+  circle,
+  rgba(57,255,20,0.12),
+  transparent 70%
+  );
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  transform:translate(-50%, -50%);
+
+  pointer-events:none;
+  z-index:9999;
+
+  transition:transform 0.15s linear;
+}
+
+/* HOVER EFFECT */
+
+a:hover ~ .cursor,
+button:hover ~ .cursor{
+  width:35px;
+  height:35px;
+}
 </head>
 
 <body>
@@ -2091,5 +2152,11 @@ html{
   </div>
 
 </div>
+  <!-- =========================
+     CUSTOM CURSOR
+========================= -->
+
+<div class="cursor"></div>
+<div class="cursor-blur"></div>
 </body>
 </html>
