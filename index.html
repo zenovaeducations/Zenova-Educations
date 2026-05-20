@@ -858,6 +858,181 @@
     text-align:center;
   }
 
+}/* =========================
+   INDIA 2047 VISION SECTION
+========================= */
+
+.vision-section{
+  width:100%;
+  padding:120px 8%;
+  background:#050505;
+  position:relative;
+}
+
+.vision-container{
+  width:100%;
+}
+
+.vision-top{
+  text-align:center;
+  margin-bottom:90px;
+}
+
+.vision-mini-title{
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.vision-main-title{
+  font-size:60px;
+  font-weight:900;
+  line-height:1.15;
+  margin-bottom:25px;
+}
+
+.vision-main-title span{
+  color:#39ff14;
+}
+
+.vision-description{
+  width:70%;
+  margin:auto;
+  color:rgba(255,255,255,0.72);
+  font-size:18px;
+  line-height:1.8;
+}
+
+/* TIMELINE */
+
+.timeline{
+  position:relative;
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+}
+
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+  width:4px;
+  height:100%;
+  background:rgba(57,255,20,0.2);
+}
+
+.timeline-item{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:70px;
+  position:relative;
+}
+
+.timeline-item:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.timeline-year{
+  width:140px;
+  height:140px;
+  background:#39ff14;
+  color:black;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:32px;
+  font-weight:900;
+  z-index:2;
+  box-shadow:0 0 30px rgba(57,255,20,0.25);
+}
+
+.timeline-content{
+  width:42%;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:40px;
+  border-radius:24px;
+  transition:0.4s;
+}
+
+.timeline-content:hover{
+  transform:translateY(-8px);
+  border-color:rgba(57,255,20,0.25);
+  box-shadow:0 0 30px rgba(57,255,20,0.08);
+}
+
+.timeline-content h3{
+  font-size:30px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.timeline-content p{
+  color:rgba(255,255,255,0.72);
+  line-height:1.8;
+  font-size:16px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .timeline::before{
+    left:35px;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(even){
+    flex-direction:column;
+    align-items:flex-start;
+    padding-left:80px;
+  }
+
+  .timeline-year{
+    width:70px;
+    height:70px;
+    font-size:18px;
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .timeline-content{
+    width:100%;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .vision-section{
+    padding:90px 7%;
+  }
+
+  .vision-main-title{
+    font-size:38px;
+  }
+
+  .vision-description{
+    width:100%;
+    font-size:16px;
+  }
+
+  .timeline-content{
+    padding:30px;
+  }
+
+  .timeline-content h3{
+    font-size:24px;
+  }
+
 }
 </head>
 
@@ -1316,6 +1491,139 @@
       <a href="#" class="join-secondary-btn">
         Apply For Position
       </a>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- =========================
+     INDIA 2047 VISION SECTION
+========================= -->
+
+<section class="vision-section">
+
+  <div class="vision-container">
+
+    <div class="vision-top">
+
+      <p class="vision-mini-title">
+        INDIA 2047
+      </p>
+
+      <h2 class="vision-main-title">
+        Our Vision For A <span>Rebuilt India</span>
+      </h2>
+
+      <p class="vision-description">
+        By 2047, India should become one of the most transparent, developed and opportunity-driven nations in the world.
+      </p>
+
+    </div>
+
+    <!-- TIMELINE -->
+
+    <div class="timeline">
+
+      <!-- ITEM -->
+
+      <div class="timeline-item">
+
+        <div class="timeline-year">
+          2026
+        </div>
+
+        <div class="timeline-content">
+
+          <h3>Build The Movement</h3>
+
+          <p>
+            Create a strong youth-led movement focused on transparency, governance and development.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- ITEM -->
+
+      <div class="timeline-item">
+
+        <div class="timeline-year">
+          2030
+        </div>
+
+        <div class="timeline-content">
+
+          <h3>Digital Governance Expansion</h3>
+
+          <p>
+            Push for transparent online governance systems, faster services and reduced corruption.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- ITEM -->
+
+      <div class="timeline-item">
+
+        <div class="timeline-year">
+          2035
+        </div>
+
+        <div class="timeline-content">
+
+          <h3>Infrastructure & Education Growth</h3>
+
+          <p>
+            Better schools, healthcare, roads, transport systems and skill development programs.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- ITEM -->
+
+      <div class="timeline-item">
+
+        <div class="timeline-year">
+          2040
+        </div>
+
+        <div class="timeline-content">
+
+          <h3>Technology Driven India</h3>
+
+          <p>
+            AI-powered governance, smart cities, clean energy and innovation-focused growth.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- ITEM -->
+
+      <div class="timeline-item">
+
+        <div class="timeline-year">
+          2047
+        </div>
+
+        <div class="timeline-content">
+
+          <h3>Developed India</h3>
+
+          <p>
+            A transparent, corruption-resistant, opportunity-rich and globally respected India.
+          </p>
+
+        </div>
+
+      </div>
 
     </div>
 
