@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>People's Manifesto | Rebuild India</title>
+  <title>Rebuild India — People's Manifesto</title>
 
   <!-- GOOGLE FONT -->
 
@@ -40,35 +40,141 @@
     }
 
     /* =========================
+       CUSTOM SCROLLBAR
+    ========================== */
+
+    ::-webkit-scrollbar{
+      width:8px;
+    }
+
+    ::-webkit-scrollbar-track{
+      background:#050505;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:#39ff14;
+      border-radius:20px;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    .navbar{
+
+      width:92%;
+      height:85px;
+
+      position:fixed;
+      top:20px;
+      left:50%;
+
+      transform:translateX(-50%);
+
+      z-index:99999;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:0 35px;
+
+      border-radius:22px;
+
+      background:rgba(0,0,0,0.4);
+
+      backdrop-filter:blur(20px);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo-circle{
+
+      width:55px;
+      height:55px;
+
+      border-radius:50%;
+
+      background:linear-gradient(
+      135deg,
+      #39ff14,
+      #0f172a
+      );
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      font-weight:900;
+
+      box-shadow:0 0 25px rgba(57,255,20,0.35);
+
+    }
+
+    .logo-text h2{
+      font-size:24px;
+      font-weight:900;
+    }
+
+    .logo-text span{
+      color:#39ff14;
+    }
+
+    .logo-text p{
+      font-size:11px;
+      color:rgba(255,255,255,0.65);
+      margin-top:2px;
+    }
+
+    .manifesto-btn{
+
+      padding:14px 24px;
+
+      background:#39ff14;
+
+      color:black;
+
+      border-radius:12px;
+
+      font-weight:800;
+
+    }
+
+    /* =========================
        HERO SECTION
     ========================== */
 
-    .manifesto-hero{
+    .hero{
 
       width:100%;
       min-height:100vh;
 
       position:relative;
 
-      overflow:hidden;
-
       display:flex;
       justify-content:center;
       align-items:center;
+
       text-align:center;
 
-      padding:120px 8%;
+      overflow:hidden;
 
       background:
       linear-gradient(
       rgba(0,0,0,0.82),
-      rgba(0,0,0,0.92)
+      rgba(0,0,0,0.88)
       ),
-      url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1920&auto=format&fit=crop');
+      url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1920&auto=format&fit=crop');
 
       background-size:cover;
       background-position:center;
-      background-attachment:fixed;
 
     }
 
@@ -81,61 +187,46 @@
 
       border-radius:50%;
 
-      background:
-      radial-gradient(
+      background:radial-gradient(
       circle,
       rgba(57,255,20,0.12),
       transparent 70%
       );
 
-      z-index:1;
-
-      animation:pulseGlow 5s ease-in-out infinite alternate;
-
-    }
-
-    @keyframes pulseGlow{
-
-      from{
-        transform:scale(1);
-        opacity:0.5;
-      }
-
-      to{
-        transform:scale(1.15);
-        opacity:1;
-      }
+      top:-250px;
+      right:-250px;
 
     }
 
     .hero-content{
       position:relative;
       z-index:2;
-      max-width:1200px;
+      width:80%;
     }
 
-    .mini-title{
+    .hero-mini-title{
 
       color:#39ff14;
+
       font-size:16px;
       font-weight:700;
+
       letter-spacing:3px;
 
-      margin-bottom:25px;
-
-      text-transform:uppercase;
+      margin-bottom:28px;
 
     }
 
     .hero-title{
 
       font-size:110px;
-      line-height:0.92;
+      line-height:0.95;
+
       font-weight:900;
 
       text-transform:uppercase;
 
-      margin-bottom:35px;
+      margin-bottom:30px;
 
     }
 
@@ -145,24 +236,24 @@
 
     .hero-subtitle{
 
-      width:75%;
+      width:70%;
+
       margin:auto;
 
       font-size:22px;
-      line-height:1.8;
 
-      color:rgba(255,255,255,0.72);
+      line-height:1.9;
+
+      color:rgba(255,255,255,0.75);
 
       margin-bottom:50px;
 
     }
 
     .hero-buttons{
-
       display:flex;
       justify-content:center;
       gap:20px;
-
     }
 
     .primary-btn{
@@ -170,23 +261,20 @@
       padding:20px 38px;
 
       background:#39ff14;
+
       color:black;
 
       border-radius:14px;
 
       font-weight:800;
-      font-size:16px;
 
-      transition:0.3s;
+      transition:0.4s;
 
     }
 
     .primary-btn:hover{
-
       transform:translateY(-4px);
-
-      box-shadow:0 0 30px rgba(57,255,20,0.35);
-
+      box-shadow:0 0 30px rgba(57,255,20,0.4);
     }
 
     .secondary-btn{
@@ -195,81 +283,400 @@
 
       border-radius:14px;
 
-      border:1px solid rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.15);
 
-      background:rgba(255,255,255,0.05);
+      background:rgba(255,255,255,0.04);
 
       backdrop-filter:blur(10px);
 
       font-weight:700;
 
-      transition:0.3s;
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    .section{
+
+      width:100%;
+      padding:130px 8%;
+
+      position:relative;
 
     }
 
-    .secondary-btn:hover{
+    .section-title{
 
-      background:rgba(255,255,255,0.12);
+      text-align:center;
+
+      font-size:68px;
+
+      font-weight:900;
+
+      line-height:1.1;
+
+      margin-bottom:30px;
+
+    }
+
+    .section-title span{
+      color:#39ff14;
+    }
+
+    .section-description{
+
+      width:70%;
+
+      margin:auto;
+
+      text-align:center;
+
+      color:rgba(255,255,255,0.72);
+
+      font-size:19px;
+
+      line-height:1.9;
+
+      margin-bottom:90px;
 
     }
 
     /* =========================
-       SCROLL INDICATOR
+       DECLARATION BOX
     ========================== */
 
-    .scroll-indicator{
+    .declaration-box{
+
+      width:100%;
+
+      background:rgba(255,255,255,0.03);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:30px;
+
+      padding:70px;
+
+      backdrop-filter:blur(10px);
+
+    }
+
+    .declaration-box p{
+
+      font-size:22px;
+
+      line-height:2;
+
+      color:rgba(255,255,255,0.82);
+
+      margin-bottom:28px;
+
+    }
+
+    .highlight{
+      color:#39ff14;
+      font-weight:800;
+    }
+
+    /* =========================
+       MANIFESTO GRID
+    ========================== */
+
+    .manifesto-grid{
+
+      display:grid;
+
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+
+      gap:35px;
+
+    }
+
+    .manifesto-card{
+
+      position:relative;
+
+      overflow:hidden;
+
+      background:rgba(255,255,255,0.03);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:28px;
+
+      padding:50px 40px;
+
+      transition:0.4s;
+
+      backdrop-filter:blur(10px);
+
+    }
+
+    .manifesto-card:hover{
+
+      transform:translateY(-12px);
+
+      border-color:rgba(57,255,20,0.25);
+
+      box-shadow:0 0 35px rgba(57,255,20,0.08);
+
+    }
+
+    .manifesto-number{
+
+      font-size:15px;
+
+      font-weight:800;
+
+      color:#39ff14;
+
+      margin-bottom:20px;
+
+      letter-spacing:2px;
+
+    }
+
+    .manifesto-card h3{
+
+      font-size:34px;
+
+      font-weight:900;
+
+      margin-bottom:20px;
+
+      line-height:1.2;
+
+    }
+
+    .manifesto-card p{
+
+      color:rgba(255,255,255,0.72);
+
+      line-height:1.9;
+
+      font-size:16px;
+
+      margin-bottom:28px;
+
+    }
+
+    .manifesto-card ul{
+      list-style:none;
+    }
+
+    .manifesto-card ul li{
+
+      margin-bottom:16px;
+
+      position:relative;
+
+      padding-left:28px;
+
+      color:rgba(255,255,255,0.82);
+
+      line-height:1.7;
+
+    }
+
+    .manifesto-card ul li::before{
+
+      content:'•';
 
       position:absolute;
 
-      bottom:40px;
-      left:50%;
+      left:0;
+      top:0;
 
-      transform:translateX(-50%);
+      color:#39ff14;
 
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-
-      gap:12px;
-
-      z-index:2;
+      font-size:24px;
 
     }
 
-    .scroll-indicator span{
+    /* =========================
+       QUOTE SECTION
+    ========================== */
 
-      font-size:13px;
-      letter-spacing:2px;
+    .quote-section{
 
-      color:rgba(255,255,255,0.6);
+      width:100%;
+
+      padding:170px 8%;
+
+      text-align:center;
+
+      position:relative;
+
+      background:
+      linear-gradient(
+      rgba(0,0,0,0.82),
+      rgba(0,0,0,0.88)
+      ),
+      url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1600&auto=format&fit=crop');
+
+      background-size:cover;
+      background-position:center;
 
     }
 
-    .scroll-line{
+    .quote-section h2{
 
-      width:2px;
-      height:70px;
+      font-size:90px;
 
-      background:linear-gradient(
-      to bottom,
-      #39ff14,
-      transparent
+      line-height:1.1;
+
+      font-weight:900;
+
+      text-transform:uppercase;
+
+    }
+
+    .quote-section span{
+      color:#39ff14;
+    }
+
+    /* =========================
+       FINAL SECTION
+    ========================== */
+
+    .final-section{
+
+      width:100%;
+
+      padding:160px 8%;
+
+      text-align:center;
+
+      background:#050505;
+
+      position:relative;
+
+      overflow:hidden;
+
+    }
+
+    .final-overlay{
+
+      position:absolute;
+
+      width:900px;
+      height:900px;
+
+      border-radius:50%;
+
+      background:radial-gradient(
+      circle,
+      rgba(57,255,20,0.10),
+      transparent 70%
       );
 
-      animation:scrollMove 1.5s infinite;
+      left:-300px;
+      bottom:-300px;
 
     }
 
-    @keyframes scrollMove{
+    .final-content{
+      position:relative;
+      z-index:2;
+    }
 
-      0%{
-        transform:translateY(0);
+    .final-content h2{
+
+      font-size:92px;
+
+      line-height:1.05;
+
+      font-weight:900;
+
+      margin-bottom:35px;
+
+      text-transform:uppercase;
+
+    }
+
+    .final-content span{
+      color:#39ff14;
+    }
+
+    .final-content p{
+
+      width:70%;
+
+      margin:auto;
+
+      color:rgba(255,255,255,0.72);
+
+      font-size:22px;
+
+      line-height:1.9;
+
+      margin-bottom:55px;
+
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    .footer{
+
+      width:100%;
+
+      padding:35px 8%;
+
+      border-top:1px solid rgba(255,255,255,0.08);
+
+      background:#030303;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      color:rgba(255,255,255,0.55);
+
+      font-size:14px;
+
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================== */
+
+    .hero-mini-title,
+    .hero-title,
+    .hero-subtitle,
+    .hero-buttons{
+
+      opacity:0;
+
+      transform:translateY(60px);
+
+      animation:fadeUp 1s ease forwards;
+
+    }
+
+    .hero-mini-title{
+      animation-delay:0.2s;
+    }
+
+    .hero-title{
+      animation-delay:0.5s;
+    }
+
+    .hero-subtitle{
+      animation-delay:0.9s;
+    }
+
+    .hero-buttons{
+      animation-delay:1.3s;
+    }
+
+    @keyframes fadeUp{
+
+      to{
         opacity:1;
-      }
-
-      100%{
-        transform:translateY(18px);
-        opacity:0;
+        transform:translateY(0);
       }
 
     }
@@ -278,29 +685,52 @@
        MOBILE
     ========================== */
 
-    @media(max-width:1100px){
+    @media(max-width:900px){
 
       .hero-title{
-        font-size:82px;
+        font-size:70px;
       }
 
-      .hero-subtitle{
-        width:100%;
+      .section-title{
+        font-size:50px;
+      }
+
+      .quote-section h2{
+        font-size:58px;
+      }
+
+      .final-content h2{
+        font-size:60px;
       }
 
     }
 
     @media(max-width:700px){
 
-      .manifesto-hero{
-        padding:120px 7%;
+      .navbar{
+        width:94%;
+        height:75px;
+        padding:0 20px;
+      }
+
+      .logo-text h2{
+        font-size:18px;
+      }
+
+      .hero{
+        padding-top:120px;
+      }
+
+      .hero-content{
+        width:92%;
       }
 
       .hero-title{
-        font-size:48px;
+        font-size:44px;
       }
 
       .hero-subtitle{
+        width:100%;
         font-size:16px;
       }
 
@@ -313,276 +743,60 @@
         width:100%;
       }
 
+      .section{
+        padding:90px 7%;
+      }
+
+      .section-title{
+        font-size:36px;
+      }
+
+      .section-description{
+        width:100%;
+        font-size:16px;
+      }
+
+      .declaration-box{
+        padding:35px;
+      }
+
+      .declaration-box p{
+        font-size:17px;
+      }
+
+      .manifesto-grid{
+        grid-template-columns:1fr;
+      }
+
+      .quote-section{
+        padding:110px 7%;
+      }
+
+      .quote-section h2{
+        font-size:36px;
+      }
+
+      .final-section{
+        padding:120px 7%;
+      }
+
+      .final-content h2{
+        font-size:42px;
+      }
+
+      .final-content p{
+        width:100%;
+        font-size:17px;
+      }
+
+      .footer{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+      }
+
     }
-/* =========================
-   DECLARATION SECTION
-========================= */
 
-.declaration-section{
-
-  width:100%;
-  padding:140px 8%;
-
-  background:#050505;
-
-  position:relative;
-  overflow:hidden;
-
-}
-
-.declaration-container{
-
-  display:grid;
-  grid-template-columns:1fr 1fr;
-
-  gap:70px;
-  align-items:center;
-
-}
-
-/* LEFT */
-
-.declaration-image{
-
-  width:100%;
-  height:750px;
-
-  border-radius:32px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  background:
-  linear-gradient(
-  rgba(0,0,0,0.65),
-  rgba(0,0,0,0.88)
-  ),
-  url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop');
-
-  background-size:cover;
-  background-position:center;
-
-  border:1px solid rgba(255,255,255,0.08);
-
-}
-
-.declaration-dark-overlay{
-
-  position:absolute;
-  inset:0;
-
-  background:
-  linear-gradient(
-  to top,
-  rgba(0,0,0,0.85),
-  transparent
-  );
-
-}
-
-.floating-card{
-
-  position:absolute;
-
-  padding:22px 28px;
-
-  border-radius:22px;
-
-  background:rgba(255,255,255,0.06);
-
-  backdrop-filter:blur(14px);
-
-  border:1px solid rgba(255,255,255,0.08);
-
-  z-index:2;
-
-  animation:floatCard 4s ease-in-out infinite alternate;
-
-}
-
-.floating-card h3{
-
-  font-size:34px;
-  color:#39ff14;
-
-  margin-bottom:8px;
-
-  font-weight:900;
-
-}
-
-.floating-card p{
-
-  color:rgba(255,255,255,0.72);
-
-}
-
-.card-one{
-
-  top:60px;
-  left:40px;
-
-}
-
-.card-two{
-
-  bottom:60px;
-  right:40px;
-
-  animation-delay:1.5s;
-
-}
-
-@keyframes floatCard{
-
-  from{
-    transform:translateY(0);
-  }
-
-  to{
-    transform:translateY(-18px);
-  }
-
-}
-
-/* RIGHT */
-
-.declaration-mini-title{
-
-  color:#39ff14;
-
-  font-size:15px;
-  font-weight:700;
-
-  letter-spacing:2px;
-
-  margin-bottom:18px;
-
-}
-
-.declaration-title{
-
-  font-size:72px;
-  line-height:1.05;
-
-  font-weight:900;
-
-  margin-bottom:30px;
-
-}
-
-.declaration-title span{
-  color:#39ff14;
-}
-
-.declaration-text{
-
-  color:rgba(255,255,255,0.75);
-
-  font-size:18px;
-  line-height:1.9;
-
-  margin-bottom:24px;
-
-}
-
-.declaration-points{
-
-  display:grid;
-  grid-template-columns:1fr 1fr;
-
-  gap:18px;
-
-  margin-top:40px;
-  margin-bottom:45px;
-
-}
-
-.point{
-
-  padding:18px 22px;
-
-  border-radius:16px;
-
-  background:rgba(255,255,255,0.04);
-
-  border:1px solid rgba(255,255,255,0.06);
-
-  font-weight:700;
-
-  transition:0.3s;
-
-}
-
-.point:hover{
-
-  transform:translateY(-5px);
-
-  border-color:rgba(57,255,20,0.22);
-
-  box-shadow:0 0 25px rgba(57,255,20,0.08);
-
-}
-
-.quote-box{
-
-  padding:35px;
-
-  border-left:4px solid #39ff14;
-
-  background:rgba(255,255,255,0.03);
-
-  border-radius:18px;
-
-}
-
-.quote-box h3{
-
-  font-size:28px;
-  line-height:1.6;
-
-  color:white;
-
-}
-
-/* MOBILE */
-
-@media(max-width:1000px){
-
-  .declaration-container{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:700px){
-
-  .declaration-section{
-    padding:100px 7%;
-  }
-
-  .declaration-image{
-    height:500px;
-  }
-
-  .declaration-title{
-    font-size:42px;
-  }
-
-  .declaration-text{
-    font-size:16px;
-  }
-
-  .declaration-points{
-    grid-template-columns:1fr;
-  }
-
-  .quote-box h3{
-    font-size:22px;
-  }
-
-}
   </style>
 
 </head>
@@ -590,31 +804,52 @@
 <body>
 
   <!-- =========================
-       HERO SECTION
+       NAVBAR
   ========================== -->
 
-  <section class="manifesto-hero">
+  <nav class="navbar">
+
+    <div class="logo">
+
+      <div class="logo-circle">
+        RI
+      </div>
+
+      <div class="logo-text">
+        <h2>REBUILD <span>INDIA</span></h2>
+        <p>Stop Corruption. Build India.</p>
+      </div>
+
+    </div>
+
+    <a href="#" class="manifesto-btn">
+      Join Movement
+    </a>
+
+  </nav>
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
 
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
 
-      <p class="mini-title">
-        REBUILD INDIA • PEOPLE'S MANIFESTO
+      <p class="hero-mini-title">
+        PEOPLE'S MANIFESTO 🇮🇳
       </p>
 
       <h1 class="hero-title">
-        INDIA DOES <br>
-        NOT LACK <span>MONEY.</span>
+        STOP <span>CORRUPTION.</span><br>
+        BUILD INDIA.
       </h1>
 
       <p class="hero-subtitle">
-
-        Every year, lakhs of crores are lost through corruption,
-        political greed, bribery and misuse of public money.
-
-        That money belongs to the people of India.
-
+        India does not lack money. India lacks honest systems.
+        This manifesto is a declaration to rebuild India through transparency, development and accountable governance.
       </p>
 
       <div class="hero-buttons">
@@ -624,125 +859,364 @@
         </a>
 
         <a href="#" class="secondary-btn">
-          Join The Movement
+          Join Rebuild India
         </a>
 
       </div>
 
     </div>
 
-    <div class="scroll-indicator">
+  </section>
 
-      <span>SCROLL</span>
+  <!-- =========================
+       DECLARATION
+  ========================== -->
 
-      <div class="scroll-line"></div>
+  <section class="section">
+
+    <h2 class="section-title">
+      OUR <span>DECLARATION</span>
+    </h2>
+
+    <p class="section-description">
+      Public money should build public progress — not political wealth.
+    </p>
+
+    <div class="declaration-box">
+
+      <p>
+        India does not lack money. <span class="highlight">India lacks honest systems.</span>
+      </p>
+
+      <p>
+        Every year, lakhs of crores are lost through corruption, political greed, scams, bribery and misuse of public money.
+      </p>
+
+      <p>
+        That money belongs to the people of India.
+      </p>
+
+      <p>
+        It should build:
+        <span class="highlight">schools, hospitals, roads, jobs, clean water systems and opportunities.</span>
+      </p>
+
+      <p>
+        Rebuild India is a youth-led movement created to rebuild India through transparency, development and accountable governance.
+      </p>
+
+      <p>
+        <span class="highlight">We do not join hands with existing political parties.</span>
+      </p>
+
+      <p>
+        We stand with the people of India.
+      </p>
 
     </div>
 
   </section>
-<!-- =========================
-     DECLARATION SECTION
-========================= -->
 
-<section class="declaration-section">
+  <!-- =========================
+       MANIFESTO GRID
+  ========================== -->
 
-  <div class="declaration-container">
+  <section class="section">
 
-    <!-- LEFT -->
+    <h2 class="section-title">
+      THE PEOPLE’S <span>MANIFESTO</span>
+    </h2>
 
-    <div class="declaration-left">
+    <p class="section-description">
+      A vision to rebuild India through transparent systems, development and youth leadership.
+    </p>
 
-      <div class="declaration-image">
+    <div class="manifesto-grid">
 
-        <div class="declaration-dark-overlay"></div>
+      <!-- CARD -->
 
-        <div class="floating-card card-one">
+      <div class="manifesto-card">
 
-          <h3>₹40,000+ Cr</h3>
-          <p>Lost To Corruption</p>
-
+        <div class="manifesto-number">
+          01
         </div>
 
-        <div class="floating-card card-two">
+        <h3>Stop Corruption</h3>
 
-          <h3>Millions</h3>
-          <p>Affected Every Year</p>
+        <p>
+          Corruption steals futures and destroys opportunities.
+        </p>
 
+        <ul>
+          <li>Transparent tenders</li>
+          <li>Digital governance</li>
+          <li>Public expenditure tracking</li>
+          <li>AI monitoring systems</li>
+          <li>Reduced middlemen dependency</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          02
         </div>
+
+        <h3>Digital Governance</h3>
+
+        <p>
+          Government should work from your phone — not through bribery.
+        </p>
+
+        <ul>
+          <li>Online public services</li>
+          <li>Transparent file systems</li>
+          <li>Complaint tracking</li>
+          <li>Faster approvals</li>
+          <li>Reduced paperwork delays</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          03
+        </div>
+
+        <h3>Education Revolution</h3>
+
+        <p>
+          Education should create capable youth — not unemployed graduates.
+        </p>
+
+        <ul>
+          <li>Modern schools</li>
+          <li>Digital classrooms</li>
+          <li>AI education</li>
+          <li>Skill centers</li>
+          <li>Entrepreneurship programs</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          04
+        </div>
+
+        <h3>Healthcare For All</h3>
+
+        <p>
+          No family should suffer because of poor healthcare.
+        </p>
+
+        <ul>
+          <li>Stronger hospitals</li>
+          <li>Affordable diagnostics</li>
+          <li>Rural healthcare</li>
+          <li>Emergency systems</li>
+          <li>Digital medical infrastructure</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          05
+        </div>
+
+        <h3>Infrastructure Development</h3>
+
+        <p>
+          Strong infrastructure builds strong economies.
+        </p>
+
+        <ul>
+          <li>Better roads</li>
+          <li>Drainage systems</li>
+          <li>Clean water infrastructure</li>
+          <li>Smart urban planning</li>
+          <li>Public transport expansion</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          06
+        </div>
+
+        <h3>Jobs & Entrepreneurship</h3>
+
+        <p>
+          India needs creators, innovators and builders.
+        </p>
+
+        <ul>
+          <li>Startup ecosystems</li>
+          <li>MSME support</li>
+          <li>Innovation hubs</li>
+          <li>Skill employment</li>
+          <li>Local manufacturing</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          07
+        </div>
+
+        <h3>Youth Leadership</h3>
+
+        <p>
+          The next generation must lead the nation.
+        </p>
+
+        <ul>
+          <li>Youth participation</li>
+          <li>Capability-based leadership</li>
+          <li>Nation building</li>
+          <li>Public service focus</li>
+          <li>Citizen engagement</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          08
+        </div>
+
+        <h3>Clean Politics</h3>
+
+        <p>
+          Votes should never be sold.
+        </p>
+
+        <ul>
+          <li>Accountable leadership</li>
+          <li>Public-first systems</li>
+          <li>Transparent democracy</li>
+          <li>People over money</li>
+          <li>Stop vote buying</li>
+        </ul>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="manifesto-card">
+
+        <div class="manifesto-number">
+          09
+        </div>
+
+        <h3>Water & Environment</h3>
+
+        <p>
+          Sustainable India is strong India.
+        </p>
+
+        <ul>
+          <li>Lake restoration</li>
+          <li>Rainwater harvesting</li>
+          <li>Renewable energy</li>
+          <li>Waste management</li>
+          <li>Water security</li>
+        </ul>
 
       </div>
 
     </div>
 
-    <!-- RIGHT -->
+  </section>
 
-    <div class="declaration-right">
+  <!-- =========================
+       QUOTE
+  ========================== -->
 
-      <p class="declaration-mini-title">
-        OUR DECLARATION
-      </p>
+  <section class="quote-section">
 
-      <h2 class="declaration-title">
+    <h2>
+      ₹500 FOR VOTES CAN <span>DESTROY</span><br>
+      DEVELOPMENT FOR 5 YEARS.
+    </h2>
 
-        India Lacks <span>Honest Systems.</span>
+  </section>
 
+  <!-- =========================
+       FINAL SECTION
+  ========================== -->
+
+  <section class="final-section">
+
+    <div class="final-overlay"></div>
+
+    <div class="final-content">
+
+      <h2>
+        INDIA DOESN’T NEED <span>SPECTATORS</span> ANYMORE.
       </h2>
 
-      <p class="declaration-text">
-
-        Every year, lakhs of crores are lost through corruption,
-        political greed, scams, bribery and misuse of public money.
-
+      <p>
+        The future of this country will not change through silence.
+        It will change when people choose courage over corruption.
       </p>
 
-      <p class="declaration-text">
+      <div class="hero-buttons">
 
-        That money belongs to the people of India.
+        <a href="#" class="primary-btn">
+          Join Rebuild India
+        </a>
 
-      </p>
-
-      <div class="declaration-points">
-
-        <div class="point">
-          🏥 Hospitals
-        </div>
-
-        <div class="point">
-          🎓 Schools
-        </div>
-
-        <div class="point">
-          🛣️ Roads
-        </div>
-
-        <div class="point">
-          💼 Jobs
-        </div>
-
-        <div class="point">
-          💧 Water Systems
-        </div>
-
-        <div class="point">
-          🚀 Opportunities
-        </div>
-
-      </div>
-
-      <div class="quote-box">
-
-        <h3>
-
-          “Public money must build public progress — not political wealth.”
-
-        </h3>
+        <a href="#" class="secondary-btn">
+          Share The Manifesto
+        </a>
 
       </div>
 
     </div>
 
-  </div>
+  </section>
 
-</section>
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 Rebuild India. All Rights Reserved.
+    </p>
+
+    <p>
+      STOP CORRUPTION. BUILD INDIA. 🇮🇳
+    </p>
+
+  </footer>
+
 </body>
-</html>
+
+          </html>
