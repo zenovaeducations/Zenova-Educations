@@ -314,7 +314,275 @@
       }
 
     }
+/* =========================
+   DECLARATION SECTION
+========================= */
 
+.declaration-section{
+
+  width:100%;
+  padding:140px 8%;
+
+  background:#050505;
+
+  position:relative;
+  overflow:hidden;
+
+}
+
+.declaration-container{
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:70px;
+  align-items:center;
+
+}
+
+/* LEFT */
+
+.declaration-image{
+
+  width:100%;
+  height:750px;
+
+  border-radius:32px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.65),
+  rgba(0,0,0,0.88)
+  ),
+  url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+
+  border:1px solid rgba(255,255,255,0.08);
+
+}
+
+.declaration-dark-overlay{
+
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+  to top,
+  rgba(0,0,0,0.85),
+  transparent
+  );
+
+}
+
+.floating-card{
+
+  position:absolute;
+
+  padding:22px 28px;
+
+  border-radius:22px;
+
+  background:rgba(255,255,255,0.06);
+
+  backdrop-filter:blur(14px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  z-index:2;
+
+  animation:floatCard 4s ease-in-out infinite alternate;
+
+}
+
+.floating-card h3{
+
+  font-size:34px;
+  color:#39ff14;
+
+  margin-bottom:8px;
+
+  font-weight:900;
+
+}
+
+.floating-card p{
+
+  color:rgba(255,255,255,0.72);
+
+}
+
+.card-one{
+
+  top:60px;
+  left:40px;
+
+}
+
+.card-two{
+
+  bottom:60px;
+  right:40px;
+
+  animation-delay:1.5s;
+
+}
+
+@keyframes floatCard{
+
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(-18px);
+  }
+
+}
+
+/* RIGHT */
+
+.declaration-mini-title{
+
+  color:#39ff14;
+
+  font-size:15px;
+  font-weight:700;
+
+  letter-spacing:2px;
+
+  margin-bottom:18px;
+
+}
+
+.declaration-title{
+
+  font-size:72px;
+  line-height:1.05;
+
+  font-weight:900;
+
+  margin-bottom:30px;
+
+}
+
+.declaration-title span{
+  color:#39ff14;
+}
+
+.declaration-text{
+
+  color:rgba(255,255,255,0.75);
+
+  font-size:18px;
+  line-height:1.9;
+
+  margin-bottom:24px;
+
+}
+
+.declaration-points{
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:18px;
+
+  margin-top:40px;
+  margin-bottom:45px;
+
+}
+
+.point{
+
+  padding:18px 22px;
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,0.04);
+
+  border:1px solid rgba(255,255,255,0.06);
+
+  font-weight:700;
+
+  transition:0.3s;
+
+}
+
+.point:hover{
+
+  transform:translateY(-5px);
+
+  border-color:rgba(57,255,20,0.22);
+
+  box-shadow:0 0 25px rgba(57,255,20,0.08);
+
+}
+
+.quote-box{
+
+  padding:35px;
+
+  border-left:4px solid #39ff14;
+
+  background:rgba(255,255,255,0.03);
+
+  border-radius:18px;
+
+}
+
+.quote-box h3{
+
+  font-size:28px;
+  line-height:1.6;
+
+  color:white;
+
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+  .declaration-container{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .declaration-section{
+    padding:100px 7%;
+  }
+
+  .declaration-image{
+    height:500px;
+  }
+
+  .declaration-title{
+    font-size:42px;
+  }
+
+  .declaration-text{
+    font-size:16px;
+  }
+
+  .declaration-points{
+    grid-template-columns:1fr;
+  }
+
+  .quote-box h3{
+    font-size:22px;
+  }
+
+}
   </style>
 
 </head>
@@ -372,6 +640,109 @@
     </div>
 
   </section>
+<!-- =========================
+     DECLARATION SECTION
+========================= -->
 
+<section class="declaration-section">
+
+  <div class="declaration-container">
+
+    <!-- LEFT -->
+
+    <div class="declaration-left">
+
+      <div class="declaration-image">
+
+        <div class="declaration-dark-overlay"></div>
+
+        <div class="floating-card card-one">
+
+          <h3>₹40,000+ Cr</h3>
+          <p>Lost To Corruption</p>
+
+        </div>
+
+        <div class="floating-card card-two">
+
+          <h3>Millions</h3>
+          <p>Affected Every Year</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="declaration-right">
+
+      <p class="declaration-mini-title">
+        OUR DECLARATION
+      </p>
+
+      <h2 class="declaration-title">
+
+        India Lacks <span>Honest Systems.</span>
+
+      </h2>
+
+      <p class="declaration-text">
+
+        Every year, lakhs of crores are lost through corruption,
+        political greed, scams, bribery and misuse of public money.
+
+      </p>
+
+      <p class="declaration-text">
+
+        That money belongs to the people of India.
+
+      </p>
+
+      <div class="declaration-points">
+
+        <div class="point">
+          🏥 Hospitals
+        </div>
+
+        <div class="point">
+          🎓 Schools
+        </div>
+
+        <div class="point">
+          🛣️ Roads
+        </div>
+
+        <div class="point">
+          💼 Jobs
+        </div>
+
+        <div class="point">
+          💧 Water Systems
+        </div>
+
+        <div class="point">
+          🚀 Opportunities
+        </div>
+
+      </div>
+
+      <div class="quote-box">
+
+        <h3>
+
+          “Public money must build public progress — not political wealth.”
+
+        </h3>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 </body>
 </html>
