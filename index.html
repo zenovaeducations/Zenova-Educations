@@ -575,7 +575,290 @@
   }
 
 }
+    /* =========================
+   MISSION SECTION
+========================= */
+
+.mission-section{
+  width:100%;
+  padding:120px 8%;
+  background:#080808;
+  position:relative;
+}
+
+.mission-container{
+  width:100%;
+}
+
+.mission-top{
+  text-align:center;
+  margin-bottom:80px;
+}
+
+.mission-mini-title{
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.mission-main-title{
+  font-size:58px;
+  font-weight:900;
+  line-height:1.15;
+  margin-bottom:25px;
+}
+
+.mission-main-title span{
+  color:#39ff14;
+}
+
+.mission-description{
+  width:70%;
+  margin:auto;
+  color:rgba(255,255,255,0.7);
+  font-size:18px;
+  line-height:1.8;
+}
+
+.mission-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+}
+
+.mission-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;
+  padding:45px 35px;
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.mission-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  background:#39ff14;
+  transition:0.4s;
+}
+
+.mission-card:hover::before{
+  width:100%;
+}
+
+.mission-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(57,255,20,0.25);
+  box-shadow:0 0 35px rgba(57,255,20,0.08);
+}
+
+.mission-icon{
+  font-size:48px;
+  margin-bottom:28px;
+}
+
+.mission-card h3{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.mission-card p{
+  color:rgba(255,255,255,0.7);
+  line-height:1.8;
+  font-size:16px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .mission-section{
+    padding:90px 7%;
+  }
+
+  .mission-main-title{
+    font-size:38px;
+  }
+
+  .mission-description{
+    width:100%;
+    font-size:16px;
+  }
+
+}
   </style>
+  /* =========================
+   JOIN MOVEMENT SECTION
+========================= */
+
+.join-section{
+  width:100%;
+  padding:140px 8%;
+  position:relative;
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.85),
+  rgba(0,0,0,0.92)
+  ),
+  url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+}
+
+.join-overlay{
+  position:absolute;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(57,255,20,0.12), transparent 70%);
+  top:-150px;
+  right:-150px;
+}
+
+.join-container{
+  position:relative;
+  z-index:2;
+}
+
+.join-mini-title{
+  color:#39ff14;
+  text-align:center;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.join-main-title{
+  text-align:center;
+  font-size:64px;
+  font-weight:900;
+  line-height:1.1;
+  margin-bottom:25px;
+}
+
+.join-main-title span{
+  color:#39ff14;
+}
+
+.join-description{
+  width:70%;
+  margin:auto;
+  text-align:center;
+  color:rgba(255,255,255,0.75);
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:80px;
+}
+
+.join-roles{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:28px;
+  margin-bottom:70px;
+}
+
+.role-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:22px;
+  padding:38px 30px;
+  transition:0.4s;
+  backdrop-filter:blur(10px);
+}
+
+.role-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(57,255,20,0.25);
+  box-shadow:0 0 30px rgba(57,255,20,0.08);
+}
+
+.role-card h3{
+  font-size:24px;
+  margin-bottom:18px;
+  font-weight:800;
+}
+
+.role-card p{
+  color:rgba(255,255,255,0.72);
+  line-height:1.7;
+  font-size:15px;
+}
+
+.join-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.join-primary-btn{
+  padding:18px 34px;
+  background:#39ff14;
+  color:black;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:800;
+  transition:0.3s;
+}
+
+.join-primary-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 25px rgba(57,255,20,0.4);
+}
+
+.join-secondary-btn{
+  padding:18px 34px;
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:12px;
+  font-size:16px;
+  font-weight:700;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+}
+
+.join-secondary-btn:hover{
+  background:rgba(255,255,255,0.12);
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .join-section{
+    padding:100px 7%;
+  }
+
+  .join-main-title{
+    font-size:40px;
+  }
+
+  .join-description{
+    width:100%;
+    font-size:16px;
+  }
+
+  .join-buttons{
+    flex-direction:column;
+  }
+
+  .join-primary-btn,
+  .join-secondary-btn{
+    width:100%;
+    text-align:center;
+  }
+
+}
 </head>
 
 <body>
@@ -827,6 +1110,212 @@
         </div>
 
       </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- =========================
+     OUR MISSION SECTION
+========================= -->
+
+<section class="mission-section">
+
+  <div class="mission-container">
+
+    <div class="mission-top">
+
+      <p class="mission-mini-title">
+        OUR MISSION
+      </p>
+
+      <h2 class="mission-main-title">
+        Rebuilding India Through <span>Transparent Governance</span>
+      </h2>
+
+      <p class="mission-description">
+        We believe corruption is one of the biggest barriers stopping India from reaching its full potential.
+        Our mission is to rebuild the nation through accountability, development, education, healthcare and youth leadership.
+      </p>
+
+    </div>
+
+    <!-- MISSION GRID -->
+
+    <div class="mission-grid">
+
+      <!-- CARD 1 -->
+
+      <div class="mission-card">
+
+        <div class="mission-icon">
+          🛡️
+        </div>
+
+        <h3>Stop Corruption</h3>
+
+        <p>
+          Build transparent systems that reduce bribery, scams and misuse of public money.
+        </p>
+
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="mission-card">
+
+        <div class="mission-icon">
+          💻
+        </div>
+
+        <h3>Digital Governance</h3>
+
+        <p>
+          Move government systems online for faster, transparent and accountable services.
+        </p>
+
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="mission-card">
+
+        <div class="mission-icon">
+          🎓
+        </div>
+
+        <h3>Education Revolution</h3>
+
+        <p>
+          Modern schools, skill development and future-ready education for every student.
+        </p>
+
+      </div>
+
+      <!-- CARD 4 -->
+
+      <div class="mission-card">
+
+        <div class="mission-icon">
+          🏥
+        </div>
+
+        <h3>Healthcare Access</h3>
+
+        <p>
+          Better hospitals, affordable healthcare and stronger emergency infrastructure.
+        </p>
+
+      </div>
+
+      <!-- CARD 5 -->
+
+      <div class="mission-card">
+
+        <div class="mission-icon">
+          🏙️
+        </div>
+
+        <h3>Infrastructure Growth</h3>
+
+        <p>
+          Roads, drainage, transport, water systems and smart urban development.
+        </p>
+
+      </div>
+
+      <!-- CARD 6 -->
+
+      <div class="mission-card">
+
+        <div class="mission-icon">
+          🚀
+        </div>
+
+        <h3>Youth Leadership</h3>
+
+        <p>
+          Empowering young Indians to lead change and rebuild the future of the nation.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- =========================
+     JOIN MOVEMENT SECTION
+========================= -->
+
+<section class="join-section">
+
+  <div class="join-overlay"></div>
+
+  <div class="join-container">
+
+    <p class="join-mini-title">
+      JOIN REBUILD INDIA
+    </p>
+
+    <h2 class="join-main-title">
+      India Doesn't Need <span>Spectators</span> Anymore.
+    </h2>
+
+    <p class="join-description">
+      India needs builders, thinkers, creators and leaders.
+      Become part of a youth-led movement rebuilding the future through transparency, development and accountability.
+    </p>
+
+    <!-- ROLES -->
+
+    <div class="join-roles">
+
+      <div class="role-card">
+        <h3>🎓 Campus Ambassador</h3>
+        <p>Lead awareness and youth initiatives in colleges and campuses.</p>
+      </div>
+
+      <div class="role-card">
+        <h3>📢 Social Media Team</h3>
+        <p>Create content, campaigns and spread the movement online.</p>
+      </div>
+
+      <div class="role-card">
+        <h3>🎨 Design & Editing</h3>
+        <p>Help create visuals, posters, videos and branding content.</p>
+      </div>
+
+      <div class="role-card">
+        <h3>💻 Tech Team</h3>
+        <p>Develop websites, apps and digital governance platforms.</p>
+      </div>
+
+      <div class="role-card">
+        <h3>📍 District Coordinator</h3>
+        <p>Build local teams and lead the movement in your district.</p>
+      </div>
+
+      <div class="role-card">
+        <h3>📚 Research Team</h3>
+        <p>Research corruption, governance and public development issues.</p>
+      </div>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="join-buttons">
+
+      <a href="#" class="join-primary-btn">
+        Become A Member
+      </a>
+
+      <a href="#" class="join-secondary-btn">
+        Apply For Position
+      </a>
 
     </div>
 
