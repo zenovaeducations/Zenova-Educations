@@ -1034,6 +1034,241 @@
   }
 
 }
+  /* =========================
+   FINAL CTA SECTION
+========================= */
+
+.final-cta-section{
+  width:100%;
+  padding:140px 8%;
+  position:relative;
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.88),
+  rgba(0,0,0,0.92)
+  ),
+  url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1600&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+}
+
+.final-overlay{
+  position:absolute;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(57,255,20,0.12), transparent 70%);
+  left:-200px;
+  bottom:-200px;
+}
+
+.final-container{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+.final-mini-title{
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.final-title{
+  font-size:72px;
+  font-weight:900;
+  line-height:1.1;
+  margin-bottom:30px;
+}
+
+.final-title span{
+  color:#39ff14;
+}
+
+.final-description{
+  width:70%;
+  margin:auto;
+  color:rgba(255,255,255,0.75);
+  font-size:20px;
+  line-height:1.9;
+  margin-bottom:50px;
+}
+
+.final-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.final-primary-btn{
+  padding:20px 38px;
+  background:#39ff14;
+  color:black;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:800;
+  transition:0.3s;
+}
+
+.final-primary-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 25px rgba(57,255,20,0.4);
+}
+
+.final-secondary-btn{
+  padding:20px 38px;
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:12px;
+  font-size:16px;
+  font-weight:700;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+}
+
+.final-secondary-btn:hover{
+  background:rgba(255,255,255,0.12);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  width:100%;
+  background:#030303;
+  padding:80px 8% 30px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:50px;
+  margin-bottom:60px;
+}
+
+.footer-logo{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:25px;
+}
+
+.footer-logo-circle{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#39ff14,#0f172a);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:900;
+  color:white;
+}
+
+.footer-logo h2{
+  font-size:28px;
+  font-weight:900;
+}
+
+.footer-logo p{
+  color:#39ff14;
+  font-size:13px;
+}
+
+.footer-about{
+  color:rgba(255,255,255,0.68);
+  line-height:1.9;
+  width:85%;
+}
+
+.footer-links h3{
+  font-size:20px;
+  margin-bottom:22px;
+  font-weight:800;
+}
+
+.footer-links a{
+  display:block;
+  margin-bottom:16px;
+  color:rgba(255,255,255,0.68);
+  transition:0.3s;
+}
+
+.footer-links a:hover{
+  color:#39ff14;
+  transform:translateX(5px);
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:rgba(255,255,255,0.55);
+  font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+  .footer-top{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .final-cta-section{
+    padding:100px 7%;
+  }
+
+  .final-title{
+    font-size:42px;
+  }
+
+  .final-description{
+    width:100%;
+    font-size:16px;
+  }
+
+  .final-buttons{
+    flex-direction:column;
+  }
+
+  .final-primary-btn,
+  .final-secondary-btn{
+    width:100%;
+    text-align:center;
+  }
+
+  .footer{
+    padding:70px 7% 30px;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr;
+  }
+
+  .footer-about{
+    width:100%;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:12px;
+    text-align:center;
+  }
+
+}
 </head>
 
 <body>
@@ -1630,5 +1865,135 @@
   </div>
 
 </section>
+  <!-- =========================
+     FINAL CTA + FOOTER
+========================= -->
+
+<section class="final-cta-section">
+
+  <div class="final-overlay"></div>
+
+  <div class="final-container">
+
+    <p class="final-mini-title">
+      THE FUTURE STARTS NOW
+    </p>
+
+    <h2 class="final-title">
+      Every Bribe Steals A <span>Future.</span>
+    </h2>
+
+    <p class="final-description">
+      India already has the talent, resources and potential.
+      What we need now is honest systems, accountable leadership and a generation ready to rebuild the nation.
+    </p>
+
+    <div class="final-buttons">
+
+      <a href="#" class="final-primary-btn">
+        Join Rebuild India
+      </a>
+
+      <a href="#" class="final-secondary-btn">
+        Read Manifesto
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  <div class="footer-top">
+
+    <!-- LEFT -->
+
+    <div class="footer-brand">
+
+      <div class="footer-logo">
+
+        <div class="footer-logo-circle">
+          RI
+        </div>
+
+        <div>
+          <h2>REBUILD INDIA</h2>
+          <p>Stop Corruption. Build India.</p>
+        </div>
+
+      </div>
+
+      <p class="footer-about">
+        A youth-led movement focused on transparent governance,
+        development, education, healthcare and rebuilding India's future.
+      </p>
+
+    </div>
+
+    <!-- LINKS -->
+
+    <div class="footer-links">
+
+      <h3>Quick Links</h3>
+
+      <a href="#">Home</a>
+      <a href="#">Mission</a>
+      <a href="#">Vision</a>
+      <a href="#">Manifesto</a>
+      <a href="#">Projects</a>
+
+    </div>
+
+    <!-- MOVEMENT -->
+
+    <div class="footer-links">
+
+      <h3>Movement</h3>
+
+      <a href="#">Become Member</a>
+      <a href="#">Volunteer</a>
+      <a href="#">Leadership</a>
+      <a href="#">Apply Position</a>
+      <a href="#">Community</a>
+
+    </div>
+
+    <!-- SOCIAL -->
+
+    <div class="footer-links">
+
+      <h3>Connect</h3>
+
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">Twitter / X</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Contact</a>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+
+  <div class="footer-bottom">
+
+    <p>
+      © 2026 Rebuild India. All Rights Reserved.
+    </p>
+
+    <p>
+      Built For India's Future 🇮🇳
+    </p>
+
+  </div>
+
+</footer>
 </body>
 </html>
