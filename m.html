@@ -1087,6 +1087,179 @@
   }
 
 }
+    /* =========================
+   STICKY SECTION
+========================= */
+
+.sticky-section{
+
+  width:100%;
+  padding:140px 8%;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:80px;
+
+  position:relative;
+
+  background:#040404;
+
+}
+
+.sticky-left{
+
+  position:sticky;
+  top:140px;
+
+  height:fit-content;
+
+}
+
+.sticky-mini-title{
+
+  color:#39ff14;
+
+  font-size:15px;
+  font-weight:700;
+
+  letter-spacing:2px;
+
+  margin-bottom:20px;
+
+}
+
+.sticky-left h2{
+
+  font-size:78px;
+
+  line-height:1.05;
+
+  font-weight:900;
+
+  margin-bottom:30px;
+
+}
+
+.sticky-left span{
+  color:#39ff14;
+}
+
+.sticky-left p{
+
+  color:rgba(255,255,255,0.72);
+
+  font-size:19px;
+
+  line-height:1.9;
+
+}
+
+.sticky-right{
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+}
+
+.sticky-card{
+
+  background:rgba(255,255,255,0.03);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:28px;
+
+  padding:50px;
+
+  min-height:280px;
+
+  transition:0.4s;
+
+}
+
+.sticky-card:hover{
+
+  transform:translateY(-10px);
+
+  border-color:rgba(57,255,20,0.25);
+
+  box-shadow:0 0 35px rgba(57,255,20,0.08);
+
+}
+
+.sticky-number{
+
+  color:#39ff14;
+
+  font-size:22px;
+
+  font-weight:900;
+
+  margin-bottom:22px;
+
+}
+
+.sticky-card h3{
+
+  font-size:38px;
+
+  font-weight:900;
+
+  margin-bottom:18px;
+
+  line-height:1.2;
+
+}
+
+.sticky-card p{
+
+  color:rgba(255,255,255,0.72);
+
+  line-height:1.9;
+
+  font-size:17px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+  .sticky-section{
+    grid-template-columns:1fr;
+  }
+
+  .sticky-left{
+    position:relative;
+    top:0;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .sticky-section{
+    padding:90px 7%;
+  }
+
+  .sticky-left h2{
+    font-size:46px;
+  }
+
+  .sticky-left p{
+    font-size:16px;
+  }
+
+  .sticky-card{
+    padding:35px;
+    min-height:auto;
+  }
+
+  .sticky-card h3{
+    font-size:28px;
+  }
+
+}
   </style>
 
 </head>
@@ -1261,6 +1434,118 @@
         </p>
 
       </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- =========================
+     STICKY STORY SECTION
+========================= -->
+
+<section class="sticky-section">
+
+  <!-- LEFT SIDE -->
+
+  <div class="sticky-left">
+
+    <p class="sticky-mini-title">
+      REBUILD INDIA
+    </p>
+
+    <h2>
+      INDIA CAN BE <span>REBORN.</span>
+    </h2>
+
+    <p>
+      If corruption stops, development begins.
+      The future depends on the systems we build today.
+    </p>
+
+  </div>
+
+  <!-- RIGHT SIDE -->
+
+  <div class="sticky-right">
+
+    <!-- ITEM -->
+
+    <div class="sticky-card">
+
+      <div class="sticky-number">
+        01
+      </div>
+
+      <h3>Transparent Governance</h3>
+
+      <p>
+        Public money should be visible to the public through digital governance systems.
+      </p>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="sticky-card">
+
+      <div class="sticky-number">
+        02
+      </div>
+
+      <h3>World-Class Education</h3>
+
+      <p>
+        Smart classrooms, AI education and skill development can transform youth opportunities.
+      </p>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="sticky-card">
+
+      <div class="sticky-number">
+        03
+      </div>
+
+      <h3>Healthcare Infrastructure</h3>
+
+      <p>
+        Strong hospitals and affordable healthcare systems should reach every district.
+      </p>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="sticky-card">
+
+      <div class="sticky-number">
+        04
+      </div>
+
+      <h3>Modern Infrastructure</h3>
+
+      <p>
+        Roads, drainage, transport and clean water systems build strong economies.
+      </p>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="sticky-card">
+
+      <div class="sticky-number">
+        05
+      </div>
+
+      <h3>Youth Leadership</h3>
+
+      <p>
+        India’s next generation must lead governance, innovation and nation building.
+      </p>
 
     </div>
 
