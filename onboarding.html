@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile | Zenova Educations</title>
+
+    <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Progress -->
+
+    <div class="progress-section">
+
+        <p class="step">WELCOME TO ZENOVA</p>
+
+        <h1>Complete Your Profile</h1>
+
+        <p class="subtitle">
+            This information helps us personalize your academic journey.
+        </p>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+    </div>
+
+
+    <!-- Form Card -->
+
+    <div class="form-card">
+
+        <form id="onboardingForm">
+
+            <!-- Profile -->
+
+            <div class="photo-section">
+
+                <div class="photo-preview" id="photoPreview">
+
+                    <img id="previewImage" src="" hidden>
+
+                    <span id="photoText">
+                        Upload Photo
+                    </span>
+
+                </div>
+
+                <input
+                    type="file"
+                    id="studentPhoto"
+                    accept="image/*"
+                    hidden
+                >
+
+            </div>
+
+
+
+            <!-- Name -->
+
+            <div class="input-group">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Phone -->
+
+            <div class="input-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    maxlength="10"
+                    placeholder="Enter mobile number"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Father -->
+
+            <div class="input-group">
+
+                <label>Father's Name</label>
+
+                <input
+                    type="text"
+                    id="fatherName"
+                    placeholder="Enter father's name"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Mother -->
+
+            <div class="input-group">
+
+                <label>Mother's Name</label>
+
+                <input
+                    type="text"
+                    id="motherName"
+                    placeholder="Enter mother's name"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Percentage -->
+
+            <div class="input-group">
+
+                <label>10th Standard Percentage</label>
+
+                <input
+                    type="number"
+                    id="percentage"
+                    placeholder="Example : 89.6"
+                    min="0"
+                    max="100"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- School -->
+
+            <div class="input-group">
+
+                <label>School Studied (10th)</label>
+
+                <input
+                    type="text"
+                    id="school"
+                    placeholder="School Name"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Current Class -->
+
+            <div class="input-group">
+
+                <label>Current Class</label>
+
+                <select id="currentClass" required>
+
+                    <option value="">Select Class</option>
+
+                    <option value="1st PUC">
+                        1st PUC
+                    </option>
+
+                    <option value="2nd PUC">
+                        2nd PUC
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Stream -->
+
+            <div class="input-group">
+
+                <label>Stream</label>
+
+                <select id="stream" required>
+
+                    <option value="">
+                        Select Stream
+                    </option>
+
+                    <option value="Science">
+                        Science
+                    </option>
+
+                    <option value="Commerce">
+                        Commerce
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Course -->
+
+            <div class="input-group">
+
+                <label>Course</label>
+
+                <select id="course" required>
+
+                    <option value="">
+                        Select Course
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Address -->
+
+            <div class="input-group">
+
+                <label>Home Address</label>
+
+                <textarea
+                    id="address"
+                    rows="4"
+                    placeholder="Enter complete address"
+                    required
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- Button -->
+
+            <button
+                type="submit"
+                id="continueBtn"
+            >
+
+                Complete Profile →
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script type="module" src="onboarding.js"></script>
+
+</body>
+</html>
