@@ -134,7 +134,7 @@ onAuthStateChanged(auth, async (user) => {
 
     } else {
 
-        window.location.href = "onboarding.html";
+        window.location.href = "onboarding/index.html";
 
     }
 
