@@ -103,8 +103,13 @@ async function checkExistingProfile() {
 
         if (snapshot.exists()) {
 
-            // Already completed onboarding
-            window.location.href = "../fee/";
+    const data = snapshot.data();
+
+    if (data.onboardingCompleted === true) {
+
+        window.location.href = "../fee/";
+    }
+
 
         }
 
