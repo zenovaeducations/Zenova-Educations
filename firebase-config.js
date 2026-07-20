@@ -17,18 +17,13 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-
 // ===============================
 
 const firebaseConfig = {
-
-    apiKey: "YOUR_API_KEY",
-
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-
-    projectId: "YOUR_PROJECT_ID",
-
-    storageBucket: "YOUR_PROJECT.appspot.com",
-
-    messagingSenderId: "YOUR_SENDER_ID",
-
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAcqxS2SIpMyaY-jYOz0Y-t67Taa04Fy1o",
+    authDomain: "zenova-educations.firebaseapp.com",
+    projectId: "zenova-educations",
+    storageBucket: "zenova-educations.firebasestorage.app",
+    messagingSenderId: "66782392979",
+    appId: "1:66782392979:web:2e0c7e70b688401b4f5366",
+    measurementId: "G-7JL1SFKDHE"
 
 };
 
