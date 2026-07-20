@@ -1,0 +1,277 @@
+/* ==========================================================
+ZENOVA EDUCATIONS
+FEE PAGE
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --primary:#000;
+    --secondary:#fff;
+
+    --light:#f5f5f5;
+
+    --border:#e6e6e6;
+
+    --text:#222;
+
+    --gray:#777;
+
+    --radius:18px;
+
+    --shadow:0 12px 30px rgba(0,0,0,.08);
+
+    --transition:.35s ease;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f3f3f3;
+
+    color:var(--text);
+
+}
+
+.container{
+
+    max-width:500px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+    background:#fff;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==========================================================
+HEADER
+========================================================== */
+
+.header{
+
+    background:#000;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:28px;
+
+}
+
+.logo h1{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+}
+
+.logo p{
+
+    margin-top:5px;
+
+    letter-spacing:4px;
+
+    font-size:12px;
+
+    opacity:.8;
+
+}
+
+/* ==========================================================
+TITLE
+========================================================== */
+
+.page-title{
+
+    padding:25px;
+
+}
+
+.page-title h2{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+
+}
+
+.page-title p{
+
+    color:#666;
+
+    line-height:1.6;
+
+    font-size:14px;
+
+}
+
+/* ==========================================================
+STUDENT CARD
+========================================================== */
+
+.student-card{
+
+    text-align:center;
+
+    padding:10px 25px 25px;
+
+}
+
+.student-photo{
+
+    width:110px;
+
+    height:110px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #efefef;
+
+    margin-bottom:15px;
+
+}
+
+.student-card h3{
+
+    font-size:22px;
+
+    margin-bottom:6px;
+
+}
+
+.student-card p{
+
+    color:#666;
+
+}
+
+/* ==========================================================
+DETAILS CARD
+========================================================== */
+
+.details-card{
+
+    margin:0 20px 25px;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    background:#fff;
+
+    overflow:hidden;
+
+}
+
+.detail{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 18px;
+
+    border-bottom:1px solid #f2f2f2;
+
+}
+
+.detail:last-child{
+
+    border-bottom:none;
+
+}
+
+.detail span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+.detail strong{
+
+    color:#111;
+
+}
+
+/* ==========================================================
+FORM
+========================================================== */
+
+form{
+
+    padding:0 20px 35px;
+
+}
+
+.input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+.input-group input{
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+.input-group input:focus{
+
+    border-color:#000;
+
+    box-shadow:0 0 0 3px rgba(0,0,0,.08);
+
+}
