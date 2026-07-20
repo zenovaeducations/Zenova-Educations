@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zenova Educations | Student Onboarding</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="onboarding.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ===========================
+HEADER
+=========================== -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <h1>ZENOVA</h1>
+
+        <p>EDUCATIONS</p>
+
+    </div>
+
+</header>
+
+<!-- ===========================
+PROGRESS BAR
+=========================== -->
+
+<section class="progress-section">
+
+    <div class="progress-top">
+
+        <span id="stepText">
+
+            Step 1 of 4
+
+        </span>
+
+        <span id="progressValue">
+
+            25%
+
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"
+             id="progressFill">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+WELCOME
+=========================== -->
+
+<section class="welcome-section">
+
+    <h2>
+
+        Welcome 👋
+
+    </h2>
+
+    <p>
+
+        Let's create your Zenova Student Profile.
+
+        This information will help us personalize your learning experience.
+
+    </p>
+
+</section>
+
+<!-- ===========================
+FORM START
+=========================== -->
+
+<form id="onboardingForm">
+
+<!-- ===========================
+STEP 1
+PERSONAL DETAILS
+=========================== -->
+
+<div class="form-step active"
+
+     id="step1">
+
+<!-- GOOGLE PROFILE -->
+
+<div class="profile-card">
+
+    <img
+
+        src="../assets/images/profile.png"
+
+        id="studentPhoto"
+
+        class="profile-photo"
+
+        alt="Student">
+
+    <h3
+
+        id="displayName">
+
+        Loading...
+
+    </h3>
+
+    <p
+
+        id="displayEmail">
+
+        loading@email.com
+
+    </p>
+
+</div>
+
+<!-- FULL NAME -->
+
+<div class="input-group">
+
+    <label>
+
+        Full Name
+
+    </label>
+
+    <input
+
+        type="text"
+
+        id="fullName"
+
+        readonly>
+
+</div>
+
+<!-- EMAIL -->
+
+<div class="input-group">
+
+    <label>
+
+        Email Address
+
+    </label>
+
+    <input
+
+        type="email"
+
+        id="email"
+
+        readonly>
+
+</div>
+
+<!-- PHONE -->
+
+<div class="input-group">
+
+    <label>
+
+        Phone Number
+
+    </label>
+
+    <input
+
+        type="tel"
+
+        id="phone"
+
+        placeholder="Enter phone number"
+
+        required>
+
+</div>
+
+<!-- DATE OF BIRTH -->
+
+<div class="input-group">
+
+    <label>
+
+        Date of Birth
+
+    </label>
+
+    <input
+
+        type="date"
+
+        id="dob"
+
+        required>
+
+</div>
+
+<!-- FATHER -->
+
+<div class="input-group">
+
+    <label>
+
+        Father's Name
+
+    </label>
+
+    <input
+
+        type="text"
+
+        id="fatherName"
+
+        placeholder="Enter father's name"
+
+        required>
+
+</div>
+
+<!-- MOTHER -->
+
+<div class="input-group">
+
+    <label>
+
+        Mother's Name
+
+    </label>
+
+    <input
+
+        type="text"
+
+        id="motherName"
+
+        placeholder="Enter mother's name"
+
+        required>
+
+</div>
+
+<!-- NEXT BUTTON -->
+
+<div class="button-area">
+
+<button
+
+type="button"
+
+id="nextStep1"
+
+class="primary-button">
+
+Continue
+
+<i class="ri-arrow-right-line"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ===========================
+STEP 2 STARTS HERE
+(Part 2 Continues)
+=========================== -->
+  <!-- ==========================================================
+STEP 2
+ACADEMIC DETAILS
+========================================================== -->
+
+<div class="form-step"
+
+     id="step2">
+
+    <div class="step-title">
+
+        <h2>
+
+            Academic Details
+
+        </h2>
+
+        <p>
+
+            Tell us about your previous education.
+
+        </p>
+
+    </div>
+
+    <!-- SCHOOL NAME -->
+
+    <div class="input-group">
+
+        <label>
+
+            School Studied
+
+        </label>
+
+        <input
+
+            type="text"
+
+            id="schoolName"
+
+            placeholder="Enter school name"
+
+            required>
+
+    </div>
+
+    <!-- SSLC PERCENTAGE -->
+
+    <div class="input-group">
+
+        <label>
+
+            SSLC Percentage
+
+        </label>
+
+        <input
+
+            type="number"
+
+            id="sslcPercentage"
+
+            min="0"
+
+            max="100"
+
+            step="0.01"
+
+            placeholder="Example : 91.60"
+
+            required>
+
+    </div>
+
+    <!-- SSLC REGISTER NUMBER -->
+
+    <div class="input-group">
+
+        <label>
+
+            SSLC Register Number
+
+        </label>
+
+        <input
+
+            type="text"
+
+            id="sslcRegisterNumber"
+
+            placeholder="Enter Register Number">
+
+    </div>
+
+    <!-- SSLC MEDIUM -->
+
+    <div class="input-group">
+
+        <label>
+
+            SSLC Medium
+
+        </label>
+
+        <select
+
+            id="sslcMedium"
+
+            required>
+
+            <option value="">
+
+                Select Medium
+
+            </option>
+
+            <option value="English">
+
+                English
+
+            </option>
+
+            <option value="Kannada">
+
+                Kannada
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- JOINING CLASS -->
+
+    <div class="input-group">
+
+        <label>
+
+            Joining Class
+
+        </label>
+
+        <select
+
+            id="joiningClass"
+
+            required>
+
+            <option value="">
+
+                Select Class
+
+            </option>
+
+            <option value="1st PUC">
+
+                1st PUC
+
+            </option>
+
+            <option value="2nd PUC">
+
+                2nd PUC
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- COURSE -->
+
+    <div class="input-group">
+
+        <label>
+
+            Course
+
+        </label>
+
+        <select
+
+            id="course"
+
+            required>
+
+            <option value="">
+
+                Select Course
+
+            </option>
+
+            <option value="Science">
+
+                Science
+
+            </option>
+
+            <option value="Commerce">
+
+                Commerce
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- COMBINATION -->
+
+    <div class="input-group">
+
+        <label>
+
+            Combination
+
+        </label>
+
+        <select
+
+            id="combination"
+
+            required>
+
+            <option value="">
+
+                Select Combination
+
+            </option>
+
+            <!-- Filled dynamically using onboarding.js -->
+
+        </select>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="button-group">
+
+        <button
+
+            type="button"
+
+            id="backStep2"
+
+            class="secondary-button">
+
+            <i class="ri-arrow-left-line"></i>
+
+            Back
+
+        </button>
+
+        <button
+
+            type="button"
+
+            id="nextStep2"
+
+            class="primary-button">
+
+            Continue
+
+            <i class="ri-arrow-right-line"></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ==========================================================
+STEP 3 STARTS HERE
+(Part 3 continues...)
+========================================================== -->
+<!-- ==========================================================
+STEP 3
+ADDRESS DETAILS
+========================================================== -->
+
+<div class="form-step"
+
+     id="step3">
+
+    <div class="step-title">
+
+        <h2>
+
+            Address Details
+
+        </h2>
+
+        <p>
+
+            Help us identify your nearest Zenova support center.
+
+        </p>
+
+    </div>
+
+    <!-- STATE -->
+
+    <div class="input-group">
+
+        <label>
+
+            State
+
+        </label>
+
+        <select
+
+            id="state"
+
+            required>
+
+            <option value="">
+
+                Select State
+
+            </option>
+
+            <option value="Karnataka">
+
+                Karnataka
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- DISTRICT -->
+
+    <div class="input-group">
+
+        <label>
+
+            District
+
+        </label>
+
+        <select
+
+            id="district"
+
+            required>
+
+            <option value="">
+
+                Select District
+
+            </option>
+
+            <!-- Loaded dynamically -->
+
+        </select>
+
+    </div>
+
+    <!-- TALUK -->
+
+    <div class="input-group">
+
+        <label>
+
+            Taluk
+
+        </label>
+
+        <select
+
+            id="taluk"
+
+            required>
+
+            <option value="">
+
+                Select Taluk
+
+            </option>
+
+            <!-- Loaded dynamically -->
+
+        </select>
+
+    </div>
+
+    <!-- CITY / VILLAGE -->
+
+    <div class="input-group">
+
+        <label>
+
+            Village / City
+
+        </label>
+
+        <input
+
+            type="text"
+
+            id="village"
+
+            placeholder="Enter village or city"
+
+            required>
+
+    </div>
+
+    <!-- PIN CODE -->
+
+    <div class="input-group">
+
+        <label>
+
+            PIN Code
+
+        </label>
+
+        <input
+
+            type="number"
+
+            id="pincode"
+
+            placeholder="Enter PIN code"
+
+            maxlength="6"
+
+            required>
+
+    </div>
+
+    <!-- FULL ADDRESS -->
+
+    <div class="input-group">
+
+        <label>
+
+            Full Address
+
+        </label>
+
+        <textarea
+
+            id="fullAddress"
+
+            rows="4"
+
+            placeholder="House No, Street, Landmark"
+
+            required>
+
+        </textarea>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="button-group">
+
+        <button
+
+            type="button"
+
+            id="backStep3"
+
+            class="secondary-button">
+
+            <i class="ri-arrow-left-line"></i>
+
+            Back
+
+        </button>
+
+        <button
+
+            type="button"
+
+            id="nextStep3"
+
+            class="primary-button">
+
+            Continue
+
+            <i class="ri-arrow-right-line"></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ==========================================================
+STEP 4
+REVIEW & CONFIRMATION
+(Part 4 continues...)
+========================================================== -->
+  <!-- ==========================================================
+STEP 4
+REVIEW & CONFIRM
+========================================================== -->
+
+<div class="form-step"
+
+     id="step4">
+
+    <div class="step-title">
+
+        <h2>
+
+            Review Your Details
+
+        </h2>
+
+        <p>
+
+            Please verify your information before submitting.
+
+        </p>
+
+    </div>
+
+    <!-- REVIEW CARD -->
+
+    <div class="review-card">
+
+        <h3>
+
+            Personal Details
+
+        </h3>
+
+        <div class="review-row">
+            <span>Name</span>
+            <strong id="reviewName"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Email</span>
+            <strong id="reviewEmail"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Phone</span>
+            <strong id="reviewPhone"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Date of Birth</span>
+            <strong id="reviewDOB"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Father</span>
+            <strong id="reviewFather"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Mother</span>
+            <strong id="reviewMother"></strong>
+        </div>
+
+    </div>
+
+    <!-- ACADEMIC -->
+
+    <div class="review-card">
+
+        <h3>
+
+            Academic Details
+
+        </h3>
+
+        <div class="review-row">
+            <span>School</span>
+            <strong id="reviewSchool"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>SSLC %</span>
+            <strong id="reviewPercentage"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Medium</span>
+            <strong id="reviewMedium"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Joining</span>
+            <strong id="reviewJoining"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Course</span>
+            <strong id="reviewCourse"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Combination</span>
+            <strong id="reviewCombination"></strong>
+        </div>
+
+    </div>
+
+    <!-- ADDRESS -->
+
+    <div class="review-card">
+
+        <h3>
+
+            Address Details
+
+        </h3>
+
+        <div class="review-row">
+            <span>State</span>
+            <strong id="reviewState"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>District</span>
+            <strong id="reviewDistrict"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Taluk</span>
+            <strong id="reviewTaluk"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Village</span>
+            <strong id="reviewVillage"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>PIN Code</span>
+            <strong id="reviewPincode"></strong>
+        </div>
+
+        <div class="review-row">
+            <span>Address</span>
+            <strong id="reviewAddress"></strong>
+        </div>
+
+    </div>
+
+    <!-- DECLARATION -->
+
+    <div class="checkbox-group">
+
+        <input
+
+            type="checkbox"
+
+            id="agree"
+
+            required>
+
+        <label for="agree">
+
+            I confirm that all the above information is true and correct.
+
+        </label>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="button-group">
+
+        <button
+
+            type="button"
+
+            id="backStep4"
+
+            class="secondary-button">
+
+            <i class="ri-arrow-left-line"></i>
+
+            Back
+
+        </button>
+
+        <button
+
+            type="submit"
+
+            id="submitForm"
+
+            class="primary-button">
+
+            <i class="ri-check-line"></i>
+
+            Complete Registration
+
+        </button>
+
+    </div>
+
+</div>
+
+</form>
+
+<!-- ==========================
+LOADING OVERLAY
+========================== -->
+
+<div
+
+id="loadingOverlay"
+
+class="loading-overlay">
+
+    <div class="loader"></div>
+
+    <h3>
+
+        Creating Your Student Profile...
+
+    </h3>
+
+    <p>
+
+        Please wait a moment.
+
+    </p>
+
+</div>
+
+<!-- ==========================
+SUCCESS MODAL
+========================== -->
+
+<div
+
+id="successModal"
+
+class="success-modal">
+
+    <div class="success-content">
+
+        <i class="ri-checkbox-circle-fill success-icon"></i>
+
+        <h2>
+
+            Registration Successful!
+
+        </h2>
+
+        <p>
+
+            Welcome to Zenova Educations.
+
+            Your student profile has been created successfully.
+
+        </p>
+
+        <button
+
+            id="continueDashboard"
+
+            class="primary-button">
+
+            Continue
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<script type="module" src="./onboarding.js"></script>
+
+</body>
+
+</html>
