@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zenova Educations | Fee Details</title>
+
+    <link rel="stylesheet" href="fee.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ==========================
+HEADER
+========================== -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <h1>ZENOVA</h1>
+
+        <p>EDUCATIONS</p>
+
+    </div>
+
+</header>
+
+<!-- ==========================
+TITLE
+========================== -->
+
+<section class="page-title">
+
+    <h2>
+
+        Fee Registration
+
+    </h2>
+
+    <p>
+
+        Verify your payment details before entering the student dashboard.
+
+    </p>
+
+</section>
+
+<!-- ==========================
+STUDENT CARD
+========================== -->
+
+<section class="student-card">
+
+    <img
+
+        src="../assets/images/profile.png"
+
+        id="studentPhoto"
+
+        class="student-photo"
+
+        alt="Student">
+
+    <h3 id="studentName">
+
+        Loading...
+
+    </h3>
+
+    <p id="studentEmail">
+
+        loading@email.com
+
+    </p>
+
+</section>
+
+<!-- ==========================
+STUDENT DETAILS
+========================== -->
+
+<section class="details-card">
+
+<div class="detail">
+
+<span>
+
+<i class="ri-smartphone-line"></i>
+
+Phone
+
+</span>
+
+<strong id="studentPhone">
+
+Loading...
+
+</strong>
+
+</div>
+
+<div class="detail">
+
+<span>
+
+<i class="ri-graduation-cap-line"></i>
+
+Course
+
+</span>
+
+<strong id="studentCourse">
+
+Loading...
+
+</strong>
+
+</div>
+
+<div class="detail">
+
+<span>
+
+<i class="ri-book-open-line"></i>
+
+Combination
+
+</span>
+
+<strong id="studentCombination">
+
+Loading...
+
+</strong>
+
+</div>
+
+<div class="detail">
+
+<span>
+
+<i class="ri-school-line"></i>
+
+Joining
+
+</span>
+
+<strong id="studentJoining">
+
+Loading...
+
+</strong>
+
+</div>
+
+</section>
+
+<!-- ==========================
+PAYMENT FORM
+========================== -->
+
+<form id="feeForm">
+
+<div class="input-group">
+
+<label>
+
+Advance Amount Paid
+
+</label>
+
+<input
+
+type="number"
+
+id="advanceAmount"
+
+placeholder="₹ Enter advance amount"
+
+min="0"
+
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+First Installment Paid
+
+</label>
+
+<input
+
+type="number"
+
+id="firstInstallment"
+
+placeholder="₹ Enter first installment"
+
+min="0"
+
+required>
+
+</div>
+
+<!-- ==========================
+LIVE SUMMARY
+========================== -->
+
+<div class="summary-card">
+
+<h3>
+
+Payment Summary
+
+</h3>
+
+<div class="summary-row">
+
+<span>
+
+Advance Paid
+
+</span>
+
+<strong id="summaryAdvance">
+
+₹0
+
+</strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>
+
+First Installment
+
+</span>
+
+<strong id="summaryInstallment">
+
+₹0
+
+</strong>
+
+</div>
+
+<hr>
+
+<div class="summary-row total">
+
+<span>
+
+Total Paid
+
+</span>
+
+<strong id="summaryTotal">
+
+₹0
+
+</strong>
+
+</div>
+
+</div>
+
+<!-- ==========================
+DECLARATION
+========================== -->
+
+<div class="checkbox-group">
+
+<input
+
+type="checkbox"
+
+id="confirmFee"
+
+required>
+
+<label for="confirmFee">
+
+I confirm that the above fee details are correct.
+
+</label>
+
+</div>
+
+<!-- ==========================
+BUTTONS
+========================== -->
+
+<div class="button-group">
+
+<button
+
+type="button"
+
+id="backButton"
+
+class="secondary-button">
+
+<i class="ri-arrow-left-line"></i>
+
+Back
+
+</button>
+
+<button
+
+type="submit"
+
+class="primary-button">
+
+Submit
+
+<i class="ri-arrow-right-line"></i>
+
+</button>
+
+</div>
+
+</form>
+
+<!-- ==========================
+LOADING
+========================== -->
+
+<div
+
+id="loadingOverlay"
+
+class="loading-overlay">
+
+<div class="loader"></div>
+
+<h3>
+
+Saving Fee Details...
+
+</h3>
+
+<p>
+
+Please wait...
+
+</p>
+
+</div>
+
+</div>
+
+<script type="module" src="./fee.js"></script>
+
+</body>
+
+</html>
