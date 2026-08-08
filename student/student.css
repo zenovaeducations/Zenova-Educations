@@ -739,3 +739,209 @@ a{
 .logout-button i{
     font-size:19px;
 }
+/* ==========================================================
+   RESPONSIVE DESIGN
+========================================================== */
+
+@media (max-width:520px){
+
+    .app{
+        max-width:100%;
+    }
+
+    .main-content{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .welcome-section{
+        padding:18px;
+    }
+
+    .profile-image-wrapper{
+        width:64px;
+        height:64px;
+    }
+
+    .welcome-text h2{
+        font-size:19px;
+    }
+
+    .section-heading h2{
+        font-size:19px;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:380px){
+
+    .top-header{
+        padding:0 14px;
+    }
+
+    .zenova-logo h1{
+        font-size:20px;
+    }
+
+    .zenova-logo span{
+        font-size:7px;
+        letter-spacing:4px;
+    }
+
+    .welcome-section{
+        gap:11px;
+        padding:16px;
+    }
+
+    .profile-image-wrapper{
+        width:58px;
+        height:58px;
+    }
+
+    .welcome-text h2{
+        font-size:17px;
+    }
+
+    .welcome-text span{
+        font-size:10px;
+    }
+
+    .detail-item{
+        padding:14px;
+    }
+
+    .detail-item strong{
+        font-size:13px;
+    }
+
+    .fee-total strong{
+        font-size:21px;
+    }
+
+    .nav-item i{
+        font-size:19px;
+    }
+
+    .nav-item{
+        font-size:9px;
+    }
+
+}
+
+
+/* ==========================================================
+   TABLET / DESKTOP
+========================================================== */
+
+@media (min-width:521px){
+
+    body{
+        padding:20px 0;
+    }
+
+    .app{
+        border-radius:24px;
+        overflow:hidden;
+
+        box-shadow:
+            0 15px 50px rgba(0,0,0,.12);
+    }
+
+    .top-header{
+        position:relative;
+    }
+
+    .bottom-nav{
+        bottom:20px;
+
+        border-radius:18px;
+
+        width:500px;
+
+        box-shadow:
+            0 8px 30px rgba(0,0,0,.12);
+
+        border:1px solid #e5e5e5;
+    }
+
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f5f5f5;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#bbb;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#888;
+}
+
+
+/* ==========================================================
+   TEXT SELECTION
+========================================================== */
+
+::selection{
+    background:#000;
+    color:#fff;
+}
+
+
+/* ==========================================================
+   BUTTON / LINK FEEDBACK
+========================================================== */
+
+button,
+a{
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+
+/* ==========================================================
+   IMAGE PROTECTION
+========================================================== */
+
+img{
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+
+/* ==========================================================
+   FOCUS
+========================================================== */
+
+button:focus-visible,
+a:focus-visible{
+    outline:2px solid #000;
+    outline-offset:3px;
+}
+
+
+/* ==========================================================
+   END
+========================================================== */
