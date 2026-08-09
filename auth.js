@@ -65,7 +65,7 @@ if (googleBtn) {
 
                 });
 
-                window.location.href = "onboarding.html";
+                window.location.href = "onboarding/index.html";
 
             }
 
@@ -86,7 +86,7 @@ if (googleBtn) {
 
                 } else {
 
-                    window.location.href = "onboarding.html";
+                    window.location.href = "onboarding/index.html";
 
                 }
 
