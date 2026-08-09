@@ -200,7 +200,7 @@ feeForm.addEventListener("submit",async(e)=>{
 
         loadingOverlay.classList.remove("active");
 
-        window.location.href="../student/";
+        window.location.href="../home/";
 
     }
 
