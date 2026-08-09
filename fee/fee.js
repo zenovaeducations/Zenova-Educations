@@ -98,7 +98,7 @@ async function loadStudent(){
 
         if(data.feeCompleted){
 
-            window.location.href="../student/";
+            window.location.href="../home/";
 
         }
 
