@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zenova Educations | Students</title>
+
+    <link rel="stylesheet" href="view.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <h1>ZENOVA</h1>
+
+            <span>EDUCATIONS</span>
+
+        </div>
+
+        <div class="header-title">
+
+            <i class="ri-group-line"></i>
+
+            <span>Students</span>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- TITLE -->
+
+        <section class="page-title">
+
+            <div>
+
+                <span>ZENOVA EDUCATIONS</span>
+
+                <h2>Students</h2>
+
+            </div>
+
+            <div class="total-box">
+
+                <small>Total Students</small>
+
+                <strong id="totalStudents">0</strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <i class="ri-search-line"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by name, phone or email">
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filter-row">
+
+            <button class="filter-btn active"
+                    data-filter="all">
+
+                All
+
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="1st PUC">
+
+                1st PUC
+
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="2nd PUC">
+
+                2nd PUC
+
+            </button>
+
+        </div>
+
+
+        <!-- STUDENT LIST -->
+
+        <section class="students-section">
+
+            <div class="list-heading">
+
+                <h3>All Students</h3>
+
+                <span id="resultCount">0 students</span>
+
+            </div>
+
+
+            <div
+                id="studentList"
+                class="student-list">
+
+                <!-- Students will be loaded here -->
+
+                <div class="loading">
+
+                    <div class="loader"></div>
+
+                    <p>Loading students...</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NO RESULTS -->
+
+            <div
+                id="noResults"
+                class="no-results"
+                style="display:none;">
+
+                <i class="ri-user-search-line"></i>
+
+                <h3>No students found</h3>
+
+                <p>
+                    Try searching with another name,
+                    phone number or email.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- STUDENT DETAILS MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="modalOverlay">
+
+        <div class="student-modal">
+
+            <button
+                class="close-modal"
+                id="closeModal">
+
+                <i class="ri-close-line"></i>
+
+            </button>
+
+
+            <!-- PROFILE -->
+
+            <div class="modal-profile">
+
+                <img
+                    id="modalPhoto"
+                    src="../assets/images/profile.png"
+                    alt="Student">
+
+                <h2 id="modalName">
+                    Student
+                </h2>
+
+                <p id="modalEmail">
+                    —
+                </p>
+
+            </div>
+
+
+            <!-- PERSONAL -->
+
+            <div class="modal-section">
+
+                <div class="modal-section-title">
+
+                    <i class="ri-user-line"></i>
+
+                    <h3>Personal Details</h3>
+
+                </div>
+
+
+                <div class="detail-grid">
+
+                    <div>
+                        <small>Phone</small>
+                        <strong id="modalPhone">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Date of Birth</small>
+                        <strong id="modalDOB">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Father Name</small>
+                        <strong id="modalFather">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Mother Name</small>
+                        <strong id="modalMother">—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACADEMIC -->
+
+            <div class="modal-section">
+
+                <div class="modal-section-title">
+
+                    <i class="ri-graduation-cap-line"></i>
+
+                    <h3>Academic Details</h3>
+
+                </div>
+
+
+                <div class="detail-grid">
+
+                    <div>
+                        <small>School</small>
+                        <strong id="modalSchool">—</strong>
+                    </div>
+
+                    <div>
+                        <small>SSLC %</small>
+                        <strong id="modalPercentage">—</strong>
+                    </div>
+
+                    <div>
+                        <small>SSLC Medium</small>
+                        <strong id="modalMedium">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Register Number</small>
+                        <strong id="modalRegister">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Class</small>
+                        <strong id="modalClass">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Course</small>
+                        <strong id="modalCourse">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Combination</small>
+                        <strong id="modalCombination">—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div class="modal-section">
+
+                <div class="modal-section-title">
+
+                    <i class="ri-map-pin-line"></i>
+
+                    <h3>Address</h3>
+
+                </div>
+
+
+                <div class="detail-grid">
+
+                    <div>
+                        <small>State</small>
+                        <strong id="modalState">—</strong>
+                    </div>
+
+                    <div>
+                        <small>District</small>
+                        <strong id="modalDistrict">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Taluk</small>
+                        <strong id="modalTaluk">—</strong>
+                    </div>
+
+                    <div>
+                        <small>Village / City</small>
+                        <strong id="modalVillage">—</strong>
+                    </div>
+
+                    <div>
+                        <small>PIN Code</small>
+                        <strong id="modalPincode">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="full-detail">
+
+                    <small>Full Address</small>
+
+                    <strong id="modalAddress">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEES -->
+
+            <div class="modal-section">
+
+                <div class="modal-section-title">
+
+                    <i class="ri-wallet-3-line"></i>
+
+                    <h3>Fee Details</h3>
+
+                </div>
+
+
+                <div class="fee-grid">
+
+                    <div>
+                        <small>Advance Paid</small>
+                        <strong id="modalAdvance">₹0</strong>
+                    </div>
+
+                    <div>
+                        <small>First Installment</small>
+                        <strong id="modalInstallment">₹0</strong>
+                    </div>
+
+                    <div class="fee-total">
+                        <small>Total Paid</small>
+                        <strong id="modalTotal">₹0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status-section">
+
+                <div>
+
+                    <small>Onboarding</small>
+
+                    <strong id="modalOnboarding">
+                        —
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <small>Fee Status</small>
+
+                    <strong id="modalFeeStatus">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module" src="view.js"></script>
+
+</body>
+
+</html>
