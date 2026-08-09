@@ -8,10 +8,234 @@ import { db } from "../firebase-config.js";
 
 import {
     collection,
-    getDocs
+    getDocs,
+    doc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+// ==========================================================
+// PASSWORD PROTECTION
+// ==========================================================
+
+const passwordScreen =
+    document.getElementById("passwordScreen");
+
+const studentsApp =
+    document.getElementById("studentsApp");
+
+const passwordForm =
+    document.getElementById("passwordForm");
+
+const viewPassword =
+    document.getElementById("viewPassword");
+
+const passwordError =
+    document.getElementById("passwordError");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+const togglePassword =
+    document.getElementById("togglePassword");
 
 
+// ==========================================================
+// PASSWORD VISIBILITY
+// ==========================================================
+
+togglePassword.addEventListener("click", () => {
+
+    if (viewPassword.type === "password") {
+
+        viewPassword.type = "text";
+
+        togglePassword.innerHTML =
+            '<i class="ri-eye-off-line"></i>';
+
+    } else {
+
+        viewPassword.type = "password";
+
+        togglePassword.innerHTML =
+            '<i class="ri-eye-line"></i>';
+
+    }
+
+});
+
+
+// ==========================================================
+// SHA-256
+// ==========================================================
+
+async function hashPassword(password) {
+
+    const encoder =
+        new TextEncoder();
+
+    const data =
+        encoder.encode(password);
+
+    const hashBuffer =
+        await crypto.subtle.digest(
+            "SHA-256",
+            data
+        );
+
+    const hashArray =
+        Array.from(
+            new Uint8Array(hashBuffer)
+        );
+
+    return hashArray
+        .map(
+            byte =>
+                byte
+                    .toString(16)
+                    .padStart(2, "0")
+        )
+        .join("");
+
+}
+
+
+// ==========================================================
+// VERIFY PASSWORD
+// ==========================================================
+
+passwordForm.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+        passwordError.textContent = "";
+
+        const password =
+            viewPassword.value.trim();
+
+
+        if (!password) {
+
+            passwordError.textContent =
+                "Please enter the password.";
+
+            return;
+
+        }
+
+
+        try {
+
+            continueButton.disabled = true;
+
+            continueButton.innerHTML =
+                "Checking...";
+
+
+            // Get password hash from Firestore
+
+            const accessRef =
+                doc(
+                    db,
+                    "viewSettings",
+                    "access"
+                );
+
+
+            const accessSnapshot =
+                await getDoc(accessRef);
+
+
+            if (!accessSnapshot.exists()) {
+
+                throw new Error(
+                    "View access settings not found."
+                );
+
+            }
+
+
+            const accessData =
+                accessSnapshot.data();
+
+
+            const storedHash =
+                accessData.passwordHash;
+
+
+            if (!storedHash) {
+
+                throw new Error(
+                    "Password is not configured."
+                );
+
+            }
+
+
+            // Hash entered password
+
+            const enteredHash =
+                await hashPassword(password);
+
+
+            // Compare hashes
+
+            if (
+                enteredHash === storedHash
+            ) {
+
+                // Password correct
+
+                passwordScreen.style.display =
+                    "none";
+
+                studentsApp.style.display =
+                    "block";
+
+                sessionStorage.setItem(
+                    "zenovaViewAccess",
+                    "granted"
+                );
+
+                loadStudents();
+
+            } else {
+
+                passwordError.textContent =
+                    "Incorrect password.";
+
+                viewPassword.value = "";
+
+                viewPassword.focus();
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Password verification error:",
+                error
+            );
+
+            passwordError.textContent =
+                "Unable to verify password.";
+
+        }
+
+        finally {
+
+            continueButton.disabled = false;
+
+            continueButton.innerHTML =
+                `Continue
+                 <i class="ri-arrow-right-line"></i>`;
+
+        }
+
+    }
+);
 // ==========================================================
 // ELEMENTS
 // ==========================================================
