@@ -23,8 +23,74 @@
 </head>
 
 <body>
+<!-- ======================================================
+     PASSWORD SCREEN
+====================================================== -->
 
-<div class="app">
+<div id="passwordScreen" class="password-screen">
+
+    <div class="password-box">
+
+        <div class="password-logo">
+            <h1>ZENOVA</h1>
+            <span>EDUCATIONS</span>
+        </div>
+
+        <div class="password-icon">
+            <i class="ri-lock-2-line"></i>
+        </div>
+
+        <h2>Student Information</h2>
+
+        <p>
+            Enter the password to continue.
+        </p>
+
+        <form id="passwordForm">
+
+            <div class="password-input">
+
+                <i class="ri-lock-line"></i>
+
+                <input
+                    type="password"
+                    id="viewPassword"
+                    placeholder="Enter password"
+                    autocomplete="off"
+                    required>
+
+                <button
+                    type="button"
+                    id="togglePassword">
+
+                    <i class="ri-eye-line"></i>
+
+                </button>
+
+            </div>
+
+            <button
+                type="submit"
+                class="continue-button"
+                id="continueButton">
+
+                Continue
+
+                <i class="ri-arrow-right-line"></i>
+
+            </button>
+
+        </form>
+
+        <p
+            id="passwordError"
+            class="password-error">
+        </p>
+
+    </div>
+
+</div>
+    <div class="app" id="studentsApp" style="display:none;">
 
     <!-- HEADER -->
 
