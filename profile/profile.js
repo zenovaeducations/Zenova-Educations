@@ -13,7 +13,8 @@ import {
 
 import {
     doc,
-    getDoc
+    getDoc,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 
@@ -159,6 +160,20 @@ const sideStudentClass =
     document.getElementById("sideStudentClass");
 
 
+const editProfileBtn =
+    document.getElementById("editProfileBtn");
+
+const editOverlay =
+    document.getElementById("editOverlay");
+
+const closeEditProfile =
+    document.getElementById("closeEditProfile");
+
+const editProfileForm =
+    document.getElementById("editProfileForm");
+
+const saveProfileBtn =
+    document.getElementById("saveProfileBtn");
 // ==========================================================
 // AUTHENTICATION
 // ==========================================================
