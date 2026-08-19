@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Zenova | Edit Profile</title>
+
+    <link rel="stylesheet" href="editprofile.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <a href="../student/" class="back-button">
+            <i class="ri-arrow-left-line"></i>
+        </a>
+
+        <div class="zenova-logo">
+
+            <h1>ZENOVA</h1>
+
+            <span>EDUCATIONS</span>
+
+        </div>
+
+        <div class="header-space"></div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <!-- TITLE -->
+
+        <section class="page-heading">
+
+            <span>ACCOUNT</span>
+
+            <h2>Edit Profile</h2>
+
+            <p>
+                Update your personal and academic information.
+            </p>
+
+        </section>
+
+
+        <!-- PROFILE PHOTO -->
+
+        <section class="profile-photo-section">
+
+            <div class="photo-wrapper">
+
+                <img
+                    id="profilePreview"
+                    src="../assets/images/profile.png"
+                    alt="Profile">
+
+                <label
+                    for="photoInput"
+                    class="photo-edit">
+
+                    <i class="ri-camera-line"></i>
+
+                </label>
+
+            </div>
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+                hidden>
+
+            <strong id="photoName">
+                Change Profile Photo
+            </strong>
+
+            <small>
+                JPG, PNG or WEBP
+            </small>
+
+        </section>
+
+
+        <!-- FORM -->
+
+        <form id="profileForm">
+
+
+            <!-- PERSONAL DETAILS -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+
+                    <i class="ri-user-line"></i>
+
+                    <div>
+
+                        <span>PERSONAL</span>
+
+                        <h3>Personal Details</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="dob">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="fatherName">
+                            Father's Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fatherName"
+                            placeholder="Father's name">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="motherName">
+                            Mother's Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="motherName"
+                            placeholder="Mother's name">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACADEMIC DETAILS -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+
+                    <i class="ri-graduation-cap-line"></i>
+
+                    <div>
+
+                        <span>ACADEMIC</span>
+
+                        <h3>Academic Details</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label for="schoolName">
+                            School Studied
+                        </label>
+
+                        <input
+                            type="text"
+                            id="schoolName"
+                            placeholder="School name">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="sslcPercentage">
+                            SSLC Percentage
+                        </label>
+
+                        <input
+                            type="number"
+                            id="sslcPercentage"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                            placeholder="Percentage">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="sslcMedium">
+                            SSLC Medium
+                        </label>
+
+                        <select id="sslcMedium">
+
+                            <option value="">
+                                Select medium
+                            </option>
+
+                            <option value="English">
+                                English
+                            </option>
+
+                            <option value="Kannada">
+                                Kannada
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="sslcRegisterNumber">
+                            SSLC Register Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="sslcRegisterNumber"
+                            placeholder="SSLC register number">
+
+                    </div>
+
+
+                    <!-- LOCKED DETAILS -->
+
+                    <div class="locked-info">
+
+                        <i class="ri-lock-line"></i>
+
+                        <div>
+
+                            <strong>
+                                Course Information
+                            </strong>
+
+                            <p>
+                                Class, course and combination
+                                are managed by Zenova and
+                                cannot be edited here.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Class</label>
+
+                        <input
+                            type="text"
+                            id="joiningClass"
+                            disabled>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Course</label>
+
+                        <input
+                            type="text"
+                            id="course"
+                            disabled>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Combination</label>
+
+                        <input
+                            type="text"
+                            id="combination"
+                            disabled>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ADDRESS -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+
+                    <i class="ri-map-pin-line"></i>
+
+                    <div>
+
+                        <span>LOCATION</span>
+
+                        <h3>Address</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="state">
+                            State
+                        </label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            placeholder="State">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="district">
+                            District
+                        </label>
+
+                        <input
+                            type="text"
+                            id="district"
+                            placeholder="District">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="taluk">
+                            Taluk
+                        </label>
+
+                        <input
+                            type="text"
+                            id="taluk"
+                            placeholder="Taluk">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="village">
+                            Village / City
+                        </label>
+
+                        <input
+                            type="text"
+                            id="village"
+                            placeholder="Village or city">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="pincode">
+                            PIN Code
+                        </label>
+
+                        <input
+                            type="text"
+                            id="pincode"
+                            maxlength="6"
+                            placeholder="PIN code">
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="fullAddress">
+                            Full Address
+                        </label>
+
+                        <textarea
+                            id="fullAddress"
+                            rows="4"
+                            placeholder="Enter your complete address"></textarea>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SAVE -->
+
+            <button
+                type="submit"
+                class="save-button"
+                id="saveButton">
+
+                <i class="ri-save-3-line"></i>
+
+                <span>Save Changes</span>
+
+            </button>
+
+
+        </form>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script
+    type="module"
+    src="editprofile.js">
+</script>
+
+</body>
+
+                          </html>
