@@ -641,3 +641,231 @@ function initializeDashboard() {
 // ==========================================================
 
 initializeDashboard();
+// ==========================================================
+// EDIT PROFILE
+// ==========================================================
+
+editProfileBtn.addEventListener("click", () => {
+
+    if (!studentData) return;
+
+    fillEditForm();
+
+    editOverlay.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+});
+
+
+// ==========================================================
+// FILL EDIT FORM
+// ==========================================================
+
+function fillEditForm() {
+
+    document.getElementById("editName").value =
+        studentData.name || "";
+
+    document.getElementById("editPhone").value =
+        studentData.phone || "";
+
+    document.getElementById("editDOB").value =
+        studentData.dob || "";
+
+    document.getElementById("editFather").value =
+        studentData.fatherName || "";
+
+    document.getElementById("editMother").value =
+        studentData.motherName || "";
+
+    document.getElementById("editSchool").value =
+        studentData.schoolName || "";
+
+    document.getElementById("editMedium").value =
+        studentData.sslcMedium || "";
+
+    document.getElementById("editState").value =
+        studentData.state || "";
+
+    document.getElementById("editDistrict").value =
+        studentData.district || "";
+
+    document.getElementById("editTaluk").value =
+        studentData.taluk || "";
+
+    document.getElementById("editVillage").value =
+        studentData.village || "";
+
+    document.getElementById("editPincode").value =
+        studentData.pincode || "";
+
+    document.getElementById("editAddress").value =
+        studentData.fullAddress || "";
+
+}
+
+
+// ==========================================================
+// CLOSE EDIT
+// ==========================================================
+
+closeEditProfile.addEventListener("click", () => {
+
+    closeEdit();
+
+});
+
+
+editOverlay.addEventListener("click", (event) => {
+
+    if (event.target === editOverlay) {
+
+        closeEdit();
+
+    }
+
+});
+
+
+function closeEdit() {
+
+    editOverlay.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+// ==========================================================
+// SAVE PROFILE
+// ==========================================================
+
+editProfileForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+
+    if (!currentUser) {
+
+        return;
+
+    }
+
+
+    saveProfileBtn.disabled = true;
+
+    saveProfileBtn.innerHTML = `
+        <i class="ri-loader-4-line"></i>
+        Saving...
+    `;
+
+
+    try {
+
+        const updatedData = {
+
+            name:
+                document.getElementById("editName").value.trim(),
+
+            phone:
+                document.getElementById("editPhone").value.trim(),
+
+            dob:
+                document.getElementById("editDOB").value,
+
+            fatherName:
+                document.getElementById("editFather").value.trim(),
+
+            motherName:
+                document.getElementById("editMother").value.trim(),
+
+            schoolName:
+                document.getElementById("editSchool").value.trim(),
+
+            sslcMedium:
+                document.getElementById("editMedium").value,
+
+            state:
+                document.getElementById("editState").value.trim(),
+
+            district:
+                document.getElementById("editDistrict").value.trim(),
+
+            taluk:
+                document.getElementById("editTaluk").value.trim(),
+
+            village:
+                document.getElementById("editVillage").value.trim(),
+
+            pincode:
+                document.getElementById("editPincode").value.trim(),
+
+            fullAddress:
+                document.getElementById("editAddress").value.trim()
+
+        };
+
+
+        // ------------------------------------------
+        // UPDATE EXISTING STUDENT
+        // ------------------------------------------
+
+        await updateDoc(
+            doc(db, "students", currentUser.uid),
+            updatedData
+        );
+
+
+        // ------------------------------------------
+        // UPDATE LOCAL DATA
+        // ------------------------------------------
+
+        studentData = {
+            ...studentData,
+            ...updatedData
+        };
+
+
+        // ------------------------------------------
+        // REFRESH PROFILE
+        // ------------------------------------------
+
+        renderStudent();
+
+
+        closeEdit();
+
+
+        alert(
+            "Profile updated successfully."
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Profile update error:",
+            error
+        );
+
+        alert(
+            "Unable to update your profile. Please try again."
+        );
+
+    }
+
+    finally {
+
+        saveProfileBtn.disabled = false;
+
+        saveProfileBtn.innerHTML = `
+            <i class="ri-save-line"></i>
+            Save Changes
+        `;
+
+    }
+
+});
