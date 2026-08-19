@@ -462,7 +462,7 @@ profileForm.addEventListener(
             setTimeout(() => {
 
                 window.location.href =
-                    "../student/";
+                    "../profile/";
 
             }, 1200);
 
