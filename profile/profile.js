@@ -640,26 +640,57 @@ function initializeDashboard() {
 // START
 // ==========================================================
 
-initializeDashboard();
 // ==========================================================
 // EDIT PROFILE
 // ==========================================================
 
-editProfileBtn.addEventListener("click", () => {
+const editProfileBtn =
+    document.getElementById("editProfileBtn");
 
-    if (!studentData) return;
+const editOverlay =
+    document.getElementById("editOverlay");
 
-    fillEditForm();
+const closeEditProfile =
+    document.getElementById("closeEditProfile");
 
-    editOverlay.classList.add("active");
+const editProfileForm =
+    document.getElementById("editProfileForm");
 
-    document.body.style.overflow = "hidden";
-
-});
+const saveProfileBtn =
+    document.getElementById("saveProfileBtn");
 
 
 // ==========================================================
-// FILL EDIT FORM
+// OPEN EDIT PROFILE
+// ==========================================================
+
+if (editProfileBtn) {
+
+    editProfileBtn.addEventListener("click", () => {
+
+        console.log("Edit Profile clicked");
+
+        if (!studentData) {
+
+            alert("Student details are still loading.");
+
+            return;
+
+        }
+
+        fillEditForm();
+
+        editOverlay.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+}
+
+
+// ==========================================================
+// FILL FORM
 // ==========================================================
 
 function fillEditForm() {
@@ -710,24 +741,6 @@ function fillEditForm() {
 // CLOSE EDIT
 // ==========================================================
 
-closeEditProfile.addEventListener("click", () => {
-
-    closeEdit();
-
-});
-
-
-editOverlay.addEventListener("click", (event) => {
-
-    if (event.target === editOverlay) {
-
-        closeEdit();
-
-    }
-
-});
-
-
 function closeEdit() {
 
     editOverlay.classList.remove("active");
@@ -737,135 +750,229 @@ function closeEdit() {
 }
 
 
+if (closeEditProfile) {
+
+    closeEditProfile.addEventListener(
+        "click",
+        closeEdit
+    );
+
+}
+
+
+if (editOverlay) {
+
+    editOverlay.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target === editOverlay
+            ) {
+
+                closeEdit();
+
+            }
+
+        }
+    );
+
+}
+
+
 // ==========================================================
 // SAVE PROFILE
 // ==========================================================
 
-editProfileForm.addEventListener("submit", async (event) => {
+if (editProfileForm) {
 
-    event.preventDefault();
+    editProfileForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+            if (!currentUser) {
+
+                alert("User not found.");
+
+                return;
+
+            }
 
 
-    if (!currentUser) {
+            saveProfileBtn.disabled = true;
 
-        return;
+            saveProfileBtn.innerHTML = `
+                <i class="ri-loader-4-line"></i>
+                Saving...
+            `;
+
+
+            try {
+
+                const updatedData = {
+
+                    name:
+                        document
+                        .getElementById("editName")
+                        .value
+                        .trim(),
+
+                    phone:
+                        document
+                        .getElementById("editPhone")
+                        .value
+                        .trim(),
+
+                    dob:
+                        document
+                        .getElementById("editDOB")
+                        .value,
+
+                    fatherName:
+                        document
+                        .getElementById("editFather")
+                        .value
+                        .trim(),
+
+                    motherName:
+                        document
+                        .getElementById("editMother")
+                        .value
+                        .trim(),
+
+                    schoolName:
+                        document
+                        .getElementById("editSchool")
+                        .value
+                        .trim(),
+
+                    sslcMedium:
+                        document
+                        .getElementById("editMedium")
+                        .value,
+
+                    state:
+                        document
+                        .getElementById("editState")
+                        .value
+                        .trim(),
+
+                    district:
+                        document
+                        .getElementById("editDistrict")
+                        .value
+                        .trim(),
+
+                    taluk:
+                        document
+                        .getElementById("editTaluk")
+                        .value
+                        .trim(),
+
+                    village:
+                        document
+                        .getElementById("editVillage")
+                        .value
+                        .trim(),
+
+                    pincode:
+                        document
+                        .getElementById("editPincode")
+                        .value
+                        .trim(),
+
+                    fullAddress:
+                        document
+                        .getElementById("editAddress")
+                        .value
+                        .trim()
+
+                };
+
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "students",
+                        currentUser.uid
+                    ),
+
+                    updatedData
+
+                );
+
+
+                studentData = {
+
+                    ...studentData,
+
+                    ...updatedData
+
+                };
+
+
+                renderStudent();
+
+                closeEdit();
+
+
+                alert(
+                    "Profile updated successfully."
+                );
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "PROFILE UPDATE ERROR:",
+                    error
+                );
+
+                alert(
+                    "Unable to save changes."
+                );
+
+            }
+
+            finally {
+
+                saveProfileBtn.disabled = false;
+
+                saveProfileBtn.innerHTML = `
+                    <i class="ri-save-line"></i>
+                    Save Changes
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================================
+// ESCAPE KEY
+// ==========================================================
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape" &&
+            editOverlay &&
+            editOverlay.classList.contains("active")
+        ) {
+
+            closeEdit();
+
+        }
 
     }
-
-
-    saveProfileBtn.disabled = true;
-
-    saveProfileBtn.innerHTML = `
-        <i class="ri-loader-4-line"></i>
-        Saving...
-    `;
-
-
-    try {
-
-        const updatedData = {
-
-            name:
-                document.getElementById("editName").value.trim(),
-
-            phone:
-                document.getElementById("editPhone").value.trim(),
-
-            dob:
-                document.getElementById("editDOB").value,
-
-            fatherName:
-                document.getElementById("editFather").value.trim(),
-
-            motherName:
-                document.getElementById("editMother").value.trim(),
-
-            schoolName:
-                document.getElementById("editSchool").value.trim(),
-
-            sslcMedium:
-                document.getElementById("editMedium").value,
-
-            state:
-                document.getElementById("editState").value.trim(),
-
-            district:
-                document.getElementById("editDistrict").value.trim(),
-
-            taluk:
-                document.getElementById("editTaluk").value.trim(),
-
-            village:
-                document.getElementById("editVillage").value.trim(),
-
-            pincode:
-                document.getElementById("editPincode").value.trim(),
-
-            fullAddress:
-                document.getElementById("editAddress").value.trim()
-
-        };
-
-
-        // ------------------------------------------
-        // UPDATE EXISTING STUDENT
-        // ------------------------------------------
-
-        await updateDoc(
-            doc(db, "students", currentUser.uid),
-            updatedData
-        );
-
-
-        // ------------------------------------------
-        // UPDATE LOCAL DATA
-        // ------------------------------------------
-
-        studentData = {
-            ...studentData,
-            ...updatedData
-        };
-
-
-        // ------------------------------------------
-        // REFRESH PROFILE
-        // ------------------------------------------
-
-        renderStudent();
-
-
-        closeEdit();
-
-
-        alert(
-            "Profile updated successfully."
-        );
-
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Profile update error:",
-            error
-        );
-
-        alert(
-            "Unable to update your profile. Please try again."
-        );
-
-    }
-
-    finally {
-
-        saveProfileBtn.disabled = false;
-
-        saveProfileBtn.innerHTML = `
-            <i class="ri-save-line"></i>
-            Save Changes
-        `;
-
-    }
-
-});
+);
