@@ -945,3 +945,343 @@ a:focus-visible{
 /* ==========================================================
    END
 ========================================================== */
+/* ==========================================================
+   EDIT PROFILE BUTTON
+========================================================== */
+
+.edit-profile-btn{
+    width:100%;
+    height:48px;
+
+    margin:0 0 25px;
+
+    border:0;
+    border-radius:14px;
+
+    background:#000;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.edit-profile-btn i{
+    font-size:18px;
+}
+
+.edit-profile-btn:hover{
+    background:#222;
+}
+
+.edit-profile-btn:active{
+    transform:scale(.98);
+}
+
+
+/* ==========================================================
+   EDIT PROFILE OVERLAY
+========================================================== */
+
+.edit-overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:1000;
+}
+
+.edit-overlay.active{
+    display:flex;
+}
+
+
+/* ==========================================================
+   EDIT PROFILE MODAL
+========================================================== */
+
+.edit-modal{
+    width:100%;
+    max-width:560px;
+
+    max-height:92vh;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:25px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+
+/* ==========================================================
+   EDIT HEADER
+========================================================== */
+
+.edit-header{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:22px;
+}
+
+.edit-header span{
+    display:block;
+
+    color:#999;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:3px;
+}
+
+.edit-header h2{
+    font-size:22px;
+
+    font-weight:700;
+}
+
+.edit-header button{
+    width:40px;
+    height:40px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:#f2f2f2;
+
+    color:#111;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:21px;
+
+    cursor:pointer;
+}
+
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+#editProfileForm{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+}
+
+.edit-field{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+.edit-field.full-width{
+    grid-column:1 / -1;
+}
+
+.edit-field label{
+    font-size:10px;
+
+    font-weight:600;
+
+    color:#666;
+}
+
+.edit-field input,
+.edit-field select,
+.edit-field textarea{
+
+    width:100%;
+
+    border:1px solid #ddd;
+
+    border-radius:11px;
+
+    background:#fafafa;
+
+    color:#111;
+
+    outline:none;
+
+    padding:12px;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:12px;
+
+    transition:.2s;
+}
+
+.edit-field input,
+.edit-field select{
+    height:46px;
+}
+
+.edit-field textarea{
+    resize:vertical;
+
+    min-height:85px;
+}
+
+.edit-field input:focus,
+.edit-field select:focus,
+.edit-field textarea:focus{
+
+    border-color:#000;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 0 3px rgba(0,0,0,.06);
+}
+
+
+/* ==========================================================
+   SAVE BUTTON
+========================================================== */
+
+.save-profile-btn{
+    grid-column:1 / -1;
+
+    height:50px;
+
+    margin-top:5px;
+
+    border:0;
+
+    border-radius:13px;
+
+    background:#000;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.save-profile-btn i{
+    font-size:18px;
+}
+
+.save-profile-btn:hover{
+    background:#222;
+}
+
+.save-profile-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:520px){
+
+    .edit-overlay{
+        padding:10px;
+        align-items:flex-end;
+    }
+
+    .edit-modal{
+        max-height:94vh;
+
+        padding:20px 16px;
+
+        border-radius:22px 22px 0 0;
+    }
+
+    #editProfileForm{
+        grid-template-columns:1fr;
+    }
+
+    .edit-field.full-width{
+        grid-column:auto;
+    }
+
+    .save-profile-btn{
+        grid-column:auto;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:380px){
+
+    .edit-modal{
+        padding:18px 13px;
+    }
+
+    .edit-header h2{
+        font-size:20px;
+    }
+
+    .edit-field input,
+    .edit-field select{
+        height:44px;
+    }
+
+    .edit-field input,
+    .edit-field select,
+    .edit-field textarea{
+        font-size:11px;
+    }
+
+}
