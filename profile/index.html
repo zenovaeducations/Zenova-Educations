@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zenova Educations | Student</title>
+
+    <link rel="stylesheet" href="profile.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         TOP HEADER
+    ========================== -->
+
+    <header class="top-header">
+
+        <button class="menu-btn" id="menuBtn">
+            <i class="ri-menu-line"></i>
+        </button>
+
+        <div class="zenova-logo">
+            <h1>ZENOVA</h1>
+            <span>EDUCATIONS</span>
+        </div>
+
+        <button class="notification-btn">
+            <i class="ri-notification-3-line"></i>
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- WELCOME -->
+
+        <section class="welcome-section">
+
+            <div class="profile-image-wrapper">
+
+                <img
+                    id="studentPhoto"
+                    src="../assets/images/profile.png"
+                    alt="Student">
+
+            </div>
+
+            <div class="welcome-text">
+
+                <p>Hello,</p>
+
+                <h2 id="studentName">
+                    Loading...
+                </h2>
+
+                <span id="studentCourse">
+                    Loading...
+                </span>
+
+                <small id="studentBatch">
+                    Loading...
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PERSONAL DETAILS
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span>PROFILE</span>
+                    <h2>Personal Details</h2>
+                </div>
+
+                <i class="ri-user-line"></i>
+
+            </div>
+
+
+            <div class="details-card">
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-user-3-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Name</small>
+                        <strong id="detailName">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-mail-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Email</small>
+                        <strong id="detailEmail">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-phone-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Phone</small>
+                        <strong id="detailPhone">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-calendar-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Date of Birth</small>
+                        <strong id="detailDOB">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-parent-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Father's Name</small>
+                        <strong id="detailFather">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-parent-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Mother's Name</small>
+                        <strong id="detailMother">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ACADEMIC DETAILS
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span>ACADEMICS</span>
+                    <h2>Academic Details</h2>
+                </div>
+
+                <i class="ri-graduation-cap-line"></i>
+
+            </div>
+
+
+            <div class="details-card">
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-school-line"></i>
+                    </div>
+
+                    <div>
+                        <small>School</small>
+                        <strong id="detailSchool">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-bar-chart-line"></i>
+                    </div>
+
+                    <div>
+                        <small>SSLC Percentage</small>
+                        <strong id="detailPercentage">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-file-text-line"></i>
+                    </div>
+
+                    <div>
+                        <small>SSLC Register Number</small>
+                        <strong id="detailRegister">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-translate-2"></i>
+                    </div>
+
+                    <div>
+                        <small>SSLC Medium</small>
+                        <strong id="detailMedium">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-book-open-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Class</small>
+                        <strong id="detailClass">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-flask-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Course</small>
+                        <strong id="detailCourse">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-shapes-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Combination</small>
+                        <strong id="detailCombination">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+                <!-- =========================
+             ADDRESS DETAILS
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span>LOCATION</span>
+                    <h2>Address Details</h2>
+                </div>
+
+                <i class="ri-map-pin-line"></i>
+
+            </div>
+
+
+            <div class="details-card">
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-building-line"></i>
+                    </div>
+
+                    <div>
+                        <small>State</small>
+                        <strong id="detailState">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-map-2-line"></i>
+                    </div>
+
+                    <div>
+                        <small>District</small>
+                        <strong id="detailDistrict">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-community-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Taluk</small>
+                        <strong id="detailTaluk">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-home-4-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Village / City</small>
+                        <strong id="detailVillage">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-map-pin-2-line"></i>
+                    </div>
+
+                    <div>
+                        <small>PIN Code</small>
+                        <strong id="detailPincode">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item address-item">
+
+                    <div class="detail-icon">
+                        <i class="ri-home-8-line"></i>
+                    </div>
+
+                    <div>
+                        <small>Full Address</small>
+                        <strong id="detailAddress">—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FEE DETAILS
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span>PAYMENT</span>
+                    <h2>Fee Details</h2>
+                </div>
+
+                <i class="ri-wallet-3-line"></i>
+
+            </div>
+
+
+            <div class="fee-card">
+
+                <div class="fee-row">
+
+                    <div>
+
+                        <small>Advance Paid</small>
+
+                        <strong id="feeAdvance">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                    <i class="ri-checkbox-circle-line"></i>
+
+                </div>
+
+
+                <div class="fee-row">
+
+                    <div>
+
+                        <small>First Installment</small>
+
+                        <strong id="feeInstallment">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                    <i class="ri-checkbox-circle-line"></i>
+
+                </div>
+
+
+                <div class="fee-total">
+
+                    <span>Total Paid</span>
+
+                    <strong id="feeTotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ACCOUNT STATUS
+        ========================== -->
+
+        <section class="status-card">
+
+            <div class="status-icon">
+
+                <i class="ri-checkbox-circle-fill"></i>
+
+            </div>
+
+            <div>
+
+                <small>ACCOUNT STATUS</small>
+
+                <h3 id="accountStatus">
+                    Active Student
+                </h3>
+
+                <p>
+                    Your Zenova student profile is active.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         BOTTOM NAVIGATION
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+        <a href="../home/" class="nav-item">
+
+            <i class="ri-home-5-fill"></i>
+
+            <span>Home</span>
+
+        </a>
+
+
+        <a href="../test/" class="nav-item">
+
+            <i class="ri-file-list-3-line"></i>
+
+            <span>Tests</span>
+
+        </a>
+
+
+        <a href="../performance/" class="nav-item">
+
+            <i class="ri-bar-chart-grouped-line"></i>
+
+            <span>Performance</span>
+
+        </a>
+
+
+        <a href="../profile/" class="nav-item active">
+
+            <i class="ri-user-3-line"></i>
+
+            <span>Profile</span>
+
+        </a>
+
+
+        <button
+            type="button"
+            class="nav-item"
+            id="moreButton">
+
+            <i class="ri-menu-4-line"></i>
+
+            <span>More</span>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         SIDE MENU
+    ========================== -->
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <aside class="side-menu" id="sideMenu">
+
+        <div class="side-header">
+
+            <div>
+
+                <h2>ZENOVA</h2>
+
+                <span>EDUCATIONS</span>
+
+            </div>
+
+            <button id="closeMenu">
+
+                <i class="ri-close-line"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="side-profile">
+
+            <img
+                id="sideStudentPhoto"
+                src="../assets/images/profile.png"
+                alt="Student">
+
+            <div>
+
+                <strong id="sideStudentName">
+                    Student
+                </strong>
+
+                <span id="sideStudentClass">
+                    Student
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="menu-links">
+
+            <a href="./">
+
+                <i class="ri-home-5-line"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="../schedule/">
+
+                <i class="ri-calendar-schedule-line"></i>
+
+                Schedule
+
+            </a>
+
+
+            <a href="../attendance/">
+
+                <i class="ri-user-follow-line"></i>
+
+                Attendance
+
+            </a>
+
+
+            <a href="../fee/">
+
+                <i class="ri-wallet-3-line"></i>
+
+                Fees
+
+            </a>
+
+
+            <a href="../syllabus/">
+
+                <i class="ri-book-open-line"></i>
+
+                Syllabus
+
+            </a>
+
+
+            <a href="../assignments/">
+
+                <i class="ri-task-line"></i>
+
+                Assignments
+
+            </a>
+
+
+            <a href="../notes/">
+
+                <i class="ri-sticky-note-line"></i>
+
+                Notes
+
+            </a>
+
+
+            <a href="../recorded/">
+
+                <i class="ri-video-line"></i>
+
+                Recorded Classes
+
+            </a>
+
+
+            <a href="../notifications/">
+
+                <i class="ri-notification-3-line"></i>
+
+                Notifications
+
+            </a>
+
+
+            <a href="../settings/">
+
+                <i class="ri-settings-3-line"></i>
+
+                Settings
+
+            </a>
+
+        </div>
+
+
+        <button
+            class="logout-button"
+            id="logoutButton">
+
+            <i class="ri-logout-box-r-line"></i>
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+</div>
+
+
+<script type="module" src="./profile.js"></script>
+
+</body>
+
+                           </html>
