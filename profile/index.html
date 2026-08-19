@@ -86,7 +86,10 @@
             </div>
 
         </section>
-
+<button class="edit-profile-btn" id="editProfileBtn">
+    <i class="ri-edit-line"></i>
+    Edit Profile
+</button>
 
         <!-- =========================
              PERSONAL DETAILS
@@ -763,7 +766,166 @@
 
 
 </div>
+<!-- EDIT PROFILE MODAL -->
 
+<div class="edit-overlay" id="editOverlay">
+
+    <div class="edit-modal">
+
+        <div class="edit-header">
+
+            <div>
+                <span>PROFILE</span>
+                <h2>Edit Profile</h2>
+            </div>
+
+            <button id="closeEditProfile">
+                <i class="ri-close-line"></i>
+            </button>
+
+        </div>
+
+
+        <form id="editProfileForm">
+
+            <div class="edit-field">
+                <label>Name</label>
+                <input
+                    type="text"
+                    id="editName"
+                    required>
+            </div>
+
+
+            <div class="edit-field">
+                <label>Phone</label>
+                <input
+                    type="tel"
+                    id="editPhone">
+            </div>
+
+
+            <div class="edit-field">
+                <label>Date of Birth</label>
+                <input
+                    type="date"
+                    id="editDOB">
+            </div>
+
+
+            <div class="edit-field">
+                <label>Father Name</label>
+                <input
+                    type="text"
+                    id="editFather">
+            </div>
+
+
+            <div class="edit-field">
+                <label>Mother Name</label>
+                <input
+                    type="text"
+                    id="editMother">
+            </div>
+
+
+            <div class="edit-field">
+                <label>School</label>
+                <input
+                    type="text"
+                    id="editSchool">
+            </div>
+
+
+            <div class="edit-field">
+                <label>SSLC Medium</label>
+
+                <select id="editMedium">
+
+                    <option value="">
+                        Select Medium
+                    </option>
+
+                    <option value="Kannada">
+                        Kannada
+                    </option>
+
+                    <option value="English">
+                        English
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="edit-field">
+                <label>State</label>
+                <input
+                    type="text"
+                    id="editState">
+            </div>
+
+
+            <div class="edit-field">
+                <label>District</label>
+                <input
+                    type="text"
+                    id="editDistrict">
+            </div>
+
+
+            <div class="edit-field">
+                <label>Taluk</label>
+                <input
+                    type="text"
+                    id="editTaluk">
+            </div>
+
+
+            <div class="edit-field">
+                <label>Village / City</label>
+                <input
+                    type="text"
+                    id="editVillage">
+            </div>
+
+
+            <div class="edit-field">
+                <label>PIN Code</label>
+                <input
+                    type="text"
+                    id="editPincode">
+            </div>
+
+
+            <div class="edit-field full-width">
+                <label>Full Address</label>
+
+                <textarea
+                    id="editAddress"
+                    rows="3">
+                </textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-profile-btn"
+                id="saveProfileBtn">
+
+                <i class="ri-save-line"></i>
+
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 
 <script type="module" src="./profile.js"></script>
 
