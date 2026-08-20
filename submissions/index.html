@@ -291,7 +291,86 @@
 
 </div>
 
+<!-- VIEW ACCESS MODAL -->
 
+<div class="access-overlay" id="accessOverlay">
+
+    <div class="access-modal">
+
+        <button
+            type="button"
+            class="access-close"
+            id="accessClose">
+
+            <i class="ri-close-line"></i>
+
+        </button>
+
+        <div class="access-icon">
+
+            <i class="ri-lock-2-line"></i>
+
+        </div>
+
+        <span>PROTECTED VIEW</span>
+
+        <h2>View Submissions</h2>
+
+        <p>
+            Enter your authorized number and password
+            to view submitted details.
+        </p>
+
+
+        <div class="access-group">
+
+            <label for="accessNumber">
+                Number
+            </label>
+
+            <input
+                type="text"
+                id="accessNumber"
+                placeholder="Enter number"
+                autocomplete="off">
+
+        </div>
+
+
+        <div class="access-group">
+
+            <label for="accessPassword">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="accessPassword"
+                placeholder="Enter password">
+
+        </div>
+
+
+        <div
+            id="accessError"
+            class="access-error">
+        </div>
+
+
+        <button
+            type="button"
+            class="unlock-button"
+            id="unlockButton">
+
+            <i class="ri-lock-unlock-line"></i>
+
+            <span>Unlock View</span>
+
+        </button>
+
+    </div>
+
+</div>
 <script
     type="module"
     src="submissions.js">
