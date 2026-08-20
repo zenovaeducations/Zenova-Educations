@@ -1,0 +1,673 @@
+/* ==========================================================
+   ZENOVA EDUCATIONS
+   SUBMISSION FORM
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --black:#000;
+    --white:#fff;
+    --bg:#f5f5f5;
+    --text:#111;
+    --muted:#777;
+    --border:#e5e5e5;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.top-header{
+    height:72px;
+
+    background:#000;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 20px;
+}
+
+.zenova-logo{
+    text-align:center;
+    line-height:1;
+}
+
+.zenova-logo h1{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:4px;
+}
+
+.zenova-logo span{
+    display:block;
+
+    margin-top:5px;
+
+    font-size:8px;
+    letter-spacing:5px;
+
+    color:#aaa;
+}
+
+.view-button{
+    height:40px;
+
+    padding:0 14px;
+
+    border:1px solid #333;
+    border-radius:11px;
+
+    background:#fff;
+    color:#000;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    font-family:inherit;
+    font-size:11px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.view-button i{
+    font-size:17px;
+}
+
+
+/* ==========================================================
+   MAIN
+========================================================== */
+
+.main-content{
+    width:100%;
+    max-width:600px;
+
+    margin:auto;
+
+    padding:25px 16px 50px;
+}
+
+
+/* ==========================================================
+   TOTAL CARD
+========================================================== */
+
+.total-card{
+    background:#000;
+    color:#fff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:18px;
+}
+
+.total-card span{
+    display:block;
+
+    color:#999;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    font-weight:700;
+}
+
+.total-card strong{
+    display:block;
+
+    margin-top:3px;
+
+    font-size:30px;
+}
+
+.total-icon{
+    width:50px;
+    height:50px;
+
+    border-radius:15px;
+
+    background:#222;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
+}
+
+
+/* ==========================================================
+   FORM CARD
+========================================================== */
+
+.form-card{
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.04);
+}
+
+.form-heading{
+    margin-bottom:22px;
+}
+
+.form-heading span{
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    color:#999;
+
+    font-weight:700;
+}
+
+.form-heading h2{
+    font-size:22px;
+
+    margin-top:3px;
+}
+
+.form-heading p{
+    color:#888;
+
+    font-size:11px;
+
+    margin-top:4px;
+}
+
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    margin-bottom:7px;
+}
+
+.input-box{
+    height:50px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 13px;
+
+    gap:10px;
+
+    transition:.2s;
+}
+
+.input-box:focus-within{
+    border-color:#000;
+
+    box-shadow:
+        0 0 0 2px rgba(0,0,0,.05);
+}
+
+.input-box i{
+    font-size:18px;
+
+    color:#777;
+}
+
+.input-box input{
+    width:100%;
+    height:100%;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    color:#111;
+}
+
+
+/* ==========================================================
+   SUBMIT BUTTON
+========================================================== */
+
+.submit-button{
+    width:100%;
+    height:52px;
+
+    margin-top:5px;
+
+    border:0;
+
+    border-radius:13px;
+
+    background:#000;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    font-family:inherit;
+
+    font-size:13px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.submit-button:hover{
+    background:#222;
+}
+
+.submit-button:active{
+    transform:scale(.98);
+}
+
+.submit-button:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+
+/* ==========================================================
+   SUCCESS MESSAGE
+========================================================== */
+
+.success-message{
+    display:none;
+
+    margin-top:15px;
+
+    padding:14px;
+
+    background:#000;
+    color:#fff;
+
+    border-radius:13px;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.success-message.show{
+    display:flex;
+}
+
+.success-message > i{
+    font-size:25px;
+}
+
+.success-message strong{
+    display:block;
+
+    font-size:12px;
+}
+
+.success-message p{
+    margin-top:2px;
+
+    color:#aaa;
+
+    font-size:9px;
+}
+
+
+/* ==========================================================
+   VIEW SECTION
+========================================================== */
+
+.view-section{
+    margin-top:20px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:20px;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.04);
+}
+
+.view-heading{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:15px;
+}
+
+.view-heading span{
+    display:block;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:#999;
+
+    font-weight:700;
+}
+
+.view-heading h2{
+    font-size:19px;
+
+    margin-top:3px;
+}
+
+.close-view{
+    width:38px;
+    height:38px;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:#f1f1f1;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+.search-box{
+    height:48px;
+
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    padding:0 13px;
+
+    border:1px solid #ddd;
+
+    border-radius:11px;
+
+    margin-bottom:15px;
+}
+
+.search-box i{
+    color:#777;
+
+    font-size:18px;
+}
+
+.search-box input{
+    width:100%;
+    height:100%;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    font-family:inherit;
+
+    font-size:11px;
+}
+
+
+/* ==========================================================
+   SUBMISSION LIST
+========================================================== */
+
+.submission-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.submission-card{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:14px;
+
+    border:1px solid #e5e5e5;
+
+    border-radius:15px;
+
+    background:#fff;
+}
+
+.submission-number{
+    width:34px;
+    height:34px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:#000;
+    color:#fff;
+
+    font-size:11px;
+    font-weight:600;
+}
+
+.submission-info{
+    flex:1;
+
+    min-width:0;
+}
+
+.submission-info h3{
+    font-size:13px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.submission-info p{
+    color:#777;
+
+    font-size:10px;
+
+    margin-top:3px;
+}
+
+.submission-time{
+    flex-shrink:0;
+
+    text-align:right;
+}
+
+.submission-time small{
+    display:block;
+
+    color:#999;
+
+    font-size:8px;
+}
+
+.submission-time strong{
+    display:block;
+
+    font-size:10px;
+
+    margin-top:2px;
+}
+
+
+/* ==========================================================
+   NO SUBMISSIONS
+========================================================== */
+
+.no-submissions{
+    text-align:center;
+
+    padding:30px 10px;
+}
+
+.no-submissions i{
+    font-size:35px;
+
+    color:#aaa;
+}
+
+.no-submissions strong{
+    display:block;
+
+    margin-top:8px;
+
+    font-size:13px;
+}
+
+.no-submissions p{
+    color:#888;
+
+    font-size:10px;
+
+    margin-top:3px;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:450px){
+
+    .top-header{
+        padding:0 15px;
+    }
+
+    .zenova-logo h1{
+        font-size:20px;
+    }
+
+    .zenova-logo span{
+        font-size:7px;
+        letter-spacing:4px;
+    }
+
+    .view-button{
+        height:38px;
+        padding:0 11px;
+    }
+
+    .main-content{
+        padding:20px 13px 40px;
+    }
+
+    .total-card{
+        padding:17px;
+    }
+
+    .total-card strong{
+        font-size:27px;
+    }
+
+    .form-card,
+    .view-section{
+        padding:17px;
+    }
+
+    .submission-card{
+        padding:12px;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:350px){
+
+    .view-button span{
+        display:none;
+    }
+
+    .view-button{
+        width:38px;
+
+        padding:0;
+
+        justify-content:center;
+    }
+
+    .form-heading h2{
+        font-size:20px;
+    }
+
+    .submission-time{
+        display:none;
+    }
+
+}
