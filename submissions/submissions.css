@@ -671,3 +671,208 @@ body{
     }
 
 }
+/* ==========================================================
+   VIEW ACCESS MODAL
+========================================================== */
+
+.access-overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:1000;
+}
+
+.access-overlay.active{
+    display:flex;
+}
+
+.access-modal{
+    width:100%;
+    max-width:390px;
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px 22px;
+
+    position:relative;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.2);
+
+    text-align:center;
+}
+
+.access-close{
+    position:absolute;
+
+    top:14px;
+    right:14px;
+
+    width:36px;
+    height:36px;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:#f2f2f2;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.access-icon{
+    width:55px;
+    height:55px;
+
+    margin:0 auto 12px;
+
+    border-radius:16px;
+
+    background:#000;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+}
+
+.access-modal > span{
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:#999;
+
+    font-weight:700;
+}
+
+.access-modal h2{
+    font-size:20px;
+
+    margin-top:4px;
+}
+
+.access-modal > p{
+    color:#888;
+
+    font-size:10px;
+
+    line-height:1.5;
+
+    margin:5px 10px 20px;
+}
+
+.access-group{
+    text-align:left;
+
+    margin-bottom:13px;
+}
+
+.access-group label{
+    display:block;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    margin-bottom:6px;
+}
+
+.access-group input{
+    width:100%;
+
+    height:48px;
+
+    padding:0 13px;
+
+    border:1px solid #ddd;
+
+    border-radius:11px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:12px;
+}
+
+.access-group input:focus{
+    border-color:#000;
+
+    box-shadow:
+        0 0 0 2px rgba(0,0,0,.05);
+}
+
+.access-error{
+    display:none;
+
+    padding:9px;
+
+    margin-bottom:12px;
+
+    border-radius:9px;
+
+    background:#f1f1f1;
+
+    color:#111;
+
+    font-size:10px;
+}
+
+.access-error.show{
+    display:block;
+}
+
+.unlock-button{
+    width:100%;
+
+    height:50px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:#000;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    font-family:inherit;
+
+    font-size:12px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.unlock-button:disabled{
+    opacity:.6;
+}
+
+@media(max-width:400px){
+
+    .access-modal{
+        padding:25px 17px;
+    }
+
+}
