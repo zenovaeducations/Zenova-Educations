@@ -334,22 +334,250 @@ function showSuccess(){
 // VIEW BUTTON
 // ==========================================================
 
+// ==========================================================
+// VIEW ACCESS
+// ==========================================================
+
+const accessOverlay =
+    document.getElementById("accessOverlay");
+
+const accessClose =
+    document.getElementById("accessClose");
+
+const unlockButton =
+    document.getElementById("unlockButton");
+
+const accessNumber =
+    document.getElementById("accessNumber");
+
+const accessPassword =
+    document.getElementById("accessPassword");
+
+const accessError =
+    document.getElementById("accessError");
+
+
+// ==========================================================
+// VIEW BUTTON
+// ==========================================================
+
 viewButton.addEventListener(
     "click",
-    async () => {
+    () => {
 
-        viewSection.style.display =
-            "block";
+        accessOverlay.classList.add(
+            "active"
+        );
 
-        await loadSubmissions();
-
-        viewSection.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
+        accessNumber.focus();
 
     }
 );
+
+
+// ==========================================================
+// CLOSE ACCESS
+// ==========================================================
+
+accessClose.addEventListener(
+    "click",
+    () => {
+
+        closeAccessModal();
+
+    }
+);
+
+
+accessOverlay.addEventListener(
+    "click",
+    (event) => {
+
+        if(
+            event.target === accessOverlay
+        ){
+
+            closeAccessModal();
+
+        }
+
+    }
+);
+
+
+// ==========================================================
+// UNLOCK
+// ==========================================================
+
+unlockButton.addEventListener(
+    "click",
+    async () => {
+
+        const number =
+            accessNumber.value.trim();
+
+        const password =
+            accessPassword.value;
+
+
+        if(!number || !password){
+
+            showAccessError(
+                "Please enter both number and password."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * TEMPORARY ACCESS CREDENTIALS
+         *
+         * Change these before testing.
+         *
+         * IMPORTANT:
+         * This is only suitable for testing.
+         * Because this is client-side JavaScript,
+         * it is NOT secure for production.
+         */
+
+        const allowedNumber =
+            "9999999999";
+
+        const allowedPassword =
+            "123456";
+
+
+        if(
+            number !== allowedNumber ||
+            password !== allowedPassword
+        ){
+
+            showAccessError(
+                "Incorrect number or password."
+            );
+
+            return;
+
+        }
+
+
+        unlockButton.disabled = true;
+
+        unlockButton.innerHTML = `
+            <i class="ri-loader-4-line"></i>
+            <span>Opening...</span>
+        `;
+
+
+        try{
+
+            await loadSubmissions();
+
+
+            accessOverlay.classList.remove(
+                "active"
+            );
+
+            accessNumber.value = "";
+
+            accessPassword.value = "";
+
+            accessError.classList.remove(
+                "show"
+            );
+
+
+            viewSection.style.display =
+                "block";
+
+
+            viewSection.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            showAccessError(
+                "Unable to load submissions."
+            );
+
+        }
+
+        finally{
+
+            unlockButton.disabled = false;
+
+            unlockButton.innerHTML = `
+                <i class="ri-lock-unlock-line"></i>
+                <span>Unlock View</span>
+            `;
+
+        }
+
+    }
+);
+
+
+// ==========================================================
+// ENTER KEY
+// ==========================================================
+
+accessPassword.addEventListener(
+    "keydown",
+    (event) => {
+
+        if(event.key === "Enter"){
+
+            unlockButton.click();
+
+        }
+
+    }
+);
+
+
+// ==========================================================
+// ERROR
+// ==========================================================
+
+function showAccessError(text){
+
+    accessError.textContent =
+        text;
+
+    accessError.classList.add(
+        "show"
+    );
+
+}
+
+
+// ==========================================================
+// CLOSE MODAL
+// ==========================================================
+
+function closeAccessModal(){
+
+    accessOverlay.classList.remove(
+        "active"
+    );
+
+    accessNumber.value = "";
+
+    accessPassword.value = "";
+
+    accessError.classList.remove(
+        "show"
+    );
+
+}
 
 
 // ==========================================================
