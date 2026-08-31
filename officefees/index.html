@@ -29,7 +29,7 @@
 
 
     <!-- ==================================================
-         ACCESS SCREEN
+         OFFICE PASSWORD
     =================================================== -->
 
     <div id="accessScreen" class="access-screen">
@@ -77,11 +77,13 @@
                     <input
                         type="password"
                         id="officePassword"
-                        placeholder="Enter password">
+                        placeholder="Enter password"
+                        autocomplete="off">
 
                     <button
                         type="button"
-                        id="togglePassword">
+                        id="togglePassword"
+                        aria-label="Show password">
 
                         <i class="ri-eye-line"></i>
 
@@ -105,7 +107,9 @@
 
                 <i class="ri-lock-unlock-line"></i>
 
-                <span>Enter Office Portal</span>
+                <span>
+                    Enter Office Portal
+                </span>
 
             </button>
 
@@ -155,7 +159,7 @@
         <main class="main-content">
 
 
-            <!-- PAGE TITLE -->
+            <!-- PAGE HEADING -->
 
             <section class="page-heading">
 
@@ -164,48 +168,173 @@
                 <h2>Fees Management</h2>
 
                 <p>
-                    Enter and lock official fee records.
+                    Enter official fee records for students.
                 </p>
 
             </section>
 
-<section class="search-card">
 
-    <div class="section-title">
 
-        <i class="ri-group-line"></i>
+            <!-- ==================================================
+                 ALL STUDENTS
+            =================================================== -->
 
-        <div>
-            <span>STUDENTS</span>
-            <h3>All Students</h3>
-        </div>
+            <section class="search-card">
 
-    </div>
+                <div class="section-title">
 
-    <div class="search-box">
+                    <i class="ri-group-line"></i>
 
-        <i class="ri-search-line"></i>
+                    <div>
 
-        <input
-            type="text"
-            id="studentSearch"
-            placeholder="Search students..."
-            autocomplete="off">
+                        <span>STUDENTS</span>
 
-    </div>
+                        <h3>All Students</h3>
 
-    <div
-        id="studentResults"
-        class="student-results">
+                    </div>
 
-        <!-- ALL STUDENTS WILL APPEAR HERE -->
+                </div>
 
-    </div>
 
-</section>
+                <!-- SEARCH -->
 
-           
-            <!-- FEE FORM -->
+                <div class="search-box">
+
+                    <i class="ri-search-line"></i>
+
+                    <input
+                        type="text"
+                        id="studentSearch"
+                        placeholder="Search name, phone or email"
+                        autocomplete="off">
+
+                </div>
+
+
+                <!-- COUNT -->
+
+                <div class="student-count">
+
+                    <span>
+                        Students
+                    </span>
+
+                    <strong id="studentCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- STUDENT LIST -->
+
+                <div
+                    id="studentResults"
+                    class="student-results">
+
+                    <div class="loading-students">
+
+                        <i class="ri-loader-4-line"></i>
+
+                        <span>
+                            Loading students...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 SELECTED STUDENT
+            =================================================== -->
+
+            <section
+                id="selectedStudentCard"
+                class="student-card"
+                style="display:none;">
+
+
+                <div class="student-profile">
+
+                    <div class="student-avatar">
+
+                        <i class="ri-user-3-line"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            SELECTED STUDENT
+                        </span>
+
+                        <h3 id="selectedStudentName">
+                            —
+                        </h3>
+
+                        <p id="selectedStudentInfo">
+                            —
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="student-details">
+
+                    <div>
+
+                        <small>
+                            Class
+                        </small>
+
+                        <strong id="selectedClass">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            Course
+                        </small>
+
+                        <strong id="selectedCourse">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            Combination
+                        </small>
+
+                        <strong id="selectedCombination">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 FEE FORM
+            =================================================== -->
 
             <section
                 id="feeSection"
@@ -219,14 +348,21 @@
 
                     <div>
 
-                        <span>OFFICIAL RECORD</span>
+                        <span>
+                            OFFICIAL RECORD
+                        </span>
 
-                        <h3>Fee Details</h3>
+                        <h3>
+                            Fee Details
+                        </h3>
 
                     </div>
 
                 </div>
 
+
+
+                <!-- LOCKED -->
 
                 <div
                     id="alreadyLocked"
@@ -242,9 +378,8 @@
                         </strong>
 
                         <p>
-                            This student's official office
-                            fee details have already been saved
-                            and cannot be edited.
+                            This official fee record has already
+                            been saved and cannot be edited.
                         </p>
 
                     </div>
@@ -253,7 +388,9 @@
 
 
 
-                <!-- ADVANCE -->
+                <!-- ==================================================
+                     ADVANCE
+                =================================================== -->
 
                 <div class="fee-entry">
 
@@ -280,17 +417,27 @@
 
                     <div class="fee-fields">
 
-                        <div class="money-input">
 
-                            <span>₹</span>
+                        <div>
 
-                            <input
-                                type="number"
-                                id="advanceAmount"
-                                min="0"
-                                placeholder="Amount">
+                            <label>
+                                Amount
+                            </label>
+
+                            <div class="money-input">
+
+                                <span>₹</span>
+
+                                <input
+                                    type="number"
+                                    id="advanceAmount"
+                                    min="0"
+                                    placeholder="Enter amount">
+
+                            </div>
 
                         </div>
+
 
                         <div>
 
@@ -310,7 +457,9 @@
 
 
 
-                <!-- FIRST INSTALLMENT -->
+                <!-- ==================================================
+                     FIRST INSTALLMENT
+                =================================================== -->
 
                 <div class="fee-entry">
 
@@ -337,17 +486,27 @@
 
                     <div class="fee-fields">
 
-                        <div class="money-input">
 
-                            <span>₹</span>
+                        <div>
 
-                            <input
-                                type="number"
-                                id="firstAmount"
-                                min="0"
-                                placeholder="Amount">
+                            <label>
+                                Amount
+                            </label>
+
+                            <div class="money-input">
+
+                                <span>₹</span>
+
+                                <input
+                                    type="number"
+                                    id="firstAmount"
+                                    min="0"
+                                    placeholder="Enter amount">
+
+                            </div>
 
                         </div>
+
 
                         <div>
 
@@ -367,7 +526,9 @@
 
 
 
-                <!-- SECOND INSTALLMENT -->
+                <!-- ==================================================
+                     SECOND INSTALLMENT
+                =================================================== -->
 
                 <div class="fee-entry">
 
@@ -394,17 +555,27 @@
 
                     <div class="fee-fields">
 
-                        <div class="money-input">
 
-                            <span>₹</span>
+                        <div>
 
-                            <input
-                                type="number"
-                                id="secondAmount"
-                                min="0"
-                                placeholder="Amount">
+                            <label>
+                                Amount
+                            </label>
+
+                            <div class="money-input">
+
+                                <span>₹</span>
+
+                                <input
+                                    type="number"
+                                    id="secondAmount"
+                                    min="0"
+                                    placeholder="Enter amount">
+
+                            </div>
 
                         </div>
+
 
                         <div>
 
@@ -424,7 +595,9 @@
 
 
 
-                <!-- TOTAL -->
+                <!-- ==================================================
+                     TOTAL
+                =================================================== -->
 
                 <div class="total-fee">
 
