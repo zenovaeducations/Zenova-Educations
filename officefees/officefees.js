@@ -1,7 +1,6 @@
 // ==========================================================
 // ZENOVA EDUCATIONS
 // OFFICE FEES PORTAL
-// officefees.js
 // ==========================================================
 
 import { db } from "../firebase-config.js";
@@ -38,62 +37,102 @@ const unlockButton =
 const accessError =
     document.getElementById("accessError");
 
+
 const studentSearch =
     document.getElementById("studentSearch");
 
 const studentResults =
     document.getElementById("studentResults");
 
+const studentCount =
+    document.getElementById("studentCount");
+
+
 const selectedStudentCard =
-    document.getElementById("selectedStudentCard");
+    document.getElementById(
+        "selectedStudentCard"
+    );
 
 const feeSection =
-    document.getElementById("feeSection");
+    document.getElementById(
+        "feeSection"
+    );
+
 
 const selectedStudentName =
-    document.getElementById("selectedStudentName");
+    document.getElementById(
+        "selectedStudentName"
+    );
 
 const selectedStudentInfo =
-    document.getElementById("selectedStudentInfo");
+    document.getElementById(
+        "selectedStudentInfo"
+    );
 
 const selectedClass =
-    document.getElementById("selectedClass");
+    document.getElementById(
+        "selectedClass"
+    );
 
 const selectedCourse =
-    document.getElementById("selectedCourse");
+    document.getElementById(
+        "selectedCourse"
+    );
 
 const selectedCombination =
-    document.getElementById("selectedCombination");
+    document.getElementById(
+        "selectedCombination"
+    );
 
-const saveFeeButton =
-    document.getElementById("saveFeeButton");
 
 const alreadyLocked =
-    document.getElementById("alreadyLocked");
+    document.getElementById(
+        "alreadyLocked"
+    );
 
+const saveFeeButton =
+    document.getElementById(
+        "saveFeeButton"
+    );
 
-// Fee fields
 
 const advanceAmount =
-    document.getElementById("advanceAmount");
+    document.getElementById(
+        "advanceAmount"
+    );
 
 const advanceDate =
-    document.getElementById("advanceDate");
+    document.getElementById(
+        "advanceDate"
+    );
+
 
 const firstAmount =
-    document.getElementById("firstAmount");
+    document.getElementById(
+        "firstAmount"
+    );
 
 const firstDate =
-    document.getElementById("firstDate");
+    document.getElementById(
+        "firstDate"
+    );
+
 
 const secondAmount =
-    document.getElementById("secondAmount");
+    document.getElementById(
+        "secondAmount"
+    );
 
 const secondDate =
-    document.getElementById("secondDate");
+    document.getElementById(
+        "secondDate"
+    );
+
 
 const totalFee =
-    document.getElementById("totalFee");
+    document.getElementById(
+        "totalFee"
+    );
 
 
 // ==========================================================
@@ -108,24 +147,14 @@ let selectedStudentFeeLocked = false;
 
 
 // ==========================================================
-// TEMPORARY OFFICE PASSWORD
-// ==========================================================
-//
-// IMPORTANT:
-// This is only for testing.
-// Because this file is hosted on GitHub,
-// this password can be inspected from JavaScript.
-//
-// We will move this to a proper secure Firebase
-// authentication system before production.
+// OFFICE PASSWORD
 // ==========================================================
 
-const OFFICE_PASSWORD =
-    "123456";
+const OFFICE_PASSWORD = "123456";
 
 
 // ==========================================================
-// PASSWORD TOGGLE
+// PASSWORD VISIBILITY
 // ==========================================================
 
 togglePassword.addEventListener(
@@ -136,8 +165,7 @@ togglePassword.addEventListener(
             officePassword.type === "password"
         ){
 
-            officePassword.type =
-                "text";
+            officePassword.type = "text";
 
             togglePassword.innerHTML =
                 `<i class="ri-eye-off-line"></i>`;
@@ -145,8 +173,7 @@ togglePassword.addEventListener(
         }
         else{
 
-            officePassword.type =
-                "password";
+            officePassword.type = "password";
 
             togglePassword.innerHTML =
                 `<i class="ri-eye-line"></i>`;
@@ -158,7 +185,7 @@ togglePassword.addEventListener(
 
 
 // ==========================================================
-// UNLOCK PORTAL
+// UNLOCK OFFICE
 // ==========================================================
 
 unlockButton.addEventListener(
@@ -180,7 +207,9 @@ unlockButton.addEventListener(
         }
 
 
-        if(password !== OFFICE_PASSWORD){
+        if(
+            password !== OFFICE_PASSWORD
+        ){
 
             showAccessError(
                 "Incorrect office password."
@@ -201,7 +230,7 @@ unlockButton.addEventListener(
 
             unlockButton.innerHTML = `
                 <i class="ri-loader-4-line"></i>
-                <span>Opening...</span>
+                <span>Loading Students...</span>
             `;
 
 
@@ -215,16 +244,25 @@ unlockButton.addEventListener(
                 "block";
 
 
+            // IMPORTANT:
+            // Show ALL students immediately.
+
+            renderStudentResults();
+
+
             studentSearch.focus();
 
         }
 
         catch(error){
 
-            console.error(error);
+            console.error(
+                "Office portal error:",
+                error
+            );
 
             showAccessError(
-                "Unable to load student records."
+                "Unable to load student records. Check Firestore permissions."
             );
 
         }
@@ -245,7 +283,7 @@ unlockButton.addEventListener(
 
 
 // ==========================================================
-// ENTER KEY FOR PASSWORD
+// ENTER PASSWORD WITH ENTER KEY
 // ==========================================================
 
 officePassword.addEventListener(
@@ -263,14 +301,17 @@ officePassword.addEventListener(
 
 
 // ==========================================================
-// LOAD STUDENTS
+// LOAD ALL STUDENTS
 // ==========================================================
 
 async function loadStudents(){
 
     const snapshot =
         await getDocs(
-            collection(db, "students")
+            collection(
+                db,
+                "students"
+            )
         );
 
 
@@ -291,11 +332,38 @@ async function loadStudents(){
         }
     );
 
+
+    // Alphabetical order
+
+    allStudents.sort(
+        (a,b) => {
+
+            const nameA =
+                String(
+                    a.name || ""
+                ).toLowerCase();
+
+            const nameB =
+                String(
+                    b.name || ""
+                ).toLowerCase();
+
+            return nameA.localeCompare(
+                nameB
+            );
+
+        }
+    );
+
+
+    studentCount.textContent =
+        allStudents.length;
+
 }
 
 
 // ==========================================================
-// SEARCH STUDENTS
+// SEARCH
 // ==========================================================
 
 studentSearch.addEventListener(
@@ -308,6 +376,10 @@ studentSearch.addEventListener(
 );
 
 
+// ==========================================================
+// RENDER ALL / SEARCHED STUDENTS
+// ==========================================================
+
 function renderStudentResults(){
 
     const search =
@@ -316,57 +388,70 @@ function renderStudentResults(){
             .toLowerCase();
 
 
-    if(!search){
-
-        studentResults.innerHTML = "";
-
-        return;
-
-    }
-
-
     const results =
-        allStudents
-            .filter(
-                (student) => {
+        allStudents.filter(
+            (student) => {
 
-                    const name =
-                        String(
-                            student.name || ""
-                        ).toLowerCase();
+                // No search:
+                // show EVERY student.
 
-                    const email =
-                        String(
-                            student.email || ""
-                        ).toLowerCase();
+                if(!search){
 
-                    const phone =
-                        String(
-                            student.phone || ""
-                        ).toLowerCase();
-
-                    return (
-                        name.includes(search) ||
-                        email.includes(search) ||
-                        phone.includes(search)
-                    );
+                    return true;
 
                 }
-            )
-            .slice(0,10);
+
+
+                const name =
+                    String(
+                        student.name || ""
+                    ).toLowerCase();
+
+                const email =
+                    String(
+                        student.email || ""
+                    ).toLowerCase();
+
+                const phone =
+                    String(
+                        student.phone || ""
+                    ).toLowerCase();
+
+                const school =
+                    String(
+                        student.schoolName || ""
+                    ).toLowerCase();
+
+
+                return (
+                    name.includes(search) ||
+                    email.includes(search) ||
+                    phone.includes(search) ||
+                    school.includes(search)
+                );
+
+            }
+        );
 
 
     if(results.length === 0){
 
         studentResults.innerHTML = `
-            <div style="
-                padding:15px;
-                text-align:center;
-                color:#888;
-                font-size:10px;
-            ">
-                No student found
+
+            <div class="no-students">
+
+                <i class="ri-user-search-line"></i>
+
+                <strong>
+                    No students found
+                </strong>
+
+                <span>
+                    Try another name or phone number.
+                </span>
+
             </div>
+
         `;
 
         return;
@@ -378,13 +463,17 @@ function renderStudentResults(){
         results
             .map(
                 (student) =>
-                    createStudentResult(student)
+                    createStudentResult(
+                        student
+                    )
             )
             .join("");
 
 
     document
-        .querySelectorAll(".student-result")
+        .querySelectorAll(
+            ".student-result"
+        )
         .forEach(
             (element) => {
 
@@ -395,15 +484,19 @@ function renderStudentResults(){
                         const id =
                             element.dataset.id;
 
+
                         const student =
                             allStudents.find(
                                 (item) =>
                                     item.id === id
                             );
 
+
                         if(student){
 
-                            selectStudent(student);
+                            selectStudent(
+                                student
+                            );
 
                         }
 
@@ -420,21 +513,42 @@ function renderStudentResults(){
 // STUDENT RESULT CARD
 // ==========================================================
 
-function createStudentResult(student){
+function createStudentResult(
+    student
+){
 
     const name =
         escapeHTML(
-            student.name || "Unnamed Student"
+            student.name ||
+            "Unnamed Student"
         );
+
 
     const email =
         escapeHTML(
-            student.email || "No email"
+            student.email ||
+            "No email"
         );
+
 
     const className =
         escapeHTML(
-            student.joiningClass || "—"
+            student.joiningClass ||
+            "—"
+        );
+
+
+    const course =
+        escapeHTML(
+            student.course ||
+            "—"
+        );
+
+
+    const combination =
+        escapeHTML(
+            student.combination ||
+            "—"
         );
 
 
@@ -446,9 +560,10 @@ function createStudentResult(student){
 
             <div class="student-result-icon">
 
-                <i class="ri-user-line"></i>
+                <i class="ri-user-3-line"></i>
 
             </div>
+
 
             <div class="student-result-info">
 
@@ -457,10 +572,20 @@ function createStudentResult(student){
                 </strong>
 
                 <span>
-                    ${className} • ${email}
+                    ${className}
+                    •
+                    ${course}
+                    ${combination !== "—"
+                        ? " • " + combination
+                        : ""}
                 </span>
 
+                <small>
+                    ${email}
+                </small>
+
             </div>
+
 
             <i class="ri-arrow-right-s-line"></i>
 
@@ -475,24 +600,21 @@ function createStudentResult(student){
 // SELECT STUDENT
 // ==========================================================
 
-async function selectStudent(student){
+async function selectStudent(
+    student
+){
 
     selectedStudent =
         student;
 
 
-    // Hide search results
-
-    studentResults.innerHTML = "";
-
-
-    // Keep search field showing selected name
-
     studentSearch.value =
         student.name || "";
 
 
-    // Student details
+    studentResults.innerHTML =
+        "";
+
 
     selectedStudentName.textContent =
         student.name || "—";
@@ -505,15 +627,18 @@ async function selectStudent(student){
 
 
     selectedClass.textContent =
-        student.joiningClass || "—";
+        student.joiningClass ||
+        "—";
 
 
     selectedCourse.textContent =
-        student.course || "—";
+        student.course ||
+        "—";
 
 
     selectedCombination.textContent =
-        student.combination || "—";
+        student.combination ||
+        "—";
 
 
     selectedStudentCard.style.display =
@@ -523,8 +648,6 @@ async function selectStudent(student){
     feeSection.style.display =
         "block";
 
-
-    // Check official office fee record
 
     await checkExistingOfficeFee(
         student.id
@@ -540,7 +663,7 @@ async function selectStudent(student){
 
 
 // ==========================================================
-// CHECK EXISTING OFFICE FEE
+// CHECK OFFICE FEE RECORD
 // ==========================================================
 
 async function checkExistingOfficeFee(
@@ -558,26 +681,34 @@ async function checkExistingOfficeFee(
 
 
         const snapshot =
-            await getDoc(feeRef);
+            await getDoc(
+                feeRef
+            );
 
 
-        if(snapshot.exists()){
+        if(
+            snapshot.exists()
+        ){
 
             const data =
                 snapshot.data();
 
 
-            selectedStudentFeeLocked =
-                data.locked === true;
-
-
             if(
-                selectedStudentFeeLocked
+                data.locked === true
             ){
 
-                fillExistingFees(data);
+                selectedStudentFeeLocked =
+                    true;
+
+
+                fillExistingFees(
+                    data
+                );
+
 
                 lockFeeForm();
+
 
                 return;
 
@@ -586,26 +717,25 @@ async function checkExistingOfficeFee(
         }
 
 
-        // No locked record
-
         selectedStudentFeeLocked =
             false;
 
-        unlockFeeForm();
 
         clearFeeFields();
+
+        unlockFeeForm();
 
     }
 
     catch(error){
 
         console.error(
-            "Office fee check error:",
+            "Fee record check error:",
             error
         );
 
         alert(
-            "Unable to check this student's office fee record."
+            "Unable to check official fee record."
         );
 
     }
@@ -614,13 +744,16 @@ async function checkExistingOfficeFee(
 
 
 // ==========================================================
-// FILL EXISTING FEES
+// FILL EXISTING RECORD
 // ==========================================================
 
-function fillExistingFees(data){
+function fillExistingFees(
+    data
+){
 
     advanceAmount.value =
         data.advancePaid ?? "";
+
 
     advanceDate.value =
         data.advancePaidDate ?? "";
@@ -629,12 +762,14 @@ function fillExistingFees(data){
     firstAmount.value =
         data.firstInstallment ?? "";
 
+
     firstDate.value =
         data.firstInstallmentDate ?? "";
 
 
     secondAmount.value =
         data.secondInstallment ?? "";
+
 
     secondDate.value =
         data.secondInstallmentDate ?? "";
@@ -646,7 +781,7 @@ function fillExistingFees(data){
 
 
 // ==========================================================
-// LOCK FORM
+// LOCK FEE FORM
 // ==========================================================
 
 function lockFeeForm(){
@@ -655,7 +790,7 @@ function lockFeeForm(){
         "flex";
 
 
-    const inputs = [
+    const fields = [
 
         advanceAmount,
         advanceDate,
@@ -669,10 +804,10 @@ function lockFeeForm(){
     ];
 
 
-    inputs.forEach(
-        (input) => {
+    fields.forEach(
+        (field) => {
 
-            input.disabled = true;
+            field.disabled = true;
 
         }
     );
@@ -680,6 +815,7 @@ function lockFeeForm(){
 
     saveFeeButton.disabled =
         true;
+
 
     saveFeeButton.innerHTML = `
         <i class="ri-lock-fill"></i>
@@ -690,7 +826,7 @@ function lockFeeForm(){
 
 
 // ==========================================================
-// UNLOCK FORM FOR NEW RECORD
+// UNLOCK NEW FEE FORM
 // ==========================================================
 
 function unlockFeeForm(){
@@ -699,7 +835,7 @@ function unlockFeeForm(){
         "none";
 
 
-    const inputs = [
+    const fields = [
 
         advanceAmount,
         advanceDate,
@@ -713,10 +849,10 @@ function unlockFeeForm(){
     ];
 
 
-    inputs.forEach(
-        (input) => {
+    fields.forEach(
+        (field) => {
 
-            input.disabled = false;
+            field.disabled = false;
 
         }
     );
@@ -724,6 +860,7 @@ function unlockFeeForm(){
 
     saveFeeButton.disabled =
         false;
+
 
     saveFeeButton.innerHTML = `
         <i class="ri-lock-2-line"></i>
@@ -734,18 +871,21 @@ function unlockFeeForm(){
 
 
 // ==========================================================
-// CLEAR FEES
+// CLEAR FEE FIELDS
 // ==========================================================
 
 function clearFeeFields(){
 
     advanceAmount.value = "";
+
     advanceDate.value = "";
 
     firstAmount.value = "";
+
     firstDate.value = "";
 
     secondAmount.value = "";
+
     secondDate.value = "";
 
     calculateTotal();
@@ -754,19 +894,15 @@ function clearFeeFields(){
 
 
 // ==========================================================
-// CALCULATE TOTAL
+// TOTAL CALCULATION
 // ==========================================================
 
-const feeInputs = [
-
+[
     advanceAmount,
     firstAmount,
     secondAmount
 
-];
-
-
-feeInputs.forEach(
+].forEach(
     (input) => {
 
         input.addEventListener(
@@ -806,13 +942,15 @@ function calculateTotal(){
 
     totalFee.textContent =
         "₹" +
-        total.toLocaleString("en-IN");
+        total.toLocaleString(
+            "en-IN"
+        );
 
 }
 
 
 // ==========================================================
-// SAVE OFFICE FEES
+// SAVE OFFICIAL FEE
 // ==========================================================
 
 saveFeeButton.addEventListener(
@@ -822,7 +960,7 @@ saveFeeButton.addEventListener(
         if(!selectedStudent){
 
             alert(
-                "Please select a student first."
+                "Please select a student."
             );
 
             return;
@@ -833,7 +971,7 @@ saveFeeButton.addEventListener(
         if(selectedStudentFeeLocked){
 
             alert(
-                "This student's fee record is already locked."
+                "This fee record is already locked."
             );
 
             return;
@@ -866,7 +1004,7 @@ saveFeeButton.addEventListener(
 
 
         // --------------------------------------
-        // VALIDATION
+        // DATE VALIDATION
         // --------------------------------------
 
         if(
@@ -923,7 +1061,7 @@ saveFeeButton.addEventListener(
 
         const confirmed =
             confirm(
-                "Once saved, these official fee details cannot be edited. Continue?"
+                "Once saved, this official fee record cannot be edited. Continue?"
             );
 
 
@@ -938,6 +1076,7 @@ saveFeeButton.addEventListener(
 
             saveFeeButton.disabled =
                 true;
+
 
             saveFeeButton.innerHTML = `
                 <i class="ri-loader-4-line"></i>
@@ -954,40 +1093,37 @@ saveFeeButton.addEventListener(
 
 
             // ----------------------------------
-            // FINAL EXISTENCE CHECK
+            // FINAL CHECK
             // ----------------------------------
 
             const existing =
-                await getDoc(feeRef);
+                await getDoc(
+                    feeRef
+                );
 
 
-            if(existing.exists()){
+            if(
+                existing.exists() &&
+                existing.data().locked === true
+            ){
 
-                const existingData =
-                    existing.data();
+                alert(
+                    "This student's official fee record has already been locked."
+                );
 
 
-                if(
-                    existingData.locked === true
-                ){
+                await checkExistingOfficeFee(
+                    selectedStudent.id
+                );
 
-                    alert(
-                        "This student's fee record has already been locked."
-                    );
 
-                    await checkExistingOfficeFee(
-                        selectedStudent.id
-                    );
-
-                    return;
-
-                }
+                return;
 
             }
 
 
             // ----------------------------------
-            // SAVE OFFICIAL RECORD
+            // SAVE
             // ----------------------------------
 
             await setDoc(
@@ -999,6 +1135,9 @@ saveFeeButton.addEventListener(
 
                     studentName:
                         selectedStudent.name || "",
+
+                    studentEmail:
+                        selectedStudent.email || "",
 
                     advancePaid:
                         advance,
@@ -1032,34 +1171,11 @@ saveFeeButton.addEventListener(
 
 
             // ----------------------------------
-            // SUCCESS
+            // LOCK LOCALLY
             // ----------------------------------
 
             selectedStudentFeeLocked =
                 true;
-
-
-            fillExistingFees({
-
-                advancePaid:
-                    advance,
-
-                advancePaidDate:
-                    advanceDate.value,
-
-                firstInstallment:
-                    first,
-
-                firstInstallmentDate:
-                    firstDate.value,
-
-                secondInstallment:
-                    second,
-
-                secondInstallmentDate:
-                    secondDate.value
-
-            });
 
 
             lockFeeForm();
@@ -1074,17 +1190,19 @@ saveFeeButton.addEventListener(
         catch(error){
 
             console.error(
-                "Office fee save error:",
+                "Fee save error:",
                 error
             );
 
+
             alert(
-                "Unable to save the official fee record."
+                "Unable to save official fee record."
             );
 
 
             saveFeeButton.disabled =
                 false;
+
 
             saveFeeButton.innerHTML = `
                 <i class="ri-lock-2-line"></i>
@@ -1098,10 +1216,47 @@ saveFeeButton.addEventListener(
 
 
 // ==========================================================
+// HTML SAFETY
+// ==========================================================
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+// ==========================================================
 // ACCESS ERROR
 // ==========================================================
 
-function showAccessError(text){
+function showAccessError(
+    text
+){
 
     accessError.textContent =
         text;
@@ -1114,23 +1269,7 @@ function showAccessError(text){
 
 
 // ==========================================================
-// HTML SAFETY
-// ==========================================================
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-// ==========================================================
-// INITIAL TOTAL
+// INITIAL
 // ==========================================================
 
 calculateTotal();
