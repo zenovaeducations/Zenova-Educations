@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Zenova | View Fees</title>
+
+    <link rel="stylesheet" href="viewfees.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     ACCESS SCREEN
+====================================================== -->
+
+<div id="accessScreen" class="access-screen">
+
+    <div class="access-card">
+
+        <div class="logo">
+
+            <h1>ZENOVA</h1>
+
+            <span>EDUCATIONS</span>
+
+        </div>
+
+
+        <div class="lock-icon">
+
+            <i class="ri-lock-2-line"></i>
+
+        </div>
+
+
+        <span class="portal-label">
+            OFFICE PORTAL
+        </span>
+
+        <h2>View Fee Records</h2>
+
+        <p>
+            Enter the office password to continue.
+        </p>
+
+
+        <div class="password-box">
+
+            <i class="ri-key-2-line"></i>
+
+            <input
+                type="password"
+                id="officePassword"
+                placeholder="Enter password"
+                autocomplete="off">
+
+            <button
+                type="button"
+                id="togglePassword">
+
+                <i class="ri-eye-line"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="accessError"
+            class="access-error">
+        </div>
+
+
+        <button
+            type="button"
+            id="unlockButton"
+            class="unlock-button">
+
+            <i class="ri-lock-unlock-line"></i>
+
+            <span>
+                View Fee Records
+            </span>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     VIEW FEES PORTAL
+====================================================== -->
+
+<div
+    id="portal"
+    class="portal"
+    style="display:none;">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div class="logo">
+
+            <h1>ZENOVA</h1>
+
+            <span>EDUCATIONS</span>
+
+        </div>
+
+
+        <div class="header-title">
+
+            <i class="ri-wallet-3-line"></i>
+
+            <span>
+                Office Fee Records
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADING -->
+
+        <section class="page-heading">
+
+            <span>
+                OFFICIAL RECORDS
+            </span>
+
+            <h2>
+                Fee Records
+            </h2>
+
+            <p>
+                View official fee details entered by the office.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div>
+
+                    <span>
+                        FEE RECORDS
+                    </span>
+
+                    <strong id="recordCount">
+                        0
+                    </strong>
+
+                </div>
+
+                <i class="ri-file-list-3-line"></i>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div>
+
+                    <span>
+                        TOTAL COLLECTED
+                    </span>
+
+                    <strong id="totalCollected">
+                        ₹0
+                    </strong>
+
+                </div>
+
+                <i class="ri-money-rupee-circle-line"></i>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
+
+        <section class="search-card">
+
+            <div class="search-box">
+
+                <i class="ri-search-line"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search student name, phone or email"
+                    autocomplete="off">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FEE RECORD LIST
+        ================================================== -->
+
+        <section
+            id="recordsList"
+            class="records-list">
+
+        </section>
+
+
+        <!-- EMPTY -->
+
+        <div
+            id="emptyState"
+            class="empty-state"
+            style="display:none;">
+
+            <i class="ri-file-list-3-line"></i>
+
+            <strong>
+                No fee records found
+            </strong>
+
+            <p>
+                Official office fee records will appear here.
+            </p>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+            id="loadingState"
+            class="loading-state">
+
+            <i class="ri-loader-4-line"></i>
+
+            <span>
+                Loading fee records...
+            </span>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script
+    type="module"
+    src="viewfees.js">
+</script>
+
+</body>
+
+</html>
