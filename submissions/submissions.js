@@ -1,7 +1,6 @@
 // ==========================================================
 // ZENOVA EDUCATIONS
-// SEPARATE SUBMISSION FORM
-// submissions.js
+// STUDENT SUBMISSIONS
 // ==========================================================
 
 import { db } from "../firebase-config.js";
@@ -9,9 +8,6 @@ import { db } from "../firebase-config.js";
 import {
     collection,
     addDoc,
-    getDocs,
-    query,
-    orderBy,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
@@ -21,152 +17,95 @@ import {
 // ==========================================================
 
 const form =
-    document.getElementById("submissionForm");
+    document.getElementById(
+        "submissionForm"
+    );
 
 const nameInput =
-    document.getElementById("name");
+    document.getElementById(
+        "name"
+    );
 
 const phoneInput =
-    document.getElementById("phone");
+    document.getElementById(
+        "phone"
+    );
 
 const villageInput =
-    document.getElementById("village");
+    document.getElementById(
+        "village"
+    );
+
+const targetInput =
+    document.getElementById(
+        "targetPercentage"
+    );
 
 const submitButton =
-    document.getElementById("submitButton");
+    document.getElementById(
+        "submitButton"
+    );
 
-const totalSubmissions =
-    document.getElementById("totalSubmissions");
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
 
 const successMessage =
-    document.getElementById("successMessage");
-
-const viewButton =
-    document.getElementById("viewButton");
-
-const viewSection =
-    document.getElementById("viewSection");
-
-const closeView =
-    document.getElementById("closeView");
-
-const submissionList =
-    document.getElementById("submissionList");
-
-const noSubmissions =
-    document.getElementById("noSubmissions");
-
-const searchInput =
-    document.getElementById("searchInput");
+    document.getElementById(
+        "successMessage"
+    );
 
 
 // ==========================================================
-// DATA
+// PHONE — ONLY NUMBERS
 // ==========================================================
 
-let submissions = [];
+phoneInput.addEventListener(
+    "input",
+    () => {
 
-
-// ==========================================================
-// LOAD TOTAL
-// ==========================================================
-
-async function loadSubmissions(){
-
-    try{
-
-        const submissionsRef =
-            collection(db, "submissions");
-
-        const q =
-            query(
-                submissionsRef,
-                orderBy("submittedAt", "desc")
-            );
-
-        const snapshot =
-            await getDocs(q);
-
-        submissions = [];
-
-        snapshot.forEach((document) => {
-
-            submissions.push({
-                id: document.id,
-                ...document.data()
-            });
-
-        });
-
-        updateTotal();
-
-        renderSubmissions();
+        phoneInput.value =
+            phoneInput.value
+                .replace(/\D/g, "")
+                .slice(0,10);
 
     }
+);
 
-    catch(error){
 
-        console.error(
-            "Error loading submissions:",
-            error
-        );
+// ==========================================================
+// TARGET VALIDATION
+// ==========================================================
 
-        // If the collection is empty or the
-        // timestamp index is not ready, still
-        // try a normal collection read.
+targetInput.addEventListener(
+    "input",
+    () => {
 
-        try{
+        let value =
+            Number(
+                targetInput.value
+            );
 
-            const snapshot =
-                await getDocs(
-                    collection(db, "submissions")
-                );
 
-            submissions = [];
+        if(value > 100){
 
-            snapshot.forEach((document) => {
-
-                submissions.push({
-                    id: document.id,
-                    ...document.data()
-                });
-
-            });
-
-            updateTotal();
-
-            renderSubmissions();
+            targetInput.value = "100";
 
         }
 
-        catch(secondError){
+        if(value < 0){
 
-            console.error(
-                "Fallback loading error:",
-                secondError
-            );
+            targetInput.value = "0";
 
         }
 
     }
-
-}
-
-
-// ==========================================================
-// UPDATE TOTAL
-// ==========================================================
-
-function updateTotal(){
-
-    totalSubmissions.textContent =
-        submissions.length;
-
-}
+);
 
 
 // ==========================================================
-// SUBMIT FORM
+// SUBMIT
 // ==========================================================
 
 form.addEventListener(
@@ -174,6 +113,9 @@ form.addEventListener(
     async (event) => {
 
         event.preventDefault();
+
+
+        hideMessages();
 
 
         const name =
@@ -185,12 +127,21 @@ form.addEventListener(
         const village =
             villageInput.value.trim();
 
+        const targetPercentage =
+            Number(
+                targetInput.value
+            );
+
 
         // ------------------------------------------
         // VALIDATION
         // ------------------------------------------
 
         if(!name){
+
+            showError(
+                "Please enter your name."
+            );
 
             nameInput.focus();
 
@@ -201,7 +152,7 @@ form.addEventListener(
 
         if(!/^[0-9]{10}$/.test(phone)){
 
-            alert(
+            showError(
                 "Please enter a valid 10-digit phone number."
             );
 
@@ -214,6 +165,10 @@ form.addEventListener(
 
         if(!village){
 
+            showError(
+                "Please enter your village name."
+            );
+
             villageInput.focus();
 
             return;
@@ -221,29 +176,62 @@ form.addEventListener(
         }
 
 
+        if(
+            !Number.isFinite(
+                targetPercentage
+            ) ||
+            targetPercentage < 0 ||
+            targetPercentage > 100
+        ){
+
+            showError(
+                "Target percentage must be between 0 and 100."
+            );
+
+            targetInput.focus();
+
+            return;
+
+        }
+
+
+        // ------------------------------------------
+        // LOADING
+        // ------------------------------------------
+
+        submitButton.disabled =
+            true;
+
+        submitButton.innerHTML = `
+            <i class="ri-loader-4-line"></i>
+            <span>Submitting...</span>
+        `;
+
+
         try{
 
-            submitButton.disabled = true;
-
-            submitButton.innerHTML = `
-                <i class="ri-loader-4-line"></i>
-                <span>Submitting...</span>
-            `;
-
-
             // --------------------------------------
-            // CREATE NEW DOCUMENT
+            // SAVE
             // --------------------------------------
 
             await addDoc(
-                collection(db, "submissions"),
+                collection(
+                    db,
+                    "submissions"
+                ),
                 {
 
-                    name: name,
+                    name:
+                        name,
 
-                    phone: phone,
+                    phone:
+                        phone,
 
-                    village: village,
+                    village:
+                        village,
+
+                    targetPercentage:
+                        targetPercentage,
 
                     submittedAt:
                         serverTimestamp()
@@ -256,32 +244,24 @@ form.addEventListener(
             // SUCCESS
             // --------------------------------------
 
-            showSuccess();
+            showSuccess(
+                "Details submitted successfully."
+            );
 
 
             // --------------------------------------
-            // CLEAR FORM
+            // RESET FORM
             // --------------------------------------
 
             form.reset();
 
 
-            // --------------------------------------
-            // RELOAD DATA
-            // --------------------------------------
-
-            await loadSubmissions();
-
-
-            // --------------------------------------
-            // FOCUS NEXT ENTRY
-            // --------------------------------------
+            // Ready for next student
 
             nameInput.focus();
 
 
         }
-
         catch(error){
 
             console.error(
@@ -289,253 +269,21 @@ form.addEventListener(
                 error
             );
 
-            alert(
+
+            showError(
                 "Unable to submit. Please try again."
             );
 
         }
-
         finally{
 
-            submitButton.disabled = false;
+            submitButton.disabled =
+                false;
 
             submitButton.innerHTML = `
-                <i class="ri-check-line"></i>
-                <span>Submit</span>
+                <span>Submit Details</span>
+                <i class="ri-arrow-right-line"></i>
             `;
-
-        }
-
-    }
-);
-
-
-// ==========================================================
-// SUCCESS MESSAGE
-// ==========================================================
-
-function showSuccess(){
-
-    successMessage.classList.add("show");
-
-
-    setTimeout(() => {
-
-        successMessage.classList.remove(
-            "show"
-        );
-
-    }, 2500);
-
-}
-
-
-// ==========================================================
-// VIEW BUTTON
-// ==========================================================
-
-// ==========================================================
-// VIEW ACCESS
-// ==========================================================
-
-const accessOverlay =
-    document.getElementById("accessOverlay");
-
-const accessClose =
-    document.getElementById("accessClose");
-
-const unlockButton =
-    document.getElementById("unlockButton");
-
-const accessNumber =
-    document.getElementById("accessNumber");
-
-const accessPassword =
-    document.getElementById("accessPassword");
-
-const accessError =
-    document.getElementById("accessError");
-
-
-// ==========================================================
-// VIEW BUTTON
-// ==========================================================
-
-viewButton.addEventListener(
-    "click",
-    () => {
-
-        accessOverlay.classList.add(
-            "active"
-        );
-
-        accessNumber.focus();
-
-    }
-);
-
-
-// ==========================================================
-// CLOSE ACCESS
-// ==========================================================
-
-accessClose.addEventListener(
-    "click",
-    () => {
-
-        closeAccessModal();
-
-    }
-);
-
-
-accessOverlay.addEventListener(
-    "click",
-    (event) => {
-
-        if(
-            event.target === accessOverlay
-        ){
-
-            closeAccessModal();
-
-        }
-
-    }
-);
-
-
-// ==========================================================
-// UNLOCK
-// ==========================================================
-
-unlockButton.addEventListener(
-    "click",
-    async () => {
-
-        const number =
-            accessNumber.value.trim();
-
-        const password =
-            accessPassword.value;
-
-
-        if(!number || !password){
-
-            showAccessError(
-                "Please enter both number and password."
-            );
-
-            return;
-
-        }
-
-
-        /*
-         * TEMPORARY ACCESS CREDENTIALS
-         *
-         * Change these before testing.
-         *
-         * IMPORTANT:
-         * This is only suitable for testing.
-         * Because this is client-side JavaScript,
-         * it is NOT secure for production.
-         */
-
-        const allowedNumber =
-            "9999999999";
-
-        const allowedPassword =
-            "123456";
-
-
-        if(
-            number !== allowedNumber ||
-            password !== allowedPassword
-        ){
-
-            showAccessError(
-                "Incorrect number or password."
-            );
-
-            return;
-
-        }
-
-
-        unlockButton.disabled = true;
-
-        unlockButton.innerHTML = `
-            <i class="ri-loader-4-line"></i>
-            <span>Opening...</span>
-        `;
-
-
-        try{
-
-            await loadSubmissions();
-
-
-            accessOverlay.classList.remove(
-                "active"
-            );
-
-            accessNumber.value = "";
-
-            accessPassword.value = "";
-
-            accessError.classList.remove(
-                "show"
-            );
-
-
-            viewSection.style.display =
-                "block";
-
-
-            viewSection.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
-
-        }
-
-        catch(error){
-
-            console.error(error);
-
-            showAccessError(
-                "Unable to load submissions."
-            );
-
-        }
-
-        finally{
-
-            unlockButton.disabled = false;
-
-            unlockButton.innerHTML = `
-                <i class="ri-lock-unlock-line"></i>
-                <span>Unlock View</span>
-            `;
-
-        }
-
-    }
-);
-
-
-// ==========================================================
-// ENTER KEY
-// ==========================================================
-
-accessPassword.addEventListener(
-    "keydown",
-    (event) => {
-
-        if(event.key === "Enter"){
-
-            unlockButton.click();
 
         }
 
@@ -547,283 +295,50 @@ accessPassword.addEventListener(
 // ERROR
 // ==========================================================
 
-function showAccessError(text){
-
-    accessError.textContent =
-        text;
-
-    accessError.classList.add(
-        "show"
-    );
-
-}
-
-
-// ==========================================================
-// CLOSE MODAL
-// ==========================================================
-
-function closeAccessModal(){
-
-    accessOverlay.classList.remove(
-        "active"
-    );
-
-    accessNumber.value = "";
-
-    accessPassword.value = "";
-
-    accessError.classList.remove(
-        "show"
-    );
-
-}
-
-
-// ==========================================================
-// CLOSE VIEW
-// ==========================================================
-
-closeView.addEventListener(
-    "click",
-    () => {
-
-        viewSection.style.display =
-            "none";
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    }
-);
-
-
-// ==========================================================
-// SEARCH
-// ==========================================================
-
-searchInput.addEventListener(
-    "input",
-    () => {
-
-        renderSubmissions();
-
-    }
-);
-
-
-// ==========================================================
-// RENDER SUBMISSIONS
-// ==========================================================
-
-function renderSubmissions(){
-
-    const search =
-        searchInput.value
-            .trim()
-            .toLowerCase();
-
-
-    const filtered =
-        submissions.filter(
-            (submission) => {
-
-                const name =
-                    String(
-                        submission.name || ""
-                    ).toLowerCase();
-
-                const phone =
-                    String(
-                        submission.phone || ""
-                    ).toLowerCase();
-
-                const village =
-                    String(
-                        submission.village || ""
-                    ).toLowerCase();
-
-
-                return (
-                    name.includes(search) ||
-                    phone.includes(search) ||
-                    village.includes(search)
-                );
-
-            }
-        );
-
-
-    if(filtered.length === 0){
-
-        submissionList.innerHTML = "";
-
-        noSubmissions.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    noSubmissions.style.display =
-        "none";
-
-
-    submissionList.innerHTML =
-        filtered
-            .map(
-                (submission, index) =>
-                    createSubmissionCard(
-                        submission,
-                        index
-                    )
-            )
-            .join("");
-
-}
-
-
-// ==========================================================
-// CREATE CARD
-// ==========================================================
-
-function createSubmissionCard(
-    submission,
-    index
+function showError(
+    message
 ){
 
-    const name =
-        escapeHTML(
-            submission.name || "—"
-        );
+    errorMessage.textContent =
+        message;
 
-    const phone =
-        escapeHTML(
-            submission.phone || "—"
-        );
-
-    const village =
-        escapeHTML(
-            submission.village || "—"
-        );
-
-
-    const time =
-        formatTimestamp(
-            submission.submittedAt
-        );
-
-
-    return `
-
-        <div class="submission-card">
-
-            <div class="submission-number">
-                ${index + 1}
-            </div>
-
-            <div class="submission-info">
-
-                <h3>
-                    ${name}
-                </h3>
-
-                <p>
-                    <i class="ri-phone-line"></i>
-                    ${phone}
-                </p>
-
-                <p>
-                    <i class="ri-map-pin-line"></i>
-                    ${village}
-                </p>
-
-            </div>
-
-            <div class="submission-time">
-
-                <small>
-                    Submitted
-                </small>
-
-                <strong>
-                    ${time}
-                </strong>
-
-            </div>
-
-        </div>
-
-    `;
+    errorMessage.classList.add(
+        "show"
+    );
 
 }
 
 
 // ==========================================================
-// FORMAT FIREBASE TIMESTAMP
+// SUCCESS
 // ==========================================================
 
-function formatTimestamp(timestamp){
+function showSuccess(
+    message
+){
 
-    if(!timestamp){
+    successMessage.textContent =
+        message;
 
-        return "Just now";
-
-    }
-
-
-    try{
-
-        const date =
-            timestamp.toDate();
-
-
-        return date.toLocaleString(
-            "en-IN",
-            {
-                day:"2-digit",
-                month:"short",
-                year:"numeric",
-
-                hour:"2-digit",
-                minute:"2-digit",
-
-                hour12:true
-            }
-        );
-
-    }
-
-    catch(error){
-
-        return "—";
-
-    }
+    successMessage.classList.add(
+        "show"
+    );
 
 }
 
 
 // ==========================================================
-// HTML SAFETY
+// HIDE MESSAGES
 // ==========================================================
 
-function escapeHTML(value){
+function hideMessages(){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    errorMessage.classList.remove(
+        "show"
+    );
+
+    successMessage.classList.remove(
+        "show"
+    );
 
 }
-
-
-// ==========================================================
-// START
-// ==========================================================
-
-loadSubmissions();
