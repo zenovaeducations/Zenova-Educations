@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Zenova | Submission Form</title>
+    <title>Zenova | Student Submission</title>
 
     <link rel="stylesheet" href="submissions.css">
 
@@ -20,83 +19,46 @@
     <link
         href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
         rel="stylesheet">
-
 </head>
 
 <body>
 
-<div class="page">
+    <main class="page">
 
-    <!-- HEADER -->
+        <div class="card">
 
-    <header class="top-header">
+            <!-- BRAND -->
 
-        <div class="zenova-logo">
+            <div class="brand">
 
-            <h1>ZENOVA</h1>
+                <div class="brand-logo">
+                    Z
+                </div>
 
-            <span>EDUCATIONS</span>
-
-        </div>
-
-        <button
-            type="button"
-            class="view-button"
-            id="viewButton">
-
-            <i class="ri-eye-line"></i>
-
-            <span>View</span>
-
-        </button>
-
-    </header>
-
-
-    <!-- MAIN -->
-
-    <main class="main-content">
-
-
-        <!-- TOTAL -->
-
-        <section class="total-card">
-
-            <div>
-
-                <span>TOTAL SUBMISSIONS</span>
-
-                <strong id="totalSubmissions">
-                    0
-                </strong>
+                <div>
+                    <h1>ZENOVA</h1>
+                    <span>EDUCATIONS</span>
+                </div>
 
             </div>
 
-            <div class="total-icon">
 
-                <i class="ri-group-line"></i>
+            <!-- HEADING -->
 
-            </div>
+            <div class="heading">
 
-        </section>
+                <span>SSLC 2026</span>
 
-
-        <!-- FORM -->
-
-        <section class="form-card">
-
-            <div class="form-heading">
-
-                <span>NEW ENTRY</span>
-
-                <h2>Submit Details</h2>
+                <h2>Student Details</h2>
 
                 <p>
-                    Enter the details below and submit.
+                    Enter your details below.
                 </p>
 
             </div>
 
+
+            <!-- FORM -->
 
             <form id="submissionForm">
 
@@ -111,18 +73,19 @@
 
                     <div class="input-box">
 
-                        <i class="ri-user-line"></i>
+                        <i class="ri-user-3-line"></i>
 
                         <input
                             type="text"
                             id="name"
-                            placeholder="Enter name"
-                            autocomplete="off"
+                            placeholder="Enter your name"
+                            autocomplete="name"
                             required>
 
                     </div>
 
                 </div>
+
 
 
                 <!-- PHONE -->
@@ -141,9 +104,8 @@
                             type="tel"
                             id="phone"
                             placeholder="Enter phone number"
-                            maxlength="10"
                             inputmode="numeric"
-                            autocomplete="off"
+                            maxlength="10"
                             required>
 
                     </div>
@@ -151,12 +113,13 @@
                 </div>
 
 
+
                 <!-- VILLAGE -->
 
                 <div class="form-group">
 
                     <label for="village">
-                        Village
+                        Village Name
                     </label>
 
                     <div class="input-box">
@@ -166,8 +129,7 @@
                         <input
                             type="text"
                             id="village"
-                            placeholder="Enter village"
-                            autocomplete="off"
+                            placeholder="Enter village name"
                             required>
 
                     </div>
@@ -175,207 +137,81 @@
                 </div>
 
 
+
+                <!-- TARGET -->
+
+                <div class="form-group">
+
+                    <label for="targetPercentage">
+                        SSLC Final Exam Target Percentage
+                    </label>
+
+                    <div class="input-box percentage-box">
+
+                        <i class="ri-bar-chart-line"></i>
+
+                        <input
+                            type="number"
+                            id="targetPercentage"
+                            placeholder="Enter target percentage"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                            required>
+
+                        <span>%</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="errorMessage"
+                    class="message error">
+                </div>
+
+
+
+                <!-- SUCCESS -->
+
+                <div
+                    id="successMessage"
+                    class="message success">
+                </div>
+
+
+
                 <!-- SUBMIT -->
 
                 <button
                     type="submit"
-                    class="submit-button"
-                    id="submitButton">
+                    id="submitButton"
+                    class="submit-button">
 
-                    <i class="ri-check-line"></i>
+                    <span>
+                        Submit Details
+                    </span>
 
-                    <span>Submit</span>
+                    <i class="ri-arrow-right-line"></i>
 
                 </button>
 
             </form>
 
-
-            <!-- SUCCESS MESSAGE -->
-
-            <div
-                id="successMessage"
-                class="success-message">
-
-                <i class="ri-checkbox-circle-fill"></i>
-
-                <div>
-
-                    <strong>
-                        Submitted Successfully
-                    </strong>
-
-                    <p>
-                        You can enter the next person's details.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- VIEW AREA -->
-
-        <section
-            id="viewSection"
-            class="view-section"
-            style="display:none;">
-
-            <div class="view-heading">
-
-                <div>
-
-                    <span>SUBMISSIONS</span>
-
-                    <h2>Submitted Details</h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    id="closeView"
-                    class="close-view">
-
-                    <i class="ri-close-line"></i>
-
-                </button>
-
-            </div>
-
-
-            <!-- SEARCH -->
-
-            <div class="search-box">
-
-                <i class="ri-search-line"></i>
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search name, phone or village">
-
-            </div>
-
-
-            <!-- LIST -->
-
-            <div
-                id="submissionList"
-                class="submission-list">
-
-            </div>
-
-
-            <div
-                id="noSubmissions"
-                class="no-submissions"
-                style="display:none;">
-
-                <i class="ri-inbox-line"></i>
-
-                <strong>
-                    No submissions found
-                </strong>
-
-                <p>
-                    Submitted entries will appear here.
-                </p>
-
-            </div>
-
-        </section>
+        </div>
 
     </main>
 
-</div>
 
-<!-- VIEW ACCESS MODAL -->
-
-<div class="access-overlay" id="accessOverlay">
-
-    <div class="access-modal">
-
-        <button
-            type="button"
-            class="access-close"
-            id="accessClose">
-
-            <i class="ri-close-line"></i>
-
-        </button>
-
-        <div class="access-icon">
-
-            <i class="ri-lock-2-line"></i>
-
-        </div>
-
-        <span>PROTECTED VIEW</span>
-
-        <h2>View Submissions</h2>
-
-        <p>
-            Enter your authorized number and password
-            to view submitted details.
-        </p>
-
-
-        <div class="access-group">
-
-            <label for="accessNumber">
-                Number
-            </label>
-
-            <input
-                type="text"
-                id="accessNumber"
-                placeholder="Enter number"
-                autocomplete="off">
-
-        </div>
-
-
-        <div class="access-group">
-
-            <label for="accessPassword">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="accessPassword"
-                placeholder="Enter password">
-
-        </div>
-
-
-        <div
-            id="accessError"
-            class="access-error">
-        </div>
-
-
-        <button
-            type="button"
-            class="unlock-button"
-            id="unlockButton">
-
-            <i class="ri-lock-unlock-line"></i>
-
-            <span>Unlock View</span>
-
-        </button>
-
-    </div>
-
-</div>
-<script
-    type="module"
-    src="submissions.js">
-</script>
+    <script
+        type="module"
+        src="submissions.js">
+    </script>
 
 </body>
 
-  </html>
+</html>
