@@ -215,39 +215,27 @@ form.addEventListener(
             // --------------------------------------
 
             await addDoc(
-                collection(
-                    db,
-                    "submissions"
-                ),
-                {
+    collection(db, "submissions"),
+    {
+        name,
+        phone,
+        village,
+        targetPercentage,
+        submittedAt: serverTimestamp()
+    }
+);
 
-                    name:
-                        name,
+form.reset();
 
-                    phone:
-                        phone,
+/* Show full-screen success */
+const successScreen = document.getElementById("successScreen");
 
-                    village:
-                        village,
+successScreen.classList.add("show");
 
-                    targetPercentage:
-                        targetPercentage,
-
-                    submittedAt:
-                        serverTimestamp()
-
-                }
-            );
-
-
-            // --------------------------------------
-            // SUCCESS
-            // --------------------------------------
-
-            showSuccess(
-                "Details submitted successfully."
-            );
-
+/* Return to form after 3 seconds */
+setTimeout(() => {
+    successScreen.classList.remove("show");
+}, 3000);
 
             // --------------------------------------
             // RESET FORM
