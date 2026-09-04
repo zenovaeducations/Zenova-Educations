@@ -1,1162 +1,641 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-:root{
-    --black:#050505;
-    --white:#fff;
-    --bg:#f5f5f5;
-    --border:#e5e5e5;
-    --muted:#858585;
-    --light:#f7f7f7;
-}
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:var(--bg);
-    color:#111;
-}
-
-button,
-input{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #111;
 }
 
 
-/* =========================================================
-   ACCESS
-========================================================= */
+/* =========================
+   LOGIN
+========================= */
 
-.access-screen{
-    min-height:100vh;
+.login-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    padding:20px;
+    padding: 25px;
+
+    z-index: 99999;
 }
 
-.access-card{
-    width:100%;
-    max-width:410px;
-
-    padding:30px 25px;
-
-    background:#fff;
-
-    border:1px solid var(--border);
-
-    border-radius:24px;
-
-    text-align:center;
-
-    box-shadow:0 15px 45px rgba(0,0,0,.07);
+.login-box {
+    width: 100%;
+    max-width: 410px;
+    text-align: center;
 }
 
-.access-logos{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:20px;
-
-    padding:0 18px 10px;
+.brand {
+    color: #fff;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 45px;
 }
 
-.access-logos img{
-    width:62px;
-    height:62px;
-
-    object-fit:contain;
-
-    border-radius:10px;
+.login-box h1 {
+    color: #fff;
+    font-size: 27px;
+    margin-bottom: 10px;
 }
 
-.lock-icon{
-    width:62px;
-    height:62px;
-
-    margin:20px auto 14px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#000;
-    color:#fff;
-
-    border-radius:17px;
-
-    font-size:27px;
+.login-box p {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 30px;
 }
 
-.portal-label{
-    color:#999;
+.login-box input {
+    width: 100%;
+    height: 58px;
 
-    font-size:8px;
+    background: #111;
+    color: #fff;
 
-    letter-spacing:2px;
+    border: 1px solid #333;
+    border-radius: 14px;
 
-    font-weight:700;
+    padding: 0 18px;
+    font-size: 16px;
+    outline: none;
 }
 
-.access-card h1{
-    font-size:21px;
-
-    margin-top:4px;
+.login-box input:focus {
+    border-color: #fff;
 }
 
-.access-card > p{
-    margin:5px 10px 20px;
+.login-box button {
+    width: 100%;
+    height: 58px;
 
-    color:#888;
+    margin-top: 14px;
 
-    font-size:10px;
+    border: none;
+    border-radius: 14px;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+#loginError {
+    color: #ff5555;
+    font-size: 13px;
+    margin-top: 15px;
 }
 
 
-/* PASSWORD */
-
-.password-box{
-    height:50px;
-
-    display:flex;
-    align-items:center;
-
-    gap:9px;
-
-    padding:0 12px;
-
-    border:1px solid #ddd;
-
-    border-radius:12px;
-}
-
-.password-box > i{
-    color:#777;
-
-    font-size:18px;
-}
-
-.password-box input{
-    width:100%;
-    height:100%;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    font-size:12px;
-}
-
-.password-box button{
-    width:30px;
-    height:30px;
-
-    border:0;
-
-    background:transparent;
-
-    font-size:17px;
-}
-
-.access-error{
-    display:none;
-
-    margin-top:10px;
-
-    padding:9px;
-
-    background:#f0f0f0;
-
-    border-radius:9px;
-
-    font-size:10px;
-}
-
-.access-error.show{
-    display:block;
-}
-
-.primary-button{
-    width:100%;
-    height:51px;
-
-    margin-top:14px;
-
-    border:0;
-
-    border-radius:12px;
-
-    background:#000;
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:8px;
-
-    font-size:11px;
-
-    font-weight:600;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.top-header{
-    min-height:82px;
-
-    padding:10px 28px;
-
-    background:#000;
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:20px;
-}
-
-.college-brand{
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
-
-    min-width:220px;
-}
-
-.right-brand{
-    justify-content:flex-end;
-}
-
-.college-brand img{
-    width:52px;
-    height:52px;
-
-    object-fit:contain;
-
-    border-radius:8px;
-
-    background:#fff;
-}
-
-.college-brand strong{
-    display:block;
-
-    font-size:10px;
-
-    letter-spacing:.5px;
-}
-
-.college-brand span{
-    display:block;
-
-    margin-top:2px;
-
-    color:#aaa;
-
-    font-size:8px;
-
-    letter-spacing:2px;
-}
-
-.header-center{
-    text-align:center;
-}
-
-.header-center span{
-    display:block;
-
-    color:#999;
-
-    font-size:7px;
-
-    letter-spacing:2px;
-}
-
-.header-center strong{
-    display:block;
-
-    margin-top:4px;
-
-    font-size:11px;
-
-    letter-spacing:1px;
-}
-
-
-/* =========================================================
+/* =========================
    MAIN
-========================================================= */
+========================= */
 
-.main-content{
-    width:100%;
-    max-width:850px;
-
-    margin:auto;
-
-    padding:30px 18px 60px;
+.main-page {
+    display: none;
 }
 
-.page-heading{
-    margin-bottom:22px;
+.header {
+    background: #000;
+    color: #fff;
+    padding: 20px 25px;
 }
 
-.page-heading > span{
-    color:#999;
+.header-brand {
+    max-width: 1400px;
+    margin: auto;
 
-    font-size:8px;
-
-    letter-spacing:2px;
-
-    font-weight:700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.page-heading h1{
-    margin-top:3px;
+.header-brand img {
+    width: 65px;
+    height: 65px;
 
-    font-size:28px;
+    object-fit: contain;
+
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
 }
 
-.page-heading p{
-    margin-top:3px;
-
-    color:#888;
-
-    font-size:10px;
+.zenova {
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 800;
+    margin-bottom: 6px;
 }
 
-
-/* =========================================================
-   SECTION CARD
-========================================================= */
-
-.section-card{
-    padding:20px;
-
-    background:#fff;
-
-    border:1px solid var(--border);
-
-    border-radius:20px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.035);
+.header-brand h1 {
+    font-size: 24px;
 }
 
-.section-heading{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:17px;
-}
-
-.section-heading span{
-    color:#999;
-
-    font-size:8px;
-
-    letter-spacing:2px;
-
-    font-weight:700;
-}
-
-.section-heading h2{
-    margin-top:2px;
-
-    font-size:17px;
-}
-
-.student-total{
-    padding:9px 13px;
-
-    background:#000;
-
-    color:#fff;
-
-    border-radius:11px;
-
-    text-align:center;
-}
-
-.student-total strong{
-    display:block;
-
-    font-size:16px;
-}
-
-.student-total span{
-    display:block;
-
-    color:#aaa;
-
-    font-size:7px;
-
-    letter-spacing:1px;
+.header-brand p {
+    color: #999;
+    font-size: 12px;
+    margin-top: 6px;
 }
 
 
-/* =========================================================
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    max-width: 1400px;
+    margin: auto;
+    padding: 25px;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-section h2 {
+    font-size: 24px;
+}
+
+.top-section p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.count-box {
+    background: #000;
+    color: #fff;
+
+    border-radius: 13px;
+
+    padding: 10px 17px;
+
+    text-align: center;
+}
+
+.count-box span {
+    display: block;
+    font-size: 10px;
+    color: #999;
+}
+
+.count-box strong {
+    display: block;
+    font-size: 24px;
+}
+
+
+/* =========================
    SEARCH
-========================================================= */
+========================= */
 
-.search-box{
-    height:48px;
+.search {
+    width: 100%;
+    height: 52px;
 
-    display:flex;
+    border: 1px solid #ddd;
+    border-radius: 12px;
 
-    align-items:center;
+    background: #fff;
 
-    gap:9px;
+    padding: 0 17px;
 
-    padding:0 13px;
+    font-size: 15px;
+    outline: none;
 
-    border:1px solid #ddd;
-
-    border-radius:11px;
-
-    margin-bottom:12px;
+    margin-bottom: 18px;
 }
 
-.search-box i{
-    color:#777;
-
-    font-size:18px;
-}
-
-.search-box input{
-    width:100%;
-    height:100%;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    font-size:11px;
+.search:focus {
+    border-color: #111;
 }
 
 
-/* =========================================================
-   STUDENTS
-========================================================= */
+/* =========================
+   TABLE
+========================= */
 
-.student-results{
-    display:flex;
+.table-wrapper {
+    background: #fff;
 
-    flex-direction:column;
+    border: 1px solid #ddd;
+    border-radius: 14px;
 
-    gap:7px;
+    overflow-x: auto;
+
+    box-shadow: 0 4px 18px rgba(0,0,0,.04);
 }
 
-.student-result{
-    min-height:65px;
+table {
+    width: 100%;
+    min-width: 1050px;
 
-    padding:10px 12px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
-
-    border:1px solid #eee;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    transition:.18s;
+    border-collapse: collapse;
 }
 
-.student-result:hover{
-    background:#f7f7f7;
-
-    transform:translateY(-1px);
+thead {
+    background: #000;
+    color: #fff;
 }
 
-.student-avatar-small{
-    width:42px;
-    height:42px;
+th {
+    padding: 15px;
 
-    flex-shrink:0;
+    text-align: left;
 
-    display:flex;
+    white-space: nowrap;
 
-    align-items:center;
-    justify-content:center;
-
-    background:#000;
-
-    color:#fff;
-
-    border-radius:11px;
-
-    font-size:18px;
+    font-size: 11px;
+    letter-spacing: .4px;
 }
 
-.student-result-info{
-    flex:1;
+td {
+    padding: 14px 15px;
 
-    min-width:0;
+    border-bottom: 1px solid #eee;
+
+    white-space: nowrap;
+
+    font-size: 13px;
 }
 
-.student-result-info strong{
-    display:block;
-
-    font-size:12px;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
+tbody tr:hover {
+    background: #fafafa;
 }
 
-.student-result-info span{
-    display:block;
-
-    margin-top:2px;
-
-    color:#777;
-
-    font-size:9px;
+.student-name {
+    font-weight: 700;
 }
 
-.student-result-info small{
-    display:block;
-
-    margin-top:2px;
-
-    color:#aaa;
-
-    font-size:8px;
+.amount {
+    font-weight: 700;
 }
 
-.student-result > i{
-    color:#999;
-
-    font-size:19px;
+.balance {
+    font-weight: 700;
 }
 
-.loading,
-.no-students{
-    padding:35px 10px;
+.status {
+    display: inline-block;
 
-    text-align:center;
+    padding: 6px 10px;
 
-    color:#888;
+    border-radius: 20px;
 
-    font-size:10px;
+    font-size: 10px;
+    font-weight: 700;
 }
 
-.loading i{
-    margin-right:5px;
+.status.pending {
+    background: #f1f1f1;
+    color: #555;
+}
+
+.status.paid {
+    background: #000;
+    color: #fff;
+}
+
+.action-btn {
+    border: none;
+    background: #000;
+    color: #fff;
+
+    padding: 8px 13px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background: #222;
+}
+
+.loading {
+    text-align: center;
+    padding: 35px !important;
+    color: #777;
 }
 
 
-/* =========================================================
-   BACK BUTTON
-========================================================= */
+/* =========================
+   MODAL
+========================= */
 
-.back-button{
-    height:42px;
+.modal {
+    position: fixed;
+    inset: 0;
 
-    padding:0 15px;
+    background: rgba(0,0,0,.75);
 
-    margin-bottom:15px;
+    display: none;
 
-    border:1px solid #ddd;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:10px;
+    padding: 18px;
 
-    background:#fff;
-
-    color:#111;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    font-size:10px;
-
-    font-weight:600;
+    z-index: 9999;
 }
 
-.back-button:hover{
-    background:#000;
-
-    color:#fff;
+.modal.show {
+    display: flex;
 }
 
+.modal-box {
+    width: 100%;
+    max-width: 650px;
 
-/* =========================================================
-   SELECTED STUDENT
-========================================================= */
+    max-height: 92vh;
+    overflow-y: auto;
 
-.selected-card{
-    padding:20px;
+    background: #fff;
 
-    margin-bottom:15px;
+    border-radius: 20px;
 
-    background:#fff;
-
-    border:1px solid var(--border);
-
-    border-radius:19px;
+    padding: 24px;
 }
 
-.selected-top{
-    display:flex;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
 
-    align-items:center;
-
-    gap:12px;
+    margin-bottom: 20px;
 }
 
-.avatar{
-    width:53px;
-    height:53px;
+.modal-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 800;
 
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    background:#000;
-
-    color:#fff;
-
-    border-radius:15px;
-
-    font-size:23px;
+    margin-bottom: 6px;
 }
 
-.selected-name{
-    flex:1;
-
-    min-width:0;
+.modal-header h2 {
+    font-size: 22px;
 }
 
-.selected-name > span{
-    color:#999;
-
-    font-size:7px;
-
-    letter-spacing:2px;
-
-    font-weight:700;
+.modal-header p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
 }
 
-.selected-name h2{
-    font-size:16px;
+.close-btn {
+    width: 36px;
+    height: 36px;
 
-    margin-top:2px;
-}
+    border: none;
+    border-radius: 50%;
 
-.selected-name p{
-    color:#888;
+    background: #f1f1f1;
 
-    font-size:9px;
+    font-size: 23px;
 
-    margin-top:2px;
+    cursor: pointer;
 
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-}
-
-.lock-status{
-    padding:7px 10px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:5px;
-
-    background:#000;
-
-    color:#fff;
-
-    border-radius:9px;
-
-    font-size:8px;
-
-    font-weight:600;
-}
-
-.student-info-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:8px;
-
-    margin-top:17px;
-}
-
-.student-info-grid > div{
-    padding:10px;
-
-    background:#f6f6f6;
-
-    border-radius:10px;
-}
-
-.student-info-grid span{
-    display:block;
-
-    color:#999;
-
-    font-size:7px;
-}
-
-.student-info-grid strong{
-    display:block;
-
-    margin-top:2px;
-
-    font-size:10px;
+    flex-shrink: 0;
 }
 
 
-/* =========================================================
-   FEE CARD
-========================================================= */
+/* =========================
+   SUMMARY
+========================= */
 
-.fee-card{
-    padding:20px;
+.fee-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 
-    background:#fff;
+    gap: 10px;
 
-    border:1px solid var(--border);
-
-    border-radius:19px;
+    margin-bottom: 22px;
 }
 
-.fee-heading{
-    display:flex;
+.summary-item {
+    background: #f5f5f5;
 
-    align-items:center;
+    border-radius: 12px;
 
-    justify-content:space-between;
-
-    gap:10px;
-
-    margin-bottom:15px;
+    padding: 14px;
 }
 
-.fee-heading span{
-    color:#999;
+.summary-item span {
+    display: block;
 
-    font-size:8px;
+    color: #777;
 
-    letter-spacing:2px;
-
-    font-weight:700;
+    font-size: 10px;
+    margin-bottom: 7px;
 }
 
-.fee-heading h2{
-    margin-top:2px;
-
-    font-size:17px;
+.summary-item strong {
+    font-size: 18px;
 }
 
+.balance-summary {
+    background: #000;
+    color: #fff;
+}
 
-/* EDIT */
-
-.edit-button{
-    height:39px;
-
-    padding:0 13px;
-
-    border:0;
-
-    border-radius:10px;
-
-    background:#000;
-
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    font-size:9px;
-
-    font-weight:600;
+.balance-summary span {
+    color: #999;
 }
 
 
-/* LOCKED */
+/* =========================
+   PAYMENT ROW
+========================= */
 
-.locked-message{
-    display:flex;
+.payment-list {
+    display: flex;
+    flex-direction: column;
 
-    align-items:flex-start;
-
-    gap:10px;
-
-    padding:12px;
-
-    margin-bottom:10px;
-
-    background:#f5f5f5;
-
-    border-radius:11px;
+    gap: 10px;
 }
 
-.locked-message > i{
-    font-size:19px;
+.payment-row {
+    border: 1px solid #e5e5e5;
+
+    border-radius: 13px;
+
+    padding: 14px;
 }
 
-.locked-message strong{
-    display:block;
+.payment-title {
+    font-size: 13px;
+    font-weight: 700;
 
-    font-size:10px;
+    margin-bottom: 10px;
 }
 
-.locked-message p{
-    margin-top:2px;
+.payment-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
-    color:#888;
-
-    font-size:8px;
-
-    line-height:1.5;
+    gap: 10px;
 }
 
+.amount-box {
+    height: 48px;
 
-/* =========================================================
-   FEE ROW
-========================================================= */
+    display: flex;
 
-.fee-row{
-    display:grid;
+    border: 1px solid #ddd;
 
-    grid-template-columns:38px 1fr 310px;
+    border-radius: 10px;
 
-    align-items:center;
-
-    gap:12px;
-
-    padding:16px 0;
-
-    border-bottom:1px solid #eee;
+    overflow: hidden;
 }
 
-.fee-number{
-    width:32px;
-    height:32px;
+.amount-box span {
+    width: 40px;
 
-    display:flex;
+    background: #f5f5f5;
 
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background:#000;
-
-    color:#fff;
-
-    border-radius:9px;
-
-    font-size:8px;
-
-    font-weight:600;
+    font-weight: 700;
 }
 
-.fee-name strong{
-    display:block;
+.amount-box input {
+    width: 100%;
 
-    font-size:11px;
+    border: none;
+    outline: none;
+
+    padding: 0 12px;
+
+    font-size: 14px;
 }
 
-.fee-name span{
-    display:block;
+.payment-fields > input {
+    width: 100%;
+    height: 48px;
 
-    margin-top:2px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
 
-    color:#999;
+    padding: 0 12px;
 
-    font-size:8px;
-}
-
-.fee-input-area{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
-}
-
-.fee-input-area input{
-    width:100%;
-    height:43px;
-
-    padding:0 9px;
-
-    border:1px solid #ddd;
-
-    border-radius:9px;
-
-    outline:0;
-
-    font-size:10px;
-
-    background:#fff;
-}
-
-.fee-input-area input:disabled{
-    background:#f6f6f6;
-
-    color:#444;
-
-    border-color:#eee;
-}
-
-.fee-input-area input:not(:disabled):focus{
-    border-color:#000;
+    font-size: 13px;
+    outline: none;
 }
 
 
-/* AMOUNT */
+/* =========================
+   SAVE
+========================= */
 
-.amount-box{
-    height:43px;
+.save-btn {
+    width: 100%;
+    height: 55px;
 
-    display:flex;
+    margin-top: 20px;
 
-    align-items:center;
+    border: none;
+    border-radius: 12px;
 
-    border:1px solid #ddd;
+    background: #000;
+    color: #fff;
 
-    border-radius:9px;
+    font-size: 15px;
+    font-weight: 700;
 
-    overflow:hidden;
+    cursor: pointer;
 }
 
-.amount-box > span{
-    width:32px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:11px;
-
-    font-weight:600;
+.save-btn:disabled {
+    opacity: .5;
 }
 
-.amount-box input{
-    border:0;
+.payment-message {
+    display: none;
 
-    border-radius:0;
+    text-align: center;
+
+    font-size: 13px;
+
+    margin-top: 14px;
 }
 
-
-/* =========================================================
-   TOTAL
-========================================================= */
-
-.total-box{
-    margin-top:15px;
-
-    padding:15px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    background:#000;
-
-    color:#fff;
-
-    border-radius:12px;
+.payment-message.show {
+    display: block;
 }
 
-.total-box span{
-    font-size:9px;
+.payment-message.success {
+    color: #16a34a;
 }
 
-.total-box strong{
-    font-size:18px;
+.payment-message.error {
+    color: #dc2626;
 }
 
 
-/* =========================================================
-   SAVE / CANCEL
-========================================================= */
-
-.save-button{
-    width:100%;
-
-    height:50px;
-
-    margin-top:14px;
-
-    border:0;
-
-    border-radius:11px;
-
-    background:#000;
-
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:7px;
-
-    font-size:11px;
-
-    font-weight:600;
-}
-
-.cancel-button{
-    width:100%;
-
-    height:43px;
-
-    margin-top:8px;
-
-    border:1px solid #ddd;
-
-    border-radius:10px;
-
-    background:#fff;
-
-    font-size:10px;
-
-    font-weight:600;
-}
-
-.record-note{
-    margin-top:10px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:5px;
-
-    color:#999;
-
-    font-size:8px;
-
-    text-align:center;
-}
-
-
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
-@media(max-width:700px){
+@media (max-width: 600px) {
 
-    .top-header{
-        padding:10px 14px;
+    .header {
+        padding: 15px;
     }
 
-    .college-brand{
-        min-width:auto;
+    .header-brand img {
+        width: 48px;
+        height: 48px;
     }
 
-    .college-brand img{
-        width:43px;
-        height:43px;
+    .header-brand h1 {
+        font-size: 17px;
     }
 
-    .college-brand strong{
-        font-size:8px;
+    .header-brand p {
+        font-size: 9px;
     }
 
-    .college-brand span{
-        font-size:6px;
+    .content {
+        padding: 18px 12px;
     }
 
-    .header-center{
-        display:none;
+    .top-section h2 {
+        font-size: 21px;
     }
 
-    .main-content{
-        padding:22px 13px 45px;
+    .fee-summary {
+        grid-template-columns: 1fr;
     }
 
-    .page-heading h1{
-        font-size:24px;
+    .payment-fields {
+        grid-template-columns: 1fr;
     }
 
-    .student-info-grid{
-        grid-template-columns:1fr;
+    .modal-box {
+        padding: 18px;
+        border-radius: 16px;
     }
-
-    .fee-row{
-        grid-template-columns:34px 1fr;
-    }
-
-    .fee-input-area{
-        grid-column:1 / -1;
-
-        grid-template-columns:1fr 1fr;
-    }
-
-}
-
-
-@media(max-width:430px){
-
-    .right-brand > div{
-        display:none;
-    }
-
-    .college-brand img{
-        width:40px;
-        height:40px;
-    }
-
-    .selected-top{
-        align-items:flex-start;
-    }
-
-    .lock-status{
-        font-size:7px;
-    }
-
-    .fee-input-area{
-        grid-template-columns:1fr;
-    }
-
 }
