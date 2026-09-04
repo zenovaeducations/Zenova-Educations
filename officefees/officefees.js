@@ -1,1260 +1,956 @@
-// ==========================================================
-// ZENOVA + BEST INTERNATIONAL PU COLLEGE
-// OFFICE FEES PORTAL
-// ==========================================================
-
 import { db } from "../firebase-config.js";
 
 import {
     collection,
     getDocs,
     doc,
-    getDoc,
     setDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 
-// ==========================================================
-// ELEMENTS
-// ==========================================================
-
-const accessScreen =
-    document.getElementById("accessScreen");
-
-const officePortal =
-    document.getElementById("officePortal");
-
-const officePassword =
-    document.getElementById("officePassword");
-
-const togglePassword =
-    document.getElementById("togglePassword");
-
-const unlockButton =
-    document.getElementById("unlockButton");
-
-const accessError =
-    document.getElementById("accessError");
-
-
-const studentView =
-    document.getElementById("studentView");
-
-const feeView =
-    document.getElementById("feeView");
-
-const studentSearch =
-    document.getElementById("studentSearch");
-
-const studentResults =
-    document.getElementById("studentResults");
-
-const studentCount =
-    document.getElementById("studentCount");
-
-
-const backButton =
-    document.getElementById("backButton");
-
-
-const selectedName =
-    document.getElementById("selectedName");
-
-const selectedContact =
-    document.getElementById("selectedContact");
-
-const selectedClass =
-    document.getElementById("selectedClass");
-
-const selectedCourse =
-    document.getElementById("selectedCourse");
-
-const selectedCombination =
-    document.getElementById("selectedCombination");
-
-
-const lockStatus =
-    document.getElementById("lockStatus");
-
-const lockedMessage =
-    document.getElementById("lockedMessage");
-
-const editFeesButton =
-    document.getElementById("editFeesButton");
-
-const saveChangesButton =
-    document.getElementById("saveChangesButton");
-
-const cancelEditButton =
-    document.getElementById("cancelEditButton");
-
-
-const advanceAmount =
-    document.getElementById("advanceAmount");
-
-const advanceDate =
-    document.getElementById("advanceDate");
-
-const firstAmount =
-    document.getElementById("firstAmount");
-
-const firstDate =
-    document.getElementById("firstDate");
-
-const secondAmount =
-    document.getElementById("secondAmount");
-
-const secondDate =
-    document.getElementById("secondDate");
-
-const totalFee =
-    document.getElementById("totalFee");
-
-
-// ==========================================================
-// DATA
-// ==========================================================
-
-let allStudents = [];
-
-let selectedStudent = null;
-
-let existingFeeData = null;
-
-let editing = false;
-
-
-// ==========================================================
-// PASSWORD
-// ==========================================================
+/* =========================
+   PASSWORD
+========================= */
 
 const OFFICE_PASSWORD = "123456";
 
 
-// ==========================================================
-// PASSWORD SHOW / HIDE
-// ==========================================================
+/* =========================
+   ELEMENTS
+========================= */
 
-togglePassword.addEventListener(
-    "click",
-    () => {
+const loginScreen =
+    document.getElementById("loginScreen");
 
-        if(
-            officePassword.type === "password"
-        ){
+const mainPage =
+    document.getElementById("mainPage");
 
-            officePassword.type =
-                "text";
+const password =
+    document.getElementById("password");
 
-            togglePassword.innerHTML =
-                `<i class="ri-eye-off-line"></i>`;
+const loginBtn =
+    document.getElementById("loginBtn");
 
-        }
-        else{
+const loginError =
+    document.getElementById("loginError");
 
-            officePassword.type =
-                "password";
+const studentsTable =
+    document.getElementById("studentsTable");
 
-            togglePassword.innerHTML =
-                `<i class="ri-eye-line"></i>`;
+const studentCount =
+    document.getElementById("studentCount");
 
-        }
+const searchInput =
+    document.getElementById("searchInput");
+
+const paymentModal =
+    document.getElementById("paymentModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const modalStudentName =
+    document.getElementById("modalStudentName");
+
+const modalStudentCourse =
+    document.getElementById("modalStudentCourse");
+
+const modalTotalFee =
+    document.getElementById("modalTotalFee");
+
+const modalTotalPaid =
+    document.getElementById("modalTotalPaid");
+
+const modalBalance =
+    document.getElementById("modalBalance");
+
+const paymentMessage =
+    document.getElementById("paymentMessage");
+
+const savePaymentBtn =
+    document.getElementById("savePaymentBtn");
+
+
+const paymentInputs = {
+
+    advanceAmount:
+        document.getElementById("advanceAmount"),
+
+    advanceDate:
+        document.getElementById("advanceDate"),
+
+    firstAmount:
+        document.getElementById("firstAmount"),
+
+    firstDate:
+        document.getElementById("firstDate"),
+
+    secondAmount:
+        document.getElementById("secondAmount"),
+
+    secondDate:
+        document.getElementById("secondDate"),
+
+    thirdAmount:
+        document.getElementById("thirdAmount"),
+
+    thirdDate:
+        document.getElementById("thirdDate"),
+
+    fourthAmount:
+        document.getElementById("fourthAmount"),
+
+    fourthDate:
+        document.getElementById("fourthDate")
+
+};
+
+
+let students = [];
+let feeRecords = [];
+let selectedStudent = null;
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginBtn.addEventListener("click", login);
+
+password.addEventListener("keydown", event => {
+
+    if (event.key === "Enter") {
+        login();
+    }
+
+});
+
+
+function login() {
+
+    if (password.value.trim() === OFFICE_PASSWORD) {
+
+        loginScreen.style.display = "none";
+        mainPage.style.display = "block";
+
+        loadData();
+
+    } else {
+
+        loginError.textContent =
+            "Incorrect password.";
+
+        password.value = "";
+        password.focus();
 
     }
-);
-
-
-// ==========================================================
-// OFFICE LOGIN
-// ==========================================================
-
-unlockButton.addEventListener(
-    "click",
-    async () => {
-
-        const password =
-            officePassword.value.trim();
-
-
-        if(!password){
-
-            showAccessError(
-                "Please enter the office password."
-            );
-
-            return;
-
-        }
-
-
-        if(
-            password !== OFFICE_PASSWORD
-        ){
-
-            showAccessError(
-                "Incorrect office password."
-            );
-
-            officePassword.value = "";
-
-            officePassword.focus();
-
-            return;
-
-        }
-
-
-        try{
-
-            unlockButton.disabled = true;
-
-            unlockButton.innerHTML = `
-                <i class="ri-loader-4-line"></i>
-                <span>Loading Students...</span>
-            `;
-
-
-            await loadStudents();
-
-
-            accessScreen.style.display =
-                "none";
-
-            officePortal.style.display =
-                "block";
-
-
-            studentView.style.display =
-                "block";
-
-            feeView.style.display =
-                "none";
-
-
-            renderStudents();
-
-
-        }
-        catch(error){
-
-            console.error(
-                "Student loading error:",
-                error
-            );
-
-            showAccessError(
-                "Unable to load students. Check Firestore permissions."
-            );
-
-        }
-        finally{
-
-            unlockButton.disabled = false;
-
-            unlockButton.innerHTML = `
-                <i class="ri-login-box-line"></i>
-                Enter Office Portal
-            `;
-
-        }
-
-    }
-);
-
-
-// ==========================================================
-// ENTER KEY
-// ==========================================================
-
-officePassword.addEventListener(
-    "keydown",
-    (event) => {
-
-        if(event.key === "Enter"){
-
-            unlockButton.click();
-
-        }
-
-    }
-);
-
-
-// ==========================================================
-// LOAD STUDENTS
-// ==========================================================
-
-async function loadStudents(){
-
-    const snapshot =
-        await getDocs(
-            collection(
-                db,
-                "students"
-            )
-        );
-
-
-    allStudents = [];
-
-
-    snapshot.forEach(
-        (studentDoc) => {
-
-            allStudents.push({
-
-                id:
-                    studentDoc.id,
-
-                ...studentDoc.data()
-
-            });
-
-        }
-    );
-
-
-    allStudents.sort(
-        (a,b) => {
-
-            const nameA =
-                String(
-                    a.name || ""
-                ).toLowerCase();
-
-            const nameB =
-                String(
-                    b.name || ""
-                ).toLowerCase();
-
-            return nameA.localeCompare(
-                nameB
-            );
-
-        }
-    );
-
-
-    studentCount.textContent =
-        allStudents.length;
 
 }
 
 
-// ==========================================================
-// SEARCH
-// ==========================================================
+/* =========================
+   LOAD DATA
+========================= */
 
-studentSearch.addEventListener(
-    "input",
-    renderStudents
-);
+async function loadData() {
 
-
-// ==========================================================
-// RENDER STUDENTS
-// ==========================================================
-
-function renderStudents(){
-
-    const search =
-        studentSearch.value
-            .trim()
-            .toLowerCase();
+    studentsTable.innerHTML = `
+        <tr>
+            <td colspan="8" class="loading">
+                Loading students...
+            </td>
+        </tr>
+    `;
 
 
-    const filtered =
-        allStudents.filter(
-            (student) => {
+    try {
 
-                if(!search){
+        const [
+            studentsSnapshot,
+            feeSnapshot,
+            officeSnapshot
+        ] = await Promise.all([
 
-                    return true;
+            getDocs(
+                collection(db, "students")
+            ),
 
-                }
+            getDocs(
+                collection(db, "feeRecords")
+            ),
 
+            getDocs(
+                collection(db, "officeFees")
+            )
 
-                const name =
-                    String(
-                        student.name || ""
-                    ).toLowerCase();
-
-                const phone =
-                    String(
-                        student.phone || ""
-                    ).toLowerCase();
-
-                const email =
-                    String(
-                        student.email || ""
-                    ).toLowerCase();
-
-                const school =
-                    String(
-                        student.schoolName || ""
-                    ).toLowerCase();
+        ]);
 
 
-                return (
-                    name.includes(search) ||
-                    phone.includes(search) ||
-                    email.includes(search) ||
-                    school.includes(search)
-                );
+        students = [];
 
-            }
-        );
+        studentsSnapshot.forEach(document => {
+
+            students.push({
+                id: document.id,
+                ...document.data()
+            });
+
+        });
 
 
-    if(filtered.length === 0){
+        feeRecords = [];
 
-        studentResults.innerHTML = `
+        feeSnapshot.forEach(document => {
 
-            <div class="no-students">
+            feeRecords.push({
+                id: document.id,
+                ...document.data()
+            });
 
-                <i class="ri-user-search-line"></i>
+        });
 
-                <br>
 
-                No students found.
+        /*
+         * Office payment records
+         */
 
-            </div>
+        const officeRecords = {};
 
+        officeSnapshot.forEach(document => {
+
+            officeRecords[document.id] =
+                document.data();
+
+        });
+
+
+        students =
+            students.map(student => ({
+
+                ...student,
+
+                adminFee:
+                    feeRecords.find(
+                        fee =>
+                            fee.id === student.id
+                    ) || null,
+
+                officeFee:
+                    officeRecords[student.id] || null
+
+            }));
+
+
+        studentCount.textContent =
+            students.length;
+
+
+        displayStudents(students);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        studentsTable.innerHTML = `
+            <tr>
+                <td colspan="8" class="loading">
+                    Unable to load students.
+                </td>
+            </tr>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   DISPLAY STUDENTS
+========================= */
+
+function displayStudents(data) {
+
+    if (!data.length) {
+
+        studentsTable.innerHTML = `
+            <tr>
+                <td colspan="8" class="loading">
+                    No students found.
+                </td>
+            </tr>
         `;
 
         return;
-
     }
 
 
-    studentResults.innerHTML =
-        filtered
-            .map(
-                createStudentHTML
-            )
-            .join("");
+    studentsTable.innerHTML =
+        data.map((student, index) => {
+
+            const name =
+                student.name ||
+                student.fullName ||
+                "Unnamed Student";
+
+
+            const course =
+                [
+                    student.course,
+                    student.combination
+                ]
+                .filter(Boolean)
+                .join(" • ") || "-";
+
+
+            /*
+             * IMPORTANT:
+             *
+             * College sees ONLY:
+             *
+             * Trust Contribution + Student Payable
+             *
+             * No breakup is displayed.
+             */
+
+            const admin =
+                student.adminFee || {};
+
+
+            const totalFee =
+                Number(
+                    admin.trustContribution || 0
+                ) +
+                Number(
+                    admin.studentPayable || 0
+                );
+
+
+            const office =
+                student.officeFee || {};
+
+
+            const totalPaid =
+                calculateTotalPaid(office);
+
+
+            const balance =
+                Math.max(
+                    totalFee - totalPaid,
+                    0
+                );
+
+
+            let status = "Pending";
+
+            if (totalFee > 0 && balance === 0) {
+                status = "Paid";
+            }
+
+
+            return `
+
+                <tr>
+
+                    <td>${index + 1}</td>
+
+                    <td class="student-name">
+                        ${escapeHTML(name)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(course)}
+                    </td>
+
+                    <td class="amount">
+                        ${formatMoney(totalFee)}
+                    </td>
+
+                    <td class="amount">
+                        ${formatMoney(totalPaid)}
+                    </td>
+
+                    <td class="balance">
+                        ${formatMoney(balance)}
+                    </td>
+
+                    <td>
+
+                        <span class="status ${
+                            status === "Paid"
+                                ? "paid"
+                                : "pending"
+                        }">
+
+                            ${status}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="action-btn"
+                            data-id="${student.id}"
+                        >
+
+                            ${
+                                student.officeFee
+                                    ? "Edit Fees"
+                                    : "Add Fees"
+                            }
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
 
 
     document
-        .querySelectorAll(
-            ".student-result"
+        .querySelectorAll(".action-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () =>
+                    openPaymentModal(
+                        button.dataset.id
+                    )
+            );
+
+        });
+
+}
+
+
+/* =========================
+   OPEN PAYMENT
+========================= */
+
+function openPaymentModal(id) {
+
+    selectedStudent =
+        students.find(
+            student => student.id === id
+        );
+
+
+    if (!selectedStudent) {
+        return;
+    }
+
+
+    const name =
+        selectedStudent.name ||
+        selectedStudent.fullName ||
+        "Student";
+
+
+    const course =
+        [
+            selectedStudent.course,
+            selectedStudent.combination
+        ]
+        .filter(Boolean)
+        .join(" • ") || "Course";
+
+
+    const admin =
+        selectedStudent.adminFee || {};
+
+
+    /*
+     * College-facing total:
+     *
+     * Trust Contribution
+     * +
+     * Student Payable
+     */
+
+    const totalFee =
+        Number(
+            admin.trustContribution || 0
+        ) +
+        Number(
+            admin.studentPayable || 0
+        );
+
+
+    const office =
+        selectedStudent.officeFee || {};
+
+
+    modalStudentName.textContent = name;
+
+    modalStudentCourse.textContent = course;
+
+    modalTotalFee.textContent =
+        formatMoney(totalFee);
+
+
+    fillPaymentFields(office);
+
+
+    updatePaymentSummary(totalFee);
+
+
+    paymentMessage.className =
+        "payment-message";
+
+    paymentMessage.textContent = "";
+
+
+    savePaymentBtn.textContent =
+        selectedStudent.officeFee
+            ? "Save Changes"
+            : "Save Fee Details";
+
+
+    paymentModal.classList.add("show");
+
+}
+
+
+/* =========================
+   FILL EXISTING
+========================= */
+
+function fillPaymentFields(data) {
+
+    paymentInputs.advanceAmount.value =
+        data.advancePaid || "";
+
+    paymentInputs.advanceDate.value =
+        data.advancePaidDate || "";
+
+
+    paymentInputs.firstAmount.value =
+        data.firstInstallment || "";
+
+    paymentInputs.firstDate.value =
+        data.firstInstallmentDate || "";
+
+
+    paymentInputs.secondAmount.value =
+        data.secondInstallment || "";
+
+    paymentInputs.secondDate.value =
+        data.secondInstallmentDate || "";
+
+
+    paymentInputs.thirdAmount.value =
+        data.thirdInstallment || "";
+
+    paymentInputs.thirdDate.value =
+        data.thirdInstallmentDate || "";
+
+
+    paymentInputs.fourthAmount.value =
+        data.fourthInstallment || "";
+
+    paymentInputs.fourthDate.value =
+        data.fourthInstallmentDate || "";
+
+}
+
+
+/* =========================
+   CALCULATE PAID
+========================= */
+
+function getCurrentTotalPaid() {
+
+    return (
+
+        getNumber(
+            paymentInputs.advanceAmount.value
         )
-        .forEach(
-            (element) => {
 
-                element.addEventListener(
-                    "click",
-                    () => {
+        +
 
-                        const id =
-                            element.dataset.id;
+        getNumber(
+            paymentInputs.firstAmount.value
+        )
+
+        +
+
+        getNumber(
+            paymentInputs.secondAmount.value
+        )
+
+        +
+
+        getNumber(
+            paymentInputs.thirdAmount.value
+        )
+
+        +
+
+        getNumber(
+            paymentInputs.fourthAmount.value
+        )
+
+    );
+
+}
 
 
-                        const student =
-                            allStudents.find(
-                                (item) =>
-                                    item.id === id
-                            );
+function calculateTotalPaid(data) {
+
+    return (
+
+        Number(data.advancePaid || 0)
+
+        +
+
+        Number(data.firstInstallment || 0)
+
+        +
+
+        Number(data.secondInstallment || 0)
+
+        +
+
+        Number(data.thirdInstallment || 0)
+
+        +
+
+        Number(data.fourthInstallment || 0)
+
+    );
+
+}
 
 
-                        if(student){
+/* =========================
+   SUMMARY
+========================= */
 
-                            openStudent(
-                                student
-                            );
+function updatePaymentSummary(totalFee) {
 
-                        }
+    const totalPaid =
+        getCurrentTotalPaid();
 
-                    }
-                );
+
+    const balance =
+        Math.max(
+            totalFee - totalPaid,
+            0
+        );
+
+
+    modalTotalPaid.textContent =
+        formatMoney(totalPaid);
+
+    modalBalance.textContent =
+        formatMoney(balance);
+
+}
+
+
+Object.values(paymentInputs)
+    .forEach(input => {
+
+        input.addEventListener(
+            "input",
+            () => {
+
+                if (!selectedStudent) {
+                    return;
+                }
+
+
+                const admin =
+                    selectedStudent.adminFee || {};
+
+
+                const totalFee =
+                    Number(
+                        admin.trustContribution || 0
+                    )
+                    +
+                    Number(
+                        admin.studentPayable || 0
+                    );
+
+
+                updatePaymentSummary(totalFee);
 
             }
         );
 
-}
-
-
-// ==========================================================
-// STUDENT HTML
-// ==========================================================
-
-function createStudentHTML(
-    student
-){
-
-    const name =
-        escapeHTML(
-            student.name ||
-            "Unnamed Student"
-        );
-
-
-    const phone =
-        escapeHTML(
-            student.phone ||
-            "No phone"
-        );
-
-
-    const className =
-        escapeHTML(
-            student.joiningClass ||
-            "—"
-        );
-
-
-    const course =
-        escapeHTML(
-            student.course ||
-            "—"
-        );
-
-
-    const combination =
-        escapeHTML(
-            student.combination ||
-            "—"
-        );
-
-
-    return `
-
-        <div
-            class="student-result"
-            data-id="${student.id}">
-
-
-            <div class="student-avatar-small">
-
-                <i class="ri-user-3-line"></i>
-
-            </div>
-
-
-            <div class="student-result-info">
-
-                <strong>
-                    ${name}
-                </strong>
-
-                <span>
-                    ${className}
-                    •
-                    ${course}
-                    ${combination !== "—"
-                        ? " • " + combination
-                        : ""}
-                </span>
-
-                <small>
-                    ${phone}
-                </small>
-
-            </div>
-
-
-            <i class="ri-arrow-right-s-line"></i>
-
-
-        </div>
-
-    `;
-
-}
-
-
-// ==========================================================
-// OPEN STUDENT
-// ==========================================================
-
-async function openStudent(
-    student
-){
-
-    selectedStudent =
-        student;
-
-
-    editing = false;
-
-
-    studentView.style.display =
-        "none";
-
-
-    feeView.style.display =
-        "block";
-
-
-    selectedName.textContent =
-        student.name ||
-        "Unnamed Student";
-
-
-    selectedContact.textContent =
-        student.email ||
-        student.phone ||
-        "—";
-
-
-    selectedClass.textContent =
-        student.joiningClass ||
-        "—";
-
-
-    selectedCourse.textContent =
-        student.course ||
-        "—";
-
-
-    selectedCombination.textContent =
-        student.combination ||
-        "—";
-
-
-    await loadStudentFee(
-        student.id
-    );
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
     });
 
-}
 
+/* =========================
+   SAVE PAYMENT
+========================= */
 
-// ==========================================================
-// LOAD STUDENT FEE
-// ==========================================================
-
-async function loadStudentFee(
-    studentId
-){
-
-    const feeRef =
-        doc(
-            db,
-            "officeFees",
-            studentId
-        );
-
-
-    const snapshot =
-        await getDoc(
-            feeRef
-        );
-
-
-    if(snapshot.exists()){
-
-        existingFeeData =
-            snapshot.data();
-
-
-        fillFeeData(
-            existingFeeData
-        );
-
-
-        setLockedView();
-
-    }
-    else{
-
-        existingFeeData =
-            null;
-
-
-        clearFeeFields();
-
-        setNewRecordView();
-
-    }
-
-}
-
-
-// ==========================================================
-// FILL FEE
-// ==========================================================
-
-function fillFeeData(
-    data
-){
-
-    advanceAmount.value =
-        data.advancePaid ?? "";
-
-    advanceDate.value =
-        data.advancePaidDate ?? "";
-
-
-    firstAmount.value =
-        data.firstInstallment ?? "";
-
-    firstDate.value =
-        data.firstInstallmentDate ?? "";
-
-
-    secondAmount.value =
-        data.secondInstallment ?? "";
-
-    secondDate.value =
-        data.secondInstallmentDate ?? "";
-
-
-    calculateTotal();
-
-}
-
-
-// ==========================================================
-// NEW RECORD
-// ==========================================================
-
-function setNewRecordView(){
-
-    editing = true;
-
-
-    lockStatus.style.display =
-        "none";
-
-
-    lockedMessage.style.display =
-        "none";
-
-
-    editFeesButton.style.display =
-        "none";
-
-
-    enableFields();
-
-
-    saveChangesButton.style.display =
-        "flex";
-
-
-    cancelEditButton.style.display =
-        "none";
-
-}
-
-
-// ==========================================================
-// LOCKED RECORD
-// ==========================================================
-
-function setLockedView(){
-
-    editing = false;
-
-
-    lockStatus.style.display =
-        "flex";
-
-
-    lockedMessage.style.display =
-        "flex";
-
-
-    editFeesButton.style.display =
-        "flex";
-
-
-    saveChangesButton.style.display =
-        "none";
-
-
-    cancelEditButton.style.display =
-        "none";
-
-
-    disableFields();
-
-}
-
-
-// ==========================================================
-// ENABLE
-// ==========================================================
-
-function enableFields(){
-
-    [
-
-        advanceAmount,
-        advanceDate,
-
-        firstAmount,
-        firstDate,
-
-        secondAmount,
-        secondDate
-
-    ].forEach(
-        (field) => {
-
-            field.disabled = false;
-
-        }
-    );
-
-}
-
-
-// ==========================================================
-// DISABLE
-// ==========================================================
-
-function disableFields(){
-
-    [
-
-        advanceAmount,
-        advanceDate,
-
-        firstAmount,
-        firstDate,
-
-        secondAmount,
-        secondDate
-
-    ].forEach(
-        (field) => {
-
-            field.disabled = true;
-
-        }
-    );
-
-}
-
-
-// ==========================================================
-// EDIT FEES
-// ==========================================================
-
-editFeesButton.addEventListener(
+savePaymentBtn.addEventListener(
     "click",
-    () => {
-
-        editing = true;
-
-
-        enableFields();
-
-
-        editFeesButton.style.display =
-            "none";
-
-
-        lockedMessage.style.display =
-            "none";
-
-
-        saveChangesButton.style.display =
-            "flex";
-
-
-        cancelEditButton.style.display =
-            "block";
-
-
-        advanceAmount.focus();
-
-    }
+    savePayment
 );
 
 
-// ==========================================================
-// CANCEL EDIT
-// ==========================================================
+async function savePayment() {
 
-cancelEditButton.addEventListener(
-    "click",
-    () => {
-
-        if(existingFeeData){
-
-            fillFeeData(
-                existingFeeData
-            );
-
-        }
-
-
-        editing = false;
-
-
-        setLockedView();
-
+    if (!selectedStudent) {
+        return;
     }
-);
 
 
-// ==========================================================
-// BACK
-// ==========================================================
-
-backButton.addEventListener(
-    "click",
-    () => {
-
-        selectedStudent =
-            null;
-
-        existingFeeData =
-            null;
-
-        editing =
-            false;
+    const admin =
+        selectedStudent.adminFee || {};
 
 
-        feeView.style.display =
-            "none";
-
-
-        studentView.style.display =
-            "block";
-
-
-        studentSearch.value =
-            "";
-
-
-        renderStudents();
-
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    }
-);
-
-
-// ==========================================================
-// TOTAL
-// ==========================================================
-
-[
-    advanceAmount,
-    firstAmount,
-    secondAmount
-
-].forEach(
-    (input) => {
-
-        input.addEventListener(
-            "input",
-            calculateTotal
+    const totalFee =
+        Number(
+            admin.trustContribution || 0
+        )
+        +
+        Number(
+            admin.studentPayable || 0
         );
 
+
+    if (totalFee <= 0) {
+
+        showPaymentMessage(
+            "No fee structure has been set for this student.",
+            "error"
+        );
+
+        return;
     }
-);
 
-
-function calculateTotal(){
 
     const advance =
-        Number(
-            advanceAmount.value
-        ) || 0;
-
-
-    const first =
-        Number(
-            firstAmount.value
-        ) || 0;
-
-
-    const second =
-        Number(
-            secondAmount.value
-        ) || 0;
-
-
-    const total =
-        advance +
-        first +
-        second;
-
-
-    totalFee.textContent =
-        "₹" +
-        total.toLocaleString(
-            "en-IN"
+        getNumber(
+            paymentInputs.advanceAmount.value
         );
 
-}
+    const first =
+        getNumber(
+            paymentInputs.firstAmount.value
+        );
+
+    const second =
+        getNumber(
+            paymentInputs.secondAmount.value
+        );
+
+    const third =
+        getNumber(
+            paymentInputs.thirdAmount.value
+        );
+
+    const fourth =
+        getNumber(
+            paymentInputs.fourthAmount.value
+        );
 
 
-// ==========================================================
-// SAVE / UPDATE
-// ==========================================================
-
-saveChangesButton.addEventListener(
-    "click",
-    async () => {
-
-        if(!selectedStudent){
-
-            alert(
-                "No student selected."
-            );
-
-            return;
-
-        }
+    const totalPaid =
+        advance +
+        first +
+        second +
+        third +
+        fourth;
 
 
-        const advance =
-            Number(
-                advanceAmount.value
-            ) || 0;
+    if (totalPaid > totalFee) {
+
+        showPaymentMessage(
+            "Total paid cannot be greater than the total fee.",
+            "error"
+        );
+
+        return;
+    }
 
 
-        const first =
-            Number(
-                firstAmount.value
-            ) || 0;
+    savePaymentBtn.disabled = true;
+
+    savePaymentBtn.textContent =
+        "Saving...";
 
 
-        const second =
-            Number(
-                secondAmount.value
-            ) || 0;
+    try {
 
+        await setDoc(
 
-        const total =
-            advance +
-            first +
-            second;
+            doc(
+                db,
+                "officeFees",
+                selectedStudent.id
+            ),
 
-
-        // --------------------------------------------------
-        // DATE VALIDATION
-        // --------------------------------------------------
-
-        if(
-            advance > 0 &&
-            !advanceDate.value
-        ){
-
-            alert(
-                "Enter the advance paid date."
-            );
-
-            return;
-
-        }
-
-
-        if(
-            first > 0 &&
-            !firstDate.value
-        ){
-
-            alert(
-                "Enter the 1st installment paid date."
-            );
-
-            return;
-
-        }
-
-
-        if(
-            second > 0 &&
-            !secondDate.value
-        ){
-
-            alert(
-                "Enter the 2nd installment paid date."
-            );
-
-            return;
-
-        }
-
-
-        const confirmed =
-            confirm(
-                existingFeeData
-                    ? "Update this official fee record?"
-                    : "Save this official fee record?"
-            );
-
-
-        if(!confirmed){
-
-            return;
-
-        }
-
-
-        try{
-
-            saveChangesButton.disabled =
-                true;
-
-
-            saveChangesButton.innerHTML = `
-                <i class="ri-loader-4-line"></i>
-                Saving...
-            `;
-
-
-            const feeRef =
-                doc(
-                    db,
-                    "officeFees",
-                    selectedStudent.id
-                );
-
-
-            // ------------------------------------------------
-            // SAVE
-            // ------------------------------------------------
-
-            await setDoc(
-                feeRef,
-                {
-
-                    studentId:
-                        selectedStudent.id,
-
-                    studentName:
-                        selectedStudent.name ||
-                        "",
-
-                    studentEmail:
-                        selectedStudent.email ||
-                        "",
-
-                    advancePaid:
-                        advance,
-
-                    advancePaidDate:
-                        advanceDate.value ||
-                        null,
-
-                    firstInstallment:
-                        first,
-
-                    firstInstallmentDate:
-                        firstDate.value ||
-                        null,
-
-                    secondInstallment:
-                        second,
-
-                    secondInstallmentDate:
-                        secondDate.value ||
-                        null,
-
-                    totalPaid:
-                        total,
-
-                    locked:
-                        true,
-
-                    savedAt:
-                        serverTimestamp()
-
-                }
-            );
-
-
-            // ------------------------------------------------
-            // UPDATE LOCAL DATA
-            // ------------------------------------------------
-
-            existingFeeData = {
+            {
 
                 studentId:
                     selectedStudent.id,
 
                 studentName:
                     selectedStudent.name ||
+                    selectedStudent.fullName ||
                     "",
 
                 studentEmail:
                     selectedStudent.email ||
                     "",
 
+
+                /*
+                 * Total fee shown to office
+                 */
+
+                totalFee:
+                    totalFee,
+
+
+                /* Payments */
+
                 advancePaid:
                     advance,
 
                 advancePaidDate:
-                    advanceDate.value ||
-                    null,
+                    paymentInputs.advanceDate.value || "",
+
 
                 firstInstallment:
                     first,
 
                 firstInstallmentDate:
-                    firstDate.value ||
-                    null,
+                    paymentInputs.firstDate.value || "",
+
 
                 secondInstallment:
                     second,
 
                 secondInstallmentDate:
-                    secondDate.value ||
-                    null,
+                    paymentInputs.secondDate.value || "",
+
+
+                thirdInstallment:
+                    third,
+
+                thirdInstallmentDate:
+                    paymentInputs.thirdDate.value || "",
+
+
+                fourthInstallment:
+                    fourth,
+
+                fourthInstallmentDate:
+                    paymentInputs.fourthDate.value || "",
+
 
                 totalPaid:
-                    total,
+                    totalPaid,
 
-                locked:
-                    true
+                balance:
+                    Math.max(
+                        totalFee - totalPaid,
+                        0
+                    ),
 
-            };
+
+                status:
+                    totalPaid >= totalFee
+                        ? "Paid"
+                        : "Pending",
 
 
-            fillFeeData(
-                existingFeeData
+                updatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge: true
+            }
+
+        );
+
+
+        showPaymentMessage(
+            "Fee details saved successfully.",
+            "success"
+        );
+
+
+        /*
+         * Reload everything after save
+         */
+
+        await loadData();
+
+
+        setTimeout(() => {
+
+            paymentModal.classList.remove(
+                "show"
             );
 
+        }, 800);
 
-            setLockedView();
+
+    } catch (error) {
+
+        console.error(
+            "Payment save error:",
+            error
+        );
+
+        showPaymentMessage(
+            "Unable to save fee details: " +
+            error.message,
+            "error"
+        );
+
+    }
 
 
-            alert(
-                "Fee record saved successfully."
+    savePaymentBtn.disabled = false;
+
+    savePaymentBtn.textContent =
+        "Save Changes";
+
+}
+
+
+/* =========================
+   CLOSE
+========================= */
+
+closeModal.addEventListener(
+    "click",
+    () => {
+
+        paymentModal.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+paymentModal.addEventListener(
+    "click",
+    event => {
+
+        if (event.target === paymentModal) {
+
+            paymentModal.classList.remove(
+                "show"
             );
-
-        }
-        catch(error){
-
-            console.error(
-                "Fee save error:",
-                error
-            );
-
-
-            alert(
-                "Unable to save fee record. Check Firestore permissions."
-            );
-
-        }
-        finally{
-
-            saveChangesButton.disabled =
-                false;
-
-
-            saveChangesButton.innerHTML = `
-                <i class="ri-save-3-line"></i>
-                Save Changes
-            `;
 
         }
 
@@ -1262,61 +958,114 @@ saveChangesButton.addEventListener(
 );
 
 
-// ==========================================================
-// ERROR
-// ==========================================================
+/* =========================
+   SEARCH
+========================= */
 
-function showAccessError(
-    message
-){
+searchInput.addEventListener(
+    "input",
+    () => {
 
-    accessError.textContent =
-        message;
+        const search =
+            searchInput.value
+                .trim()
+                .toLowerCase();
 
-    accessError.classList.add(
-        "show"
-    );
+
+        const filtered =
+            students.filter(student => {
+
+                const name =
+                    (
+                        student.name ||
+                        student.fullName ||
+                        ""
+                    ).toLowerCase();
+
+
+                const email =
+                    (
+                        student.email ||
+                        ""
+                    ).toLowerCase();
+
+
+                return (
+                    name.includes(search) ||
+                    email.includes(search)
+                );
+
+            });
+
+
+        displayStudents(filtered);
+
+    }
+);
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showPaymentMessage(
+    text,
+    type
+) {
+
+    paymentMessage.textContent = text;
+
+    paymentMessage.className =
+        "payment-message show " + type;
 
 }
 
 
-// ==========================================================
-// HTML ESCAPE
-// ==========================================================
+/* =========================
+   NUMBER
+========================= */
 
-function escapeHTML(
-    value
-){
+function getNumber(value) {
 
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+    const number =
+        Number(value);
+
+    return Number.isFinite(number)
+        ? Math.max(number, 0)
+        : 0;
 
 }
 
 
-// ==========================================================
-// INITIAL
-// ==========================================================
+/* =========================
+   MONEY
+========================= */
 
-calculateTotal();
+function formatMoney(amount) {
+
+    return "₹" +
+        Number(amount || 0)
+            .toLocaleString("en-IN");
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
