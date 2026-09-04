@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin - Fee Setup</title>
+
+    <link rel="stylesheet" href="fees.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+        <div>
+            <div class="brand">ZENOVA</div>
+            <h1>Fee Management</h1>
+            <p>Admin Fee Setup</p>
+        </div>
+
+        <div class="admin-badge">
+            ADMIN
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- STUDENT SELECTION -->
+        <section class="section">
+
+            <div class="section-title">
+                <span>01</span>
+                <div>
+                    <h2>Select Student</h2>
+                    <p>Choose the student whose fee structure you want to set.</p>
+                </div>
+            </div>
+
+
+            <input
+                type="text"
+                id="studentSearch"
+                class="search"
+                placeholder="Search student by name or email..."
+            >
+
+
+            <div id="studentList" class="student-list">
+
+                <div class="loading">
+                    Loading students...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SELECTED STUDENT -->
+        <section
+            id="selectedStudentSection"
+            class="section hidden"
+        >
+
+            <div class="student-profile">
+
+                <div class="avatar" id="studentAvatar">
+                    S
+                </div>
+
+                <div>
+                    <h2 id="selectedName">Student Name</h2>
+                    <p id="selectedEmail">student@email.com</p>
+                    <small id="selectedCourse">
+                        Course
+                    </small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEE STRUCTURE -->
+        <section
+            id="feeSection"
+            class="section hidden"
+        >
+
+            <div class="section-title">
+                <span>02</span>
+                <div>
+                    <h2>Fee Structure</h2>
+                    <p>Enter the complete fee breakup.</p>
+                </div>
+            </div>
+
+
+            <div class="form-grid">
+
+                <!-- COLLEGE FEE -->
+                <div class="field">
+
+                    <label>
+                        Total College Fee
+                    </label>
+
+                    <div class="money-input">
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="collegeFee"
+                            min="0"
+                            placeholder="0"
+                        >
+                    </div>
+
+                    <small>
+                        Total fee charged by the college.
+                    </small>
+
+                </div>
+
+
+                <!-- TRUST -->
+                <div class="field">
+
+                    <label>
+                        Trust Contribution
+                    </label>
+
+                    <div class="money-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="trustContribution"
+                            min="0"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                    <small>
+                        Amount supported by the trust.
+                    </small>
+
+                </div>
+
+
+                <!-- SCHOLARSHIP -->
+                <div class="field">
+
+                    <label>
+                        Scholarship / Concession
+                    </label>
+
+                    <div class="money-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="scholarship"
+                            min="0"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                    <small>
+                        Optional discount or scholarship.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- CALCULATION -->
+            <div class="calculation">
+
+                <div class="calculation-row">
+                    <span>Total College Fee</span>
+                    <strong id="displayCollegeFee">
+                        ₹0
+                    </strong>
+                </div>
+
+                <div class="calculation-row">
+                    <span>Trust Contribution</span>
+                    <strong id="displayTrust">
+                        − ₹0
+                    </strong>
+                </div>
+
+                <div class="calculation-row">
+                    <span>Scholarship / Concession</span>
+                    <strong id="displayScholarship">
+                        − ₹0
+                    </strong>
+                </div>
+
+                <div class="calculation-line"></div>
+
+                <div class="final-row">
+                    <div>
+                        <span>Student Payable Fee</span>
+                        <small>Amount student has to pay</small>
+                    </div>
+
+                    <strong id="studentPayable">
+                        ₹0
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- SAVE -->
+            <button
+                id="saveBtn"
+                class="save-btn"
+            >
+                Save Fee Structure
+            </button>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <script type="module" src="fees.js"></script>
+
+</body>
+</html>
