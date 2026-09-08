@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fee Reference - Zenova Educations</title>
+
+    <link rel="stylesheet" href="referencepaid.css">
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+
+    <div id="loginScreen" class="login-screen">
+
+        <div class="login-box">
+
+            <div class="logo">ZENOVA</div>
+
+            <h1>Fee Reference</h1>
+
+            <p>Authorized access only</p>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                autocomplete="off"
+            >
+
+            <button id="loginBtn">
+                Continue →
+            </button>
+
+            <div id="loginError"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <main id="mainPage" class="main-page">
+
+        <header class="page-header">
+
+            <div>
+
+                <div class="brand">
+                    ZENOVA EDUCATIONS
+                </div>
+
+                <h1>Fee Reference</h1>
+
+                <p>
+                    Trust Contribution + Student Payable
+                </p>
+
+            </div>
+
+            <div class="student-count">
+
+                <span>Total Students</span>
+
+                <strong id="studentCount">
+                    0
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+            <div class="summary-box">
+
+                <span>Total Trust Contribution</span>
+
+                <strong id="totalTrust">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>Total Student Payable</span>
+
+                <strong id="totalStudentPayable">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>Total Actual College Fee</span>
+
+                <strong id="totalActualFee">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-box paid-box">
+
+                <span>Total Fees Paid</span>
+
+                <strong id="totalPaid">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>Total Balance</span>
+
+                <strong id="totalBalance">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search student..."
+            >
+
+            <button id="refreshBtn">
+                ↻ Refresh
+            </button>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Student Name</th>
+
+                        <th>Trust Contribution</th>
+
+                        <th>Student Payable</th>
+
+                        <th>Actual Total Fee</th>
+
+                        <th>Total Fees Paid</th>
+
+                        <th>Balance</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentsTable">
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="loading"
+                        >
+                            Loading...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+                <tfoot id="tableFooter">
+
+                </tfoot>
+
+            </table>
+
+        </div>
+
+
+        <div
+            id="emptyMessage"
+            class="empty-message"
+        >
+            No students found.
+        </div>
+
+    </main>
+
+
+    <script type="module" src="referencepaid.js"></script>
+
+</body>
+</html>
