@@ -2,27 +2,29 @@ import { db } from "../firebase-config.js";
 
 import {
     collection,
-    getDocs
+    getDocs,
+    updateDoc,
+    doc
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 
-// ======================================
-// SETTINGS
-// ======================================
+// ========================================
+// PASSWORD
+// ========================================
 
 const PASSWORD = "123456";
 
 
-// ======================================
-// VARIABLES
-// ======================================
+// ========================================
+// DATA
+// ========================================
 
 let students = [];
 
 
-// ======================================
+// ========================================
 // ELEMENTS
-// ======================================
+// ========================================
 
 const loginScreen =
     document.getElementById("loginScreen");
@@ -55,11 +57,15 @@ const emptyMessage =
     document.getElementById("emptyMessage");
 
 
-// ======================================
+// ========================================
 // LOGIN
-// ======================================
+// ========================================
 
-loginBtn.addEventListener("click", login);
+loginBtn.addEventListener(
+    "click",
+    login
+);
+
 
 passwordInput.addEventListener(
     "keydown",
@@ -75,17 +81,21 @@ passwordInput.addEventListener(
 
 function login() {
 
-    if (
-        passwordInput.value.trim() === PASSWORD
-    ) {
+    const password =
+        passwordInput.value.trim();
 
-        loginScreen.style.display = "none";
 
-        mainPage.style.display = "block";
+    if (password === PASSWORD) {
+
+        loginScreen.style.display =
+            "none";
+
+        mainPage.style.display =
+            "block";
 
         loginError.textContent = "";
 
-        loadFeeReference();
+        loadData();
 
     } else {
 
@@ -99,11 +109,11 @@ function login() {
 }
 
 
-// ======================================
+// ========================================
 // LOAD DATA
-// ======================================
+// ========================================
 
-async function loadFeeReference() {
+async function loadData() {
 
     studentsTable.innerHTML = `
         <tr>
@@ -113,48 +123,51 @@ async function loadFeeReference() {
         </tr>
     `;
 
+
     try {
 
-        /*
-         * IMPORTANT:
-         *
-         * feeRecords = original fee structure
-         *
-         * officeFees = actual money collected
-         *
-         * We NEVER write anything on this page.
-         */
+        // ==================================
+        // FEE RECORDS
+        // ==================================
 
-        const feeRecordsSnapshot =
+        const feeSnapshot =
             await getDocs(
                 collection(db, "feeRecords")
             );
 
 
-        const officeFeesSnapshot =
+        // ==================================
+        // OFFICE FEES
+        // ==================================
+
+        const officeSnapshot =
             await getDocs(
                 collection(db, "officeFees")
             );
 
 
         // ==================================
-        // CREATE OFFICE PAYMENT LOOKUP
+        // OFFICE PAYMENT LOOKUP
         // ==================================
 
         const officePayments = {};
 
-        officeFeesSnapshot.forEach(
+
+        officeSnapshot.forEach(
             (documentSnapshot) => {
 
                 const data =
                     documentSnapshot.data();
+
 
                 officePayments[
                     documentSnapshot.id
                 ] = {
 
                     totalPaid:
-                        Number(data.totalPaid || 0)
+                        Number(
+                            data.totalPaid || 0
+                        )
 
                 };
 
@@ -163,30 +176,36 @@ async function loadFeeReference() {
 
 
         // ==================================
-        // CREATE STUDENT LIST
+        // BUILD STUDENT DATA
         // ==================================
 
         students = [];
 
 
-        feeRecordsSnapshot.forEach(
+        feeSnapshot.forEach(
             (documentSnapshot) => {
 
                 const data =
                     documentSnapshot.data();
 
+
                 const studentId =
                     documentSnapshot.id;
 
 
-                // ----------------------------
-                // FEE STRUCTURE
-                // ----------------------------
+                // --------------------------------
+                // TRUST CONTRIBUTION
+                // --------------------------------
 
                 const trustContribution =
                     Number(
                         data.trustContribution || 0
                     );
+
+
+                // --------------------------------
+                // STUDENT PAYABLE
+                // --------------------------------
 
                 const studentPayable =
                     Number(
@@ -194,22 +213,26 @@ async function loadFeeReference() {
                     );
 
 
-                /*
-                 * ACTUAL TOTAL COLLEGE FEE
-                 *
-                 * Trust Contribution
-                 * +
-                 * Student Payable
-                 */
+                // --------------------------------
+                // REFERENCE TOTAL FEES
+                //
+                // THIS IS THE VALUE YOU EDIT.
+                //
+                // IMPORTANT:
+                // It is NOT officeFees.totalFee.
+                // --------------------------------
 
-                const actualTotalFee =
-                    trustContribution +
-                    studentPayable;
+                const referenceTotalFees =
+                    Number(
+                        data.referenceTotalFees || 0
+                    );
 
 
-                // ----------------------------
-                // PAID FROM OFFICE
-                // ----------------------------
+                // --------------------------------
+                // ACTUAL FEES PAID
+                //
+                // ONLY FROM OFFICE PORTAL
+                // --------------------------------
 
                 const officeRecord =
                     officePayments[studentId];
@@ -223,12 +246,16 @@ async function loadFeeReference() {
                         : 0;
 
 
-                // ----------------------------
-                // BALANCE
-                // ----------------------------
+                // --------------------------------
+                // REFERENCE BALANCE
+                //
+                // Reference Total Fees
+                // MINUS
+                // Actual Fees Paid
+                // --------------------------------
 
                 const balance =
-                    actualTotalFee -
+                    referenceTotalFees -
                     totalPaid;
 
 
@@ -246,7 +273,7 @@ async function loadFeeReference() {
 
                     studentPayable,
 
-                    actualTotalFee,
+                    referenceTotalFees,
 
                     totalPaid,
 
@@ -258,17 +285,23 @@ async function loadFeeReference() {
         );
 
 
-        renderStudents(students);
+        renderTable(
+            students
+        );
 
-        updateSummary(students);
+
+        updateSummary(
+            students
+        );
 
 
     } catch (error) {
 
         console.error(
-            "Fee reference loading error:",
+            "Error loading fee reference:",
             error
         );
+
 
         studentsTable.innerHTML = `
             <tr>
@@ -281,6 +314,7 @@ async function loadFeeReference() {
             </tr>
         `;
 
+
         alert(
             "Could not load fee details.\n\n" +
             error.message
@@ -289,11 +323,11 @@ async function loadFeeReference() {
 }
 
 
-// ======================================
-// RENDER
-// ======================================
+// ========================================
+// RENDER TABLE
+// ========================================
 
-function renderStudents(list) {
+function renderTable(list) {
 
     studentsTable.innerHTML = "";
 
@@ -348,24 +382,36 @@ function renderStudents(list) {
                 </td>
 
 
-                <td class="money">
-                    ${formatMoney(
-                        student.actualTotalFee
-                    )}
+                <td>
+
+                    <input
+                        type="number"
+                        class="reference-fee-input"
+                        data-id="${student.id}"
+                        value="${student.referenceTotalFees}"
+                        min="0"
+                        step="1"
+                        placeholder="Enter fee"
+                    >
+
                 </td>
 
 
                 <td class="paid">
+
                     ${formatMoney(
                         student.totalPaid
                     )}
+
                 </td>
 
 
                 <td class="balance">
+
                     ${formatMoney(
                         student.balance
                     )}
+
                 </td>
 
             `;
@@ -376,19 +422,74 @@ function renderStudents(list) {
     );
 
 
-    // ==================================
+    // ====================================
+    // REFERENCE FEE INPUT EVENTS
+    // ====================================
+
+    document
+        .querySelectorAll(
+            ".reference-fee-input"
+        )
+        .forEach(
+            (input) => {
+
+                input.addEventListener(
+                    "change",
+                    async function () {
+
+                        const id =
+                            this.dataset.id;
+
+
+                        const value =
+                            Number(
+                                this.value || 0
+                            );
+
+
+                        await saveReferenceFee(
+                            id,
+                            value
+                        );
+
+                    }
+                );
+
+
+                input.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Enter"
+                        ) {
+
+                            event.preventDefault();
+
+                            this.blur();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+    // ====================================
     // FOOTER TOTAL
-    // ==================================
+    // ====================================
 
     const totals =
         calculateTotals(list);
 
 
-    const footerRow =
+    const footer =
         document.createElement("tr");
 
 
-    footerRow.innerHTML = `
+    footer.innerHTML = `
 
         <td></td>
 
@@ -410,7 +511,7 @@ function renderStudents(list) {
 
         <td>
             ${formatMoney(
-                totals.actualFee
+                totals.reference
             )}
         </td>
 
@@ -429,13 +530,205 @@ function renderStudents(list) {
     `;
 
 
-    tableFooter.appendChild(footerRow);
+    tableFooter.appendChild(
+        footer
+    );
 }
 
 
-// ======================================
+// ========================================
+// SAVE REFERENCE TOTAL FEES
+// ========================================
+
+async function saveReferenceFee(
+    id,
+    value
+) {
+
+    try {
+
+        /*
+         * VERY IMPORTANT:
+         *
+         * We save ONLY:
+         *
+         * referenceTotalFees
+         *
+         * We DO NOT touch:
+         *
+         * officeFees.totalFee
+         *
+         * officeFees.totalPaid
+         *
+         * studentPayable
+         *
+         * trustContribution
+         */
+
+
+        await updateDoc(
+            doc(
+                db,
+                "feeRecords",
+                id
+            ),
+            {
+
+                referenceTotalFees:
+                    value
+
+            }
+        );
+
+
+        // ==================================
+        // UPDATE LOCAL DATA
+        // ==================================
+
+        const student =
+            students.find(
+                (item) =>
+                    item.id === id
+            );
+
+
+        if (student) {
+
+            student.referenceTotalFees =
+                value;
+
+
+            student.balance =
+                value -
+                student.totalPaid;
+        }
+
+
+        // ==================================
+        // REFRESH DISPLAY
+        // ==================================
+
+        renderTable(
+            getFilteredStudents()
+        );
+
+
+        updateSummary(
+            getFilteredStudents()
+        );
+
+
+        console.log(
+            "Reference Total Fees saved:",
+            id,
+            value
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Reference fee save error:",
+            error
+        );
+
+
+        alert(
+            "Could not save Reference Total Fees.\n\n" +
+            error.message
+        );
+
+
+        // Reload original saved value
+
+        loadData();
+    }
+}
+
+
+// ========================================
+// SEARCH
+// ========================================
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const filtered =
+            getFilteredStudents();
+
+
+        renderTable(
+            filtered
+        );
+
+
+        updateSummary(
+            filtered
+        );
+
+    }
+);
+
+
+function getFilteredStudents() {
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    if (!search) {
+
+        return students;
+    }
+
+
+    return students.filter(
+        (student) => {
+
+            const name =
+                String(
+                    student.studentName || ""
+                )
+                .toLowerCase();
+
+
+            const email =
+                String(
+                    student.studentEmail || ""
+                )
+                .toLowerCase();
+
+
+            return (
+                name.includes(search) ||
+                email.includes(search)
+            );
+
+        }
+    );
+}
+
+
+// ========================================
+// REFRESH
+// ========================================
+
+refreshBtn.addEventListener(
+    "click",
+    () => {
+
+        loadData();
+
+    }
+);
+
+
+// ========================================
 // SUMMARY
-// ======================================
+// ========================================
 
 function updateSummary(list) {
 
@@ -445,13 +738,16 @@ function updateSummary(list) {
 
     document.getElementById(
         "studentCount"
-    ).textContent = students.length;
+    ).textContent =
+        students.length;
 
 
     document.getElementById(
         "totalTrust"
     ).textContent =
-        formatMoney(totals.trust);
+        formatMoney(
+            totals.trust
+        );
 
 
     document.getElementById(
@@ -463,10 +759,10 @@ function updateSummary(list) {
 
 
     document.getElementById(
-        "totalActualFee"
+        "totalReferenceFees"
     ).textContent =
         formatMoney(
-            totals.actualFee
+            totals.reference
         );
 
 
@@ -487,47 +783,52 @@ function updateSummary(list) {
 }
 
 
-// ======================================
+// ========================================
 // CALCULATE TOTALS
-// ======================================
+// ========================================
 
 function calculateTotals(list) {
 
     return list.reduce(
-        (total, student) => {
+        (totals, student) => {
 
-            total.trust +=
+            totals.trust +=
                 Number(
                     student.trustContribution || 0
                 );
 
-            total.studentPayable +=
+
+            totals.studentPayable +=
                 Number(
                     student.studentPayable || 0
                 );
 
-            total.actualFee +=
+
+            totals.reference +=
                 Number(
-                    student.actualTotalFee || 0
+                    student.referenceTotalFees || 0
                 );
 
-            total.paid +=
+
+            totals.paid +=
                 Number(
                     student.totalPaid || 0
                 );
 
-            total.balance +=
+
+            totals.balance +=
                 Number(
                     student.balance || 0
                 );
 
-            return total;
+
+            return totals;
 
         },
         {
             trust: 0,
             studentPayable: 0,
-            actualFee: 0,
+            reference: 0,
             paid: 0,
             balance: 0
         }
@@ -535,88 +836,23 @@ function calculateTotals(list) {
 }
 
 
-// ======================================
-// SEARCH
-// ======================================
-
-searchInput.addEventListener(
-    "input",
-    function () {
-
-        const value =
-            this.value
-                .trim()
-                .toLowerCase();
-
-
-        if (!value) {
-
-            renderStudents(students);
-
-            return;
-        }
-
-
-        const filtered =
-            students.filter(
-                (student) => {
-
-                    return (
-
-                        String(
-                            student.studentName || ""
-                        )
-                        .toLowerCase()
-                        .includes(value)
-
-                        ||
-
-                        String(
-                            student.studentEmail || ""
-                        )
-                        .toLowerCase()
-                        .includes(value)
-
-                    );
-
-                }
-            );
-
-
-        renderStudents(filtered);
-    }
-);
-
-
-// ======================================
-// REFRESH
-// ======================================
-
-refreshBtn.addEventListener(
-    "click",
-    () => {
-
-        loadFeeReference();
-
-    }
-);
-
-
-// ======================================
+// ========================================
 // MONEY FORMAT
-// ======================================
+// ========================================
 
 function formatMoney(amount) {
 
-    return "₹" +
+    return (
+        "₹" +
         Number(amount || 0)
-            .toLocaleString("en-IN");
+            .toLocaleString("en-IN")
+    );
 }
 
 
-// ======================================
-// HTML ESCAPE
-// ======================================
+// ========================================
+// ESCAPE HTML
+// ========================================
 
 function escapeHTML(value) {
 
